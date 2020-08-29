@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">groupfinder</string>
+    <string name="password_hint">Password</string>
+    <string name="groupfinderLogo">GroupFinder</string>
+    <string name="loginHeadline">Login</string>
+    <string name="no_account_text">Don\'t have an account?</string>
+    <string name="sign_up_btn_text">SIGN UP</string>
+    <string name="sign_up_text">Sign up</string>
+    <string name="forename_hint">Forename</string>
+    <string name="lastname_hint">Lastname</string>
+    <string name="email_hint">E-mail</string>
+
+    <string name="phonenumber_hint">Phonenumber</string>
 </resources>
