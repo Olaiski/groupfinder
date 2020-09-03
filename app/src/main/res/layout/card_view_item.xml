@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="groupViewModel"
+            type="com.example.groupfinder.groups.GroupViewModel" />
+    </data>
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".groups.GroupFragment">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/group_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@android:color/white"
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="vertical"
+            >
+
+            <!-- TODO // Coursecode, Title og Description hentes fra DB -->
+            <com.google.android.material.textview.MaterialTextView
+                android:padding="@dimen/spacing_small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/CustomTextSmall"
+                android:text="Coursecode"
+                />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:textAppearance="@style/CustomHeadlineSmall"
+                android:padding="@dimen/spacing_xs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Title"
+                />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:padding="@dimen/spacing_xs"
+                android:layout_marginStart="@dimen/spacing_small"
+                android:text="Description"
+                android:maxLines="2"
+                android:scrollHorizontally="false"
+                android:layout_weight="1"
+                android:ellipsize="none"
+
+                />
+
+            <!--TODO // cardBackgroudColor = farge kode når man oppretter gruppe? -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                app:cardBackgroundColor="@color/primaryColor"
+
+                />
+
+
+
+
+        </LinearLayout>
+
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>
+
+
+</layout>

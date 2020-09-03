@@ -11,7 +11,7 @@
     <fragment
         android:id="@+id/userProfileFragment"
         android:name="com.example.groupfinder.userprofile.UserProfileFragment"
-        android:label="user_profile_fragment"
+        android:label="Home"
         tools:layout="@layout/user_profile_fragment" >
         <action
             android:id="@+id/action_userProfileFragment_to_groupFragment"
@@ -20,31 +20,35 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.groupfinder.login.LoginFragment"
-        android:label="login_fragment"
-        tools:layout="@layout/login_fragment" />
+        android:label="Login"
+        tools:layout="@layout/login_fragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_userProfileFragment"
+            app:destination="@id/userProfileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/groupFragment"
         android:name="com.example.groupfinder.groups.GroupFragment"
-        android:label="group_fragment"
-        tools:layout="@layout/group_fragment" />
+        android:label="Groups"
+        tools:layout="@layout/card_view_item" />
     <fragment
         android:id="@+id/aboutFragment"
         android:name="com.example.groupfinder.about.AboutFragment"
-        android:label="about_fragment"
+        android:label="About"
         tools:layout="@layout/about_fragment" />
     <fragment
         android:id="@+id/calendarFragment"
         android:name="com.example.groupfinder.calendar.CalendarFragment"
-        android:label="calendar_fragment"
+        android:label="Calendar"
         tools:layout="@layout/calendar_fragment" />
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.groupfinder.settings.SettingsFragment"
-        android:label="settings_fragment"
+        android:label="Settings"
         tools:layout="@layout/settings_fragment" />
     <fragment
         android:id="@+id/signUpFragment"
         tools:layout="@layout/sign_up_fragment"
         android:name="com.example.groupfinder.signup.SignUpFragment"
-        android:label="SignUpFragment" />
+        android:label="SignUp" />
 </navigation>

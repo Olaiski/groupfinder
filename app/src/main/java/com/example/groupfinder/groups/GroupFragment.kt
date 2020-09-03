@@ -20,7 +20,7 @@ class GroupFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.group_fragment, container, false)
+        return inflater.inflate(R.layout.card_view_item, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
