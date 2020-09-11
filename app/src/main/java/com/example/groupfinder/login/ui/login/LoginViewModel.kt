@@ -1,18 +1,24 @@
-package com.example.groupfinder.signup
+package com.example.groupfinder.login.ui.login
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.groupfinder.database.GroupFinderDatabaseDao
-import com.example.groupfinder.database.models.User
+import com.example.groupfinder.login.data.LoginRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.withContext
 
-class SignUpViewModel(
-    val database: GroupFinderDatabaseDao,
-    application: Application) : AndroidViewModel(application) {
+class LoginViewModel(val loginRepository: LoginRepository,
+                     application: Application) : AndroidViewModel(application) {
+
+
+    private val _loginForm = MutableLiveData<LoginFormState>()
+    val loginFormState: LiveData<LoginFormState> = _loginForm
+
+    private val _loginResult = MutableLiveData<LoginResult>()
+    val loginResult: LiveData<LoginResult> = _loginResult
 
 
     /**
@@ -35,16 +41,10 @@ class SignUpViewModel(
 
 
 
-    private suspend fun insert(user : User) {
-        withContext(Dispatchers.IO) {
-            database.insert(user)
-        }
+    fun login(email: String, password: String) {
+        val result = loginRepository.login(email, password)
     }
 
 
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
-    }
 
 }

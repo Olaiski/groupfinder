@@ -54,7 +54,7 @@
                     android:padding="5dp"
                     android:scaleType="centerCrop"
                     app:shapeAppearanceOverlay="@style/circleImageView"
-                    app:srcCompat="@drawable/stockphoto"
+                    app:srcCompat="@drawable/user"
                     app:strokeColor="@android:color/white"
                     app:strokeWidth="5dp" />
 
@@ -86,15 +86,15 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
                                 android:layout_marginTop="60dp"
-                                android:text="Kari Normann"
-                                android:textAppearance="@style/CustomTextLarge" />
+                                android:text="Student Name"
+                                android:textAppearance="@style/CustomOverlineLarge" />
 
                             <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
                                 android:layout_marginTop="10dp"
-                                android:text="ka@msn.no"
+                                android:text="Email@email.com"
                                 android:textSize="17sp" />
 
 
@@ -118,7 +118,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="60dp"
+                        android:layout_margin="25dp"
                         android:orientation="horizontal"
                         android:weightSum="2"
                         android:layout_marginTop="20dp"
@@ -130,7 +130,7 @@
                                 android:layout_height="match_parent"
                                 android:textAlignment="center"
                                 android:text="My Groups"
-                                android:textAppearance="@style/CustomTextLarge"
+                                android:textAppearance="@style/CustomOverlineLarge"
                                 />
                     </LinearLayout>
 
@@ -138,9 +138,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
+                        <!-- TODO// Skal inneholde de gruppene man er medlem av.
+                                    SQL SELECT... -->
                         <androidx.recyclerview.widget.RecyclerView
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            tools:listitem="@layout/card_view_item"
+                            >
 
 
                         </androidx.recyclerview.widget.RecyclerView>

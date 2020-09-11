@@ -1,7 +1,7 @@
-package com.example.groupfinder.login
+package com.example.groupfinder.group
 
 import androidx.lifecycle.ViewModel
 
-class LoginViewModel : ViewModel() {
+class GroupViewModel : ViewModel() {
     // TODO: Implement the ViewModel
 }

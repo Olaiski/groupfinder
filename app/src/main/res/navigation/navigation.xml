@@ -19,18 +19,16 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.groupfinder.login.LoginFragment"
+        android:name="com.example.groupfinder.login.ui.login.LoginFragment"
         android:label="Login"
         tools:layout="@layout/login_fragment" >
         <action
             android:id="@+id/action_loginFragment_to_userProfileFragment"
             app:destination="@id/userProfileFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/groupFragment"
-        android:name="com.example.groupfinder.groups.GroupFragment"
-        android:label="Groups"
-        tools:layout="@layout/card_view_item" />
     <fragment
         android:id="@+id/aboutFragment"
         android:name="com.example.groupfinder.about.AboutFragment"
@@ -50,5 +48,27 @@
         android:id="@+id/signUpFragment"
         tools:layout="@layout/sign_up_fragment"
         android:name="com.example.groupfinder.signup.SignUpFragment"
-        android:label="SignUp" />
+        android:label="SignUp" >
+        <action
+            android:id="@+id/action_signUpFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/groupFragment"
+        tools:layout="@layout/group_fragment"
+        android:name="com.example.groupfinder.group.GroupFragment"
+        android:label="Group" />
+
+    <fragment
+        android:id="@+id/databaseFragment"
+        tools:layout="@layout/fragment_database"
+        android:name="com.example.groupfinder.database.DatabaseFragment"
+        />
+    <fragment
+        android:id="@+id/groupsFragment"
+        tools:layout="@layout/groups_fragment"
+        android:name="com.example.groupfinder.groups.GroupsFragment"
+        android:label="GroupsFragment" />
+
+
 </navigation>

@@ -8,24 +8,24 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.groupfinder.R
 
-class GroupFragment : Fragment() {
+class GroupsFragment : Fragment() {
 
     companion object {
-        fun newInstance() = GroupFragment()
+        fun newInstance() = GroupsFragment()
     }
 
-    private lateinit var viewModel: GroupViewModel
+    private lateinit var viewModel: GroupsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.card_view_item, container, false)
+        return inflater.inflate(R.layout.groups_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(GroupViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(GroupsViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

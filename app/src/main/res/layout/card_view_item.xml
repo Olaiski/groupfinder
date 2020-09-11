@@ -8,7 +8,17 @@
     <data>
         <variable
             name="groupViewModel"
-            type="com.example.groupfinder.groups.GroupViewModel" />
+            type="com.example.groupfinder.group.GroupViewModel" />
+
+
+        <variable
+            name="group"
+            type="com.example.groupfinder.database.models.Group" />
+
+        <variable
+            name="clickListener"
+            type="com.example.groupfinder.group.GroupListener" />
+
     </data>
 
 
@@ -16,13 +26,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".groups.GroupFragment">
+    tools:context=".group.GroupFragment"
+    android:onClick="@{() -> clickListener.onClick(group)}"
+    >
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/group_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@android:color/white"
+        android:layout_marginBottom="@dimen/spacing_medium"
         >
 
 
@@ -37,7 +50,7 @@
                 android:padding="@dimen/spacing_small"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/CustomTextSmall"
+                android:textAppearance="@style/CustomOverlineSmall"
                 android:text="Coursecode"
                 />
 

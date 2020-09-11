@@ -30,14 +30,15 @@
     <dimen name="font_xl">22sp</dimen>
 
 
-
     <dimen name="icon_small">18dp</dimen>
     <dimen name="icon_medium">24dp</dimen>
     <dimen name="icon_large">32dp</dimen>
     <dimen name="icon_xl">48dp</dimen>
     <dimen name="icon_xxl">64dp</dimen>
-
-
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="fragment_horizontal_margin">16dp</dimen>
+    <dimen name="fragment_vertical_margin">16dp</dimen>
+    <dimen name="recycler_gf_height">350dp</dimen>
 
 
 </resources>

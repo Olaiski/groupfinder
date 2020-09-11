@@ -6,10 +6,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     >
 
+    <data>
+        <variable
+            name="loginViewModel"
+            type="com.example.groupfinder.login.ui.login.LoginViewModel" />
+    </data>
+
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login.LoginFragment"
+    tools:context=".login.ui.login.LoginFragment"
     android:id="@+id/login_fragment"
     >
 
@@ -20,7 +26,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto"
         android:text="@string/groupfinderLogo"
-        android:textAppearance="?textAppearanceHeadline6"
+        android:textAppearance="?textAppearanceHeadline5"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,43 +39,73 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/spacing_large"
         android:text="@string/loginHeadline"
-        android:textAppearance="?textAppearanceHeadline5"
+        android:textAppearance="?textAppearanceHeadline4"
         app:layout_constraintBottom_toTopOf="@+id/loginEmail"
         app:layout_constraintEnd_toEndOf="@+id/logoText"
         app:layout_constraintStart_toStartOf="@+id/logoText" />
 
-    <com.google.android.material.textfield.TextInputEditText
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/loginEmail"
         android:layout_width="@dimen/edit_text_width_large"
         android:layout_height="@dimen/edit_text_height_large"
         android:layout_marginBottom="@dimen/spacing_medium"
-        android:hint="@string/email_hint"
-        android:inputType="textEmailAddress"
 
         app:layout_constraintBottom_toTopOf="@+id/loginPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
 
-    <com.google.android.material.textfield.TextInputEditText
+        app:startIconDrawable="@drawable/ic_alternate_email"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:textSize="@dimen/font_small"
+            android:hint="@string/email_hint"
+
+            />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/loginPassword"
         android:layout_width="@dimen/edit_text_width_large"
         android:layout_height="@dimen/edit_text_height_large"
         android:layout_marginBottom="@dimen/spacing_login"
-        android:hint="@string/password_hint"
-        android:inputType="textPassword"
+
         app:endIconMode="password_toggle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/loginEmail"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/loginEmail" />
+        app:layout_constraintStart_toStartOf="@+id/loginEmail"
+
+
+        app:startIconDrawable="@drawable/ic_lock"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:textSize="@dimen/font_small"
+            android:hint="@string/password_hint"
+
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/buttonLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:backgroundTint="@color/primaryColor"
+        style="@style/floatingButtonArrow"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/loginPassword"
         app:layout_constraintHorizontal_bias="0.6"
@@ -77,6 +113,23 @@
         app:layout_constraintTop_toBottomOf="@+id/loginPassword"
         app:layout_constraintVertical_bias="0.1"
         app:srcCompat="@drawable/ic_arrow_forward" />
+
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="64dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/buttonLogin"
+        app:layout_constraintLeft_toLeftOf="@+id/loginPassword"
+        app:layout_constraintRight_toRightOf="@+id/loginPassword"
+        app:layout_constraintBottom_toTopOf="@+id/materialButton"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3" />
 
     <TextView
         android:id="@+id/textView3"
