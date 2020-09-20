@@ -46,9 +46,12 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/loginEmail"
-        android:layout_width="@dimen/edit_text_width_large"
-        android:layout_height="@dimen/edit_text_height_large"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/spacing_medium"
+
+        android:layout_marginStart="@dimen/spacing_large"
+        android:layout_marginEnd="@dimen/spacing_large"
 
         app:layout_constraintBottom_toTopOf="@+id/loginPassword"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,9 +76,12 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/loginPassword"
-        android:layout_width="@dimen/edit_text_width_large"
-        android:layout_height="@dimen/edit_text_height_large"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/spacing_login"
+
+        android:layout_marginStart="@dimen/spacing_large"
+        android:layout_marginEnd="@dimen/spacing_large"
 
         app:endIconMode="password_toggle"
         app:layout_constraintBottom_toBottomOf="parent"

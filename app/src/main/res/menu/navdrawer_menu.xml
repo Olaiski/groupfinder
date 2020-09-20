@@ -7,9 +7,9 @@
         android:title="@string/home" />
 
     <item
-        android:id="@+id/calendarFragment"
+        android:id="@+id/reservationFragment"
         android:icon="@drawable/ic_calendar"
-        android:title="@string/calendar" />
+        android:title="@string/room_reservation" />
 
     <item
         android:id="@+id/groupsFragment"
@@ -53,5 +53,6 @@
     <item
         android:id="@+id/groupFragment"
         android:title="@string/group"/>
+
 
 </menu>

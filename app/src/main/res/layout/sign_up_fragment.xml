@@ -44,9 +44,11 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/forenameInput"
-        android:layout_width="@dimen/edit_text_width_medium"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/edit_text_height_medium"
         android:layout_marginTop="@dimen/spacing_large"
+        android:layout_marginEnd="@dimen/spacing_large"
+        android:layout_marginStart="@dimen/spacing_large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signupText"
@@ -67,9 +69,13 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/lastnameInput"
-        android:layout_width="@dimen/edit_text_width_medium"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/edit_text_height_medium"
         android:layout_marginTop="@dimen/spacing_small"
+
+        android:layout_marginEnd="@dimen/spacing_large"
+        android:layout_marginStart="@dimen/spacing_large"
+
         app:layout_constraintEnd_toEndOf="@+id/forenameInput"
         app:layout_constraintStart_toStartOf="@+id/forenameInput"
         app:layout_constraintTop_toBottomOf="@+id/forenameInput"
@@ -96,12 +102,15 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/emailInput"
-        android:layout_width="@dimen/edit_text_width_medium"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/edit_text_height_medium"
         android:layout_marginTop="@dimen/spacing_small"
         app:layout_constraintEnd_toEndOf="@+id/forenameInput"
         app:layout_constraintStart_toStartOf="@+id/forenameInput"
         app:layout_constraintTop_toBottomOf="@+id/lastnameInput"
+
+        android:layout_marginEnd="@dimen/spacing_large"
+        android:layout_marginStart="@dimen/spacing_large"
 
         app:startIconDrawable="@drawable/ic_alternate_email"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -119,12 +128,15 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/phoneInput"
-        android:layout_width="@dimen/edit_text_width_medium"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/edit_text_height_medium"
         android:layout_marginTop="@dimen/spacing_small"
         app:layout_constraintEnd_toEndOf="@+id/forenameInput"
         app:layout_constraintStart_toStartOf="@+id/forenameInput"
         app:layout_constraintTop_toBottomOf="@+id/emailInput"
+
+        android:layout_marginEnd="@dimen/spacing_large"
+        android:layout_marginStart="@dimen/spacing_large"
 
         app:startIconDrawable="@drawable/ic_phone"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -146,15 +158,19 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passwordInput"
-        android:layout_width="@dimen/edit_text_width_medium"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/edit_text_height_medium"
-        android:layout_marginBottom="@dimen/spacing_medium"
         app:layout_constraintBottom_toTopOf="@+id/buttonLogin"
         app:layout_constraintEnd_toEndOf="@+id/forenameInput"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/forenameInput"
         app:layout_constraintTop_toBottomOf="@+id/phoneInput"
         app:layout_constraintVertical_bias="0.060"
+
+        android:layout_marginEnd="@dimen/spacing_large"
+        android:layout_marginStart="@dimen/spacing_large"
+        android:layout_marginBottom="40dp"
+        android:layout_marginTop="@dimen/spacing_xs"
 
         app:startIconDrawable="@drawable/ic_lock"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -177,8 +193,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginTop="@dimen/spacing_xl"
-        android:layout_marginBottom="@dimen/spacing_xl"
         style="@style/floatingButtonArrow"
 
 
@@ -196,7 +210,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="50dp"
 
 
         android:text="@string/already_have_an_account"
@@ -210,6 +224,7 @@
         android:id="@+id/materialButton"
         android:layout_width="200dp"
         android:layout_height="40dp"
+
         android:layout_marginBottom="@dimen/spacing_medium"
         android:background="@color/design_default_color_primary_variant"
         android:text="@string/back_to_login"
@@ -217,6 +232,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textView3"
         app:layout_constraintStart_toStartOf="@+id/textView3" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

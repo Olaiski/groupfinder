@@ -35,10 +35,10 @@
         android:label="About"
         tools:layout="@layout/about_fragment" />
     <fragment
-        android:id="@+id/calendarFragment"
-        android:name="com.example.groupfinder.calendar.CalendarFragment"
+        android:id="@+id/reservationFragment"
+        android:name="com.example.groupfinder.calendar.ReservationFragment"
         android:label="Calendar"
-        tools:layout="@layout/calendar_fragment" />
+        tools:layout="@layout/reservation_fragment" />
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.groupfinder.settings.SettingsFragment"

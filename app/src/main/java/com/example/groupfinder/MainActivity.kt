@@ -34,6 +34,8 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
+
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
         NavigationUI.setupWithNavController(binding.navView, navController)
 
@@ -46,4 +48,6 @@ class MainActivity : AppCompatActivity() {
 
         return NavigationUI.navigateUp(navController, drawerLayout)
     }
+
+
 }

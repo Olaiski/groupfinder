@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".calendar.ReservationFragment">
+
+    <data>
+        <variable
+            name="calenderViewModel"
+            type="com.example.groupfinder.calendar.ReservationViewModel" />
+
+    </data>
+
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginBottom="521dp"
+            android:background="@color/primaryColor" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/spacing_xl"
+            android:textColor="@color/secondaryLightColor"
+            android:textSize="@dimen/font_xl"
+
+            android:text="Room Reservation"
+            />
+
+        <LinearLayout
+            android:id="@+id/linear_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="vertical">
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                tools:ignore="UselessParent">
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_profile_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="85dp"
+                    android:paddingTop="15dp"
+                    app:cardCornerRadius="10dp"
+                    app:contentPadding="15dp"
+                    app:strokeColor="@android:color/white"
+                    app:strokeWidth="2dp"
+                    >
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        >
+
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="20dp"
+                            android:textAppearance="@style/CustomOverlineLarge"
+
+                            android:text="Info"
+                            />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+
+                            >
+
+
+                           <TextView
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:textAlignment="center"
+                               android:text="Reservere rom etc. \nInformasjon..Velg dato, start/slutt tid, romnr"
+                               />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+
+
+            </RelativeLayout>
+           <com.google.android.material.button.MaterialButton
+               android:id="@+id/open_calender_btn"
+
+               android:layout_marginTop="@dimen/spacing_large"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+
+
+               android:text="@string/select_a_date"
+               />
+
+
+
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="500dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="@dimen/spacing_large">
+
+
+                <TextView
+                    android:id="@+id/start_time_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+
+                    android:text="@string/start_time"
+                    android:textSize="20sp"
+
+
+
+
+                    app:layout_constraintBottom_toBottomOf="@+id/start_time_input"
+                    app:layout_constraintEnd_toStartOf="@+id/start_time_input"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/start_time_input" />
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/start_time_input"
+                    android:layout_marginEnd="@dimen/spacing_xxl"
+                    style="@style/RoomReservationButtons"
+
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+
+                    />
+
+
+
+                <TextView
+                    android:id="@+id/end_time_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="@dimen/spacing_xl"
+                    android:text="@string/end_time"
+
+                    android:textSize="20sp"
+
+
+                    app:layout_constraintEnd_toEndOf="@+id/start_time_text"
+                    app:layout_constraintStart_toStartOf="@+id/start_time_text"
+                    app:layout_constraintTop_toBottomOf="@id/start_time_text" />
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/end_time_input"
+                    style="@style/RoomReservationButtons"
+
+                    app:layout_constraintBottom_toBottomOf="@+id/end_time_text_view"
+                    app:layout_constraintEnd_toEndOf="@+id/start_time_input"
+                    app:layout_constraintStart_toStartOf="@+id/start_time_input"
+                    app:strokeColor="@android:color/transparent" />
+
+
+                <TextView
+                    android:id="@+id/room_number_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="@dimen/spacing_xl"
+
+                    android:text="@string/room_number"
+                    android:textSize="20sp"
+
+                    app:layout_constraintEnd_toEndOf="@+id/end_time_text_view"
+                    app:layout_constraintStart_toStartOf="@+id/end_time_text_view"
+                    app:layout_constraintTop_toBottomOf="@+id/end_time_text_view" />
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/room_number_input"
+                    style="@style/RoomReservationButtons"
+
+                    app:layout_constraintBottom_toBottomOf="@+id/room_number_text_view"
+                    app:layout_constraintEnd_toEndOf="@+id/end_time_input"
+                    app:layout_constraintStart_toStartOf="@+id/end_time_input" />
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/reserver_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="@dimen/spacing_xxl"
+
+                    android:backgroundTint="@android:color/holo_green_dark"
+                    android:text="Reserve"
+
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/room_number_text_view"
+                    app:strokeColor="@android:color/holo_green_dark" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+
+                    app:layout_constraintBottom_toBottomOf="@+id/reserver_button"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/reserver_button" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.core.widget.NestedScrollView>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</layout>
