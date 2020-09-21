@@ -9,13 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import com.example.groupfinder.R
-import com.example.groupfinder.calendar.datetimepicker.EndTimeDialogFragment
-import com.example.groupfinder.calendar.datetimepicker.StartTimeDialogFragment
-import com.example.groupfinder.calendar.datetimepicker.ReservationViewModelShared
-import com.example.groupfinder.calendar.datetimepicker.RoomDialogFragment
+import com.example.groupfinder.calendar.datetimepicker.*
 import com.example.groupfinder.database.GroupFinderDatabase
 
 import com.example.groupfinder.databinding.ReservationFragmentBinding
+import com.google.android.material.datepicker.MaterialDatePicker
 
 
 class ReservationFragment : Fragment() {
@@ -37,10 +35,10 @@ class ReservationFragment : Fragment() {
 
         val viewModelFactory = ReservationViewModelFactory(dataSource, application)
 
-        val calendarViewModel = ViewModelProvider(this, viewModelFactory).get(ReservationViewModel::class.java)
+        val reservationViewModel = ViewModelProvider(this, viewModelFactory).get(ReservationViewModel::class.java)
 
 
-        binding.calenderViewModel = calendarViewModel
+        binding.calenderViewModel = reservationViewModel
 
         binding.lifecycleOwner = this
 
@@ -50,8 +48,8 @@ class ReservationFragment : Fragment() {
         val startTimeInput = binding.startTimeInput
         val startTimeDialog = StartTimeDialogFragment()
 
-        binding.startTimeInput.setOnClickListener {
-            startTimeDialog.show(parentFragmentManager, "start")
+        startTimeInput.setOnClickListener {
+            startTimeDialog.show(parentFragmentManager, startTimeInput.toString())
         }
         reservationViewModelShared.startTime.observe(viewLifecycleOwner, { item ->
             startTimeInput.text = item.toString()
@@ -62,8 +60,8 @@ class ReservationFragment : Fragment() {
         val endTimeInput = binding.endTimeInput
         val endTimeDialog = EndTimeDialogFragment()
 
-        binding.endTimeInput.setOnClickListener {
-            endTimeDialog.show(parentFragmentManager, "end")
+        endTimeInput.setOnClickListener {
+            endTimeDialog.show(parentFragmentManager, endTimeInput.toString())
         }
 
         reservationViewModelShared.endTime.observe(viewLifecycleOwner, { item ->
@@ -75,13 +73,54 @@ class ReservationFragment : Fragment() {
         val roomInput = binding.roomNumberInput
         val roomDialog = RoomDialogFragment()
 
-        binding.roomNumberInput.setOnClickListener {
-            roomDialog.show(parentFragmentManager, "room")
+        roomInput.setOnClickListener {
+            roomDialog.show(parentFragmentManager, roomInput.toString())
         }
 
         reservationViewModelShared.roomNumber.observe(viewLifecycleOwner, {item ->
             roomInput.text = item.toString()
         })
+
+
+        // Calendar, DatePickerDialog / Button
+        val dateInput = binding.dateInput
+        val builder: MaterialDatePicker.Builder<*> = MaterialDatePicker.Builder.datePicker()
+        builder.setTitleText("Select a Date")
+
+        val picker: MaterialDatePicker<*> = builder.build()
+
+        dateInput.setOnClickListener {
+            picker.show(parentFragmentManager, picker.toString())
+        }
+
+        picker.addOnPositiveButtonClickListener {
+            dateInput.text = picker.headerText
+        }
+
+
+        // Group dialog / button
+        val groupInput = binding.groupInput
+        val groupDialog = GroupSelectDialogFragment()
+        groupInput.setOnClickListener {
+            groupDialog.show(parentFragmentManager, groupInput.toString())
+        }
+
+        reservationViewModelShared.groupName.observe(viewLifecycleOwner, { item ->
+            groupInput.text = item.toString()
+        })
+
+
+        binding.reserveButton.setOnClickListener {
+            reservationViewModelShared.onReserveRoom(
+                startTime = binding.startTimeInput.text.toString(),
+                endTime = binding.endTimeInput.text.toString(),
+                date = dateInput.text.toString(),
+                roomNumber = binding.roomNumberInput.text.toString(),
+                groupName = binding.groupInput.text.toString()
+            )
+
+        }
+
 
 
 

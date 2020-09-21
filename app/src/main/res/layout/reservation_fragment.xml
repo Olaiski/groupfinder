@@ -111,28 +111,42 @@
 
 
             </RelativeLayout>
-           <com.google.android.material.button.MaterialButton
-               android:id="@+id/open_calender_btn"
-
-               android:layout_marginTop="@dimen/spacing_large"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
 
 
-               android:text="@string/select_a_date"
-               />
 
 
 
 
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
-                android:layout_height="500dp">
+                android:layout_height="wrap_content"
+                android:fillViewport="true"
+                >
+
+
+
+
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:paddingTop="@dimen/spacing_large">
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/date_input"
+
+                    app:icon="@drawable/ic_calendar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_large"
+
+
+                    android:text="@string/select_date"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
                 <TextView
@@ -142,8 +156,7 @@
 
 
                     android:text="@string/start_time"
-                    android:textSize="20sp"
-
+                    android:textSize="@dimen/font_medium"
 
 
 
@@ -156,11 +169,14 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/start_time_input"
                     android:layout_marginEnd="@dimen/spacing_xxl"
+                    android:layout_marginTop="@dimen/spacing_xxl"
                     style="@style/RoomReservationButtons"
 
 
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+
+
+                    app:layout_constraintEnd_toEndOf="@+id/date_input"
+                    app:layout_constraintTop_toBottomOf="@+id/date_input"
 
                     />
 
@@ -174,7 +190,7 @@
                     android:layout_marginTop="@dimen/spacing_xl"
                     android:text="@string/end_time"
 
-                    android:textSize="20sp"
+                    android:textSize="@dimen/font_medium"
 
 
                     app:layout_constraintEnd_toEndOf="@+id/start_time_text"
@@ -200,7 +216,7 @@
                     android:layout_marginTop="@dimen/spacing_xl"
 
                     android:text="@string/room_number"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/font_medium"
 
                     app:layout_constraintEnd_toEndOf="@+id/end_time_text_view"
                     app:layout_constraintStart_toStartOf="@+id/end_time_text_view"
@@ -215,16 +231,39 @@
                     app:layout_constraintEnd_toEndOf="@+id/end_time_input"
                     app:layout_constraintStart_toStartOf="@+id/end_time_input" />
 
+                <TextView
+                    android:id="@+id/group_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/font_medium"
+
+                    android:layout_marginTop="@dimen/spacing_xl"
+                    android:text="@string/groupwsemi"
+
+                    app:layout_constraintEnd_toEndOf="@+id/room_number_text_view"
+                    app:layout_constraintStart_toStartOf="@+id/room_number_text_view"
+                    app:layout_constraintTop_toBottomOf="@+id/room_number_text_view" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/reserver_button"
+                    android:id="@+id/group_input"
+                    style="@style/RoomReservationButtons"
+
+
+                    app:layout_constraintBottom_toBottomOf="@+id/group_text_view"
+                    app:layout_constraintStart_toStartOf="@+id/room_number_input" />
+
+
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/reserve_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
-                    android:layout_marginTop="@dimen/spacing_xxl"
+                    android:layout_marginTop="100dp"
 
                     android:backgroundTint="@android:color/holo_green_dark"
-                    android:text="Reserve"
+                    android:text="@string/reserve"
 
 
                     app:layout_constraintEnd_toEndOf="parent"
@@ -234,18 +273,20 @@
 
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="40dp"
+                    android:layout_marginTop="40dp"
+                    app:layout_constraintTop_toBottomOf="@+id/reserve_button" />
 
 
-                    app:layout_constraintBottom_toBottomOf="@+id/reserver_button"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/reserver_button" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.core.widget.NestedScrollView>
+
+
         </LinearLayout>
 
     </RelativeLayout>

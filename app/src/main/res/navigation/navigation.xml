@@ -35,10 +35,24 @@
         android:label="About"
         tools:layout="@layout/about_fragment" />
     <fragment
+        android:id="@+id/myReservationFragment"
+        android:name="com.example.groupfinder.calendar.MyReservationFragment"
+        android:label="Reservation"
+        tools:layout="@layout/my_reservations_fragment" >
+        <action
+            android:id="@+id/action_myReservationFragment_to_reservationFragment"
+            app:destination="@id/reservationFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+    </fragment>
+
+    <fragment
         android:id="@+id/reservationFragment"
         android:name="com.example.groupfinder.calendar.ReservationFragment"
-        android:label="Calendar"
+        android:label="Reservation"
         tools:layout="@layout/reservation_fragment" />
+
+
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.groupfinder.settings.SettingsFragment"
@@ -68,7 +82,12 @@
         android:id="@+id/groupsFragment"
         tools:layout="@layout/groups_fragment"
         android:name="com.example.groupfinder.groups.GroupsFragment"
-        android:label="GroupsFragment" />
+        android:label="GroupsFragment" >
+        <action
+            android:id="@+id/action_groupsFragment_to_groupFragment"
+            app:destination="@id/groupFragment" />
+    </fragment>
+
 
 
 </navigation>

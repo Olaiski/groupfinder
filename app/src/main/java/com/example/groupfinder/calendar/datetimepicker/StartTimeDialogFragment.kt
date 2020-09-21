@@ -37,8 +37,6 @@ class StartTimeDialogFragment : DialogFragment() {
 //         A subclass of the AdapterView class uses an Adapter to bind data to its layout.
 //         The Adapter behaves as a middleman between the data source and the AdapterView layout—the Adapter retrieves the data
 //         (from a source such as an array or a database query) and converts each entry into a view that can be added into the AdapterView layout.
-
-
         val timeList = binding.itemList
         val timeString = reservationViewModelShared.setTimeList()
         val arrayAdapter = this.context?.let { ArrayAdapter(it, R.layout.item_for_list_text_view, R.id.text_view_item, timeString) }

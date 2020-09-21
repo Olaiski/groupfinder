@@ -119,19 +119,32 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="25dp"
-                        android:orientation="horizontal"
+                        android:orientation="vertical"
                         android:weightSum="2"
                         android:layout_marginTop="20dp"
                         >
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/create_group_button"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:text="@string/create_new_group"
+                            app:icon="@drawable/ic_group_add"
+                            android:layout_marginBottom="@dimen/spacing_medium"
+                            />
 
 
                             <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:textAlignment="center"
-                                android:text="My Groups"
+                                android:text="@string/my_groups"
                                 android:textAppearance="@style/CustomOverlineLarge"
                                 />
+
+
+
                     </LinearLayout>
 
                     <LinearLayout

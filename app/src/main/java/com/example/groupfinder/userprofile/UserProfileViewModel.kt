@@ -9,21 +9,29 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 
+// TODO: 21/09/2020 Endre dataSource
 class UserProfileViewModel(
     private val database: GroupFinderDatabaseDao,
-    application: Application) : AndroidViewModel(application), ViewModelStoreOwner{
+    application: Application) : AndroidViewModel(application){
 
 
     private var viewModelJob = Job()
 
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    private val _user = MutableLiveData<User>()
-    val user: LiveData<User>
-        get() = _user
 
 
-    override fun getViewModelStore(): ViewModelStore {
-        TODO("Not yet implemented")
+
+
+
+
+
+
+
+
+
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
     }
 }

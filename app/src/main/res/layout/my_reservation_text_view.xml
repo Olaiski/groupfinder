@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <LinearLayout
+        android:id="@+id/my_reservations_list_item"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginBottom="@dimen/spacing_medium"
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_marginStart="@dimen/spacing_medium"
+                style="@style/TextBoldMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill_horizontal"
+                android:text="@string/groupwsemi"
+
+                />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/reservation_group_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" G1"
+                />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/end_time_tw"
+                style="@style/TextBoldMedium"
+                android:layout_marginStart="@dimen/spacing_xxl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/start_time"
+                />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/myreservation_end_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text=" 13:00"
+            />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/start_time_tw"
+                style="@style/TextBoldMedium"
+                android:layout_marginStart="@dimen/spacing_xxl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/end_time"
+                />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/myreservation_start_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text=" 16:00"
+                />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/date_tw"
+                style="@style/TextBoldMedium"
+                android:layout_marginStart="@dimen/spacing_xxl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/date"
+                />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/myreservation_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" 21/09/2020"
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/location_tw"
+                style="@style/TextBoldMedium"
+                android:layout_marginStart="@dimen/spacing_xxl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/location"
+                />
+
+            <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/myreservation_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" Bø"
+            />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/roomnumber_tw"
+                style="@style/TextBoldMedium"
+                android:layout_marginStart="@dimen/spacing_xxl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/room_number"
+                />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/myreservation_roomnumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" 4-132"
+                />
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+</layout>

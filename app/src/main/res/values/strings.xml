@@ -48,6 +48,14 @@
     <string name="end_time">End Time:</string>
     <string name="room_number">Room number:</string>
     <string name="room_reservation">Room reservation</string>
+    <string name="select_date">select date</string>
+    <string name="groupwsemi">Group:</string>
+    <string name="reserve">Reserve</string>
+    <string name="my_groups">My Groups</string>
+    <string name="create_new_group">Create new group</string>
+    <string name="create">Create</string>
+    <string name="create_a_group">Create a group</string>
+    <string name="date">Date:</string>
 
 
     <string-array name="start_time_array">

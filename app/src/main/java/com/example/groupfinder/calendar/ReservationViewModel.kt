@@ -10,6 +10,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 
+
+// TODO: 21/09/2020 Endre dataSource
 class ReservationViewModel(val dataSource: GroupFinderDatabaseDao,
                            application: Application) : AndroidViewModel(application) {
 
@@ -33,10 +35,6 @@ class ReservationViewModel(val dataSource: GroupFinderDatabaseDao,
      */
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-
-    private val _startTime = MutableLiveData<String>()
-    val startTime: LiveData<String>
-        get() = _startTime
 
 
 

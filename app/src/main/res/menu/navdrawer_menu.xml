@@ -7,7 +7,7 @@
         android:title="@string/home" />
 
     <item
-        android:id="@+id/reservationFragment"
+        android:id="@+id/myReservationFragment"
         android:icon="@drawable/ic_calendar"
         android:title="@string/room_reservation" />
 

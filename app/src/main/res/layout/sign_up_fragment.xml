@@ -18,7 +18,7 @@
 
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/logoText"
+        android:id="@+id/logo_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_xxl"
@@ -38,9 +38,9 @@
         android:text="@string/sign_up_text"
 
         android:textAppearance="?textAppearanceHeadline4"
-        app:layout_constraintEnd_toEndOf="@+id/logoText"
-        app:layout_constraintStart_toStartOf="@+id/logoText"
-        app:layout_constraintTop_toBottomOf="@+id/logoText" />
+        app:layout_constraintEnd_toEndOf="@+id/logo_text_view"
+        app:layout_constraintStart_toStartOf="@+id/logo_text_view"
+        app:layout_constraintTop_toBottomOf="@+id/logo_text_view" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/forenameInput"
@@ -160,7 +160,7 @@
         android:id="@+id/passwordInput"
         android:layout_width="match_parent"
         android:layout_height="@dimen/edit_text_height_medium"
-        app:layout_constraintBottom_toTopOf="@+id/buttonLogin"
+        app:layout_constraintBottom_toTopOf="@+id/login_button_login"
         app:layout_constraintEnd_toEndOf="@+id/forenameInput"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/forenameInput"
@@ -189,24 +189,24 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/buttonLogin"
+        android:id="@+id/login_button_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
         style="@style/floatingButtonArrow"
 
 
-        app:layout_constraintBottom_toTopOf="@+id/materialButton"
+        app:layout_constraintBottom_toTopOf="@+id/login_to_register_button"
         app:layout_constraintEnd_toEndOf="@+id/passwordInput"
         app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintStart_toEndOf="@+id/materialButton"
+        app:layout_constraintStart_toEndOf="@+id/login_to_register_button"
         app:srcCompat="@drawable/ic_arrow_forward"
 
 
         />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/textView3"
+        android:id="@+id/login_to_register_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
@@ -214,14 +214,14 @@
 
 
         android:text="@string/already_have_an_account"
-        app:layout_constraintBottom_toTopOf="@+id/materialButton"
+        app:layout_constraintBottom_toTopOf="@+id/login_to_register_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonLogin"
+        app:layout_constraintTop_toBottomOf="@+id/login_button_login"
         app:layout_constraintVertical_bias="1.0" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/materialButton"
+        android:id="@+id/login_to_register_button"
         android:layout_width="200dp"
         android:layout_height="40dp"
 
@@ -230,8 +230,8 @@
         android:text="@string/back_to_login"
         android:textColor="@color/primaryTextColor"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textView3"
-        app:layout_constraintStart_toStartOf="@+id/textView3" />
+        app:layout_constraintEnd_toEndOf="@+id/login_to_register_text_view"
+        app:layout_constraintStart_toStartOf="@+id/login_to_register_text_view" />
 
 
 

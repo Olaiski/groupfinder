@@ -9,18 +9,9 @@ class ReservationViewModelShared : ViewModel() {
 
 
 
-    private val _startTime = MutableLiveData<String>()
-    val startTime: LiveData<String>
-        get() = _startTime
-
-    private val _endTime = MutableLiveData<String>()
-    val endTime: LiveData<String>
-        get() = _endTime
-
-
-
     private lateinit var timeStringList: ArrayList<String>
     private lateinit var roomStringList: ArrayList<String>
+    private lateinit var groupStringList: ArrayList<String>
 
 
     companion object {
@@ -32,9 +23,9 @@ class ReservationViewModelShared : ViewModel() {
     }
 
 
-
-    // Ex:
-    // val rooms = database.getAllRooms()
+    private val _startTime = MutableLiveData<String>()
+    val startTime: LiveData<String>
+        get() = _startTime
 
 
     fun setTimeList() : ArrayList<String> {
@@ -50,11 +41,20 @@ class ReservationViewModelShared : ViewModel() {
     }
 
 
+
+    private val _endTime = MutableLiveData<String>()
+    val endTime: LiveData<String>
+        get() = _endTime
+
     fun endTimeSelected(item: String) {
         _endTime.value = item
     }
 
 
+
+    // Ex: Query fra DB..
+    // val rooms = database.getAllRooms()
+    // Room number
     private val _roomNumber = MutableLiveData<String>()
     val roomNumber: LiveData<String>
         get() = _roomNumber
@@ -71,6 +71,43 @@ class ReservationViewModelShared : ViewModel() {
         _roomNumber.value = item
     }
 
+
+    // Ex: Query fra DB..
+    // val groups = database.getUserGroups()
+    // Group
+    private val _groupName = MutableLiveData<String>()
+    val groupName: LiveData<String>
+        get() = _groupName
+
+    fun setGroupList() : ArrayList<String> {
+        groupStringList = ArrayList()
+
+        groupStringList.add("G1")
+        groupStringList.add("G2")
+        groupStringList.add("G3")
+
+        return groupStringList
+    }
+
+    fun groupSelected(item: String) {
+        _groupName.value = item
+    }
+
+
+    private val _showSnackBarEvent = MutableLiveData<Boolean>()
+    val showSnackBarEvent: LiveData<Boolean>
+        get() = _showSnackBarEvent
+
+    fun doneShowingSnackbar() {
+        _showSnackBarEvent.value = false
+    }
+
+
+    // TODO: 21/09/2020 DB Query..
+    fun onReserveRoom(startTime: String, endTime: String, date: String, roomNumber: String, groupName: String) {
+        println("$startTime $endTime $roomNumber $groupName")
+        _showSnackBarEvent.value = true
+    }
 
 }
 

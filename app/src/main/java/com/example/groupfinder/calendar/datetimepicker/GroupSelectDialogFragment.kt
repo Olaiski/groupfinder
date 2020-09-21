@@ -1,6 +1,5 @@
 package com.example.groupfinder.calendar.datetimepicker
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,11 +9,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import com.example.groupfinder.R
-import com.example.groupfinder.calendar.Reservation
 import com.example.groupfinder.databinding.ListDialogFragmentBinding
 
-class RoomDialogFragment : DialogFragment() {
-
+class GroupSelectDialogFragment : DialogFragment() {
 
     private val reservationViewModelShared: ReservationViewModelShared by activityViewModels()
 
@@ -25,6 +22,7 @@ class RoomDialogFragment : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+
         val binding: ListDialogFragmentBinding = DataBindingUtil.inflate(
             inflater, R.layout.list_dialog_fragment, container, false)
 
@@ -32,26 +30,24 @@ class RoomDialogFragment : DialogFragment() {
 
         binding.lifecycleOwner = this
 
-        val roomList = binding.itemList
-        val roomString = reservationViewModelShared.setRoomNumberList()
-        val arrayAdapter = this.context?.let { ArrayAdapter(it, R.layout.item_for_list_text_view, R.id.text_view_item, roomString) }
 
 
-        roomList.adapter = arrayAdapter
+        val groupList = binding.itemList
+        val groupString = reservationViewModelShared.setGroupList()
+        val arrayAdapter = this.context?.let { ArrayAdapter(it, R.layout.item_for_list_text_view, R.id.text_view_item, groupString) }
 
-        // TODO: 20/09/2020 Bruke _, _, position, id -> for å hente ut?
-        roomList.setOnItemClickListener { _, _, position, _ ->
-            val selectedRoomId = arrayAdapter?.getItem(position)
-            reservationViewModelShared.roomNumberSelected(selectedRoomId.toString())
+
+        groupList.adapter = arrayAdapter
+
+        groupList.setOnItemClickListener{ _, _, position, _ ->
+            val selectedGroup = arrayAdapter?.getItem(position)
+            reservationViewModelShared.groupSelected(selectedGroup.toString())
 
             this.dismiss()
         }
 
 
 
-
-
         return binding.root
     }
 }
-
