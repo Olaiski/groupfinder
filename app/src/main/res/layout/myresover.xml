@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+
+    <data>
+        <variable
+            name="groupViewModel"
+            type="com.example.groupfinder.group.GroupViewModel" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/group_header"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:background="@color/primaryColor"
+            android:paddingTop="@dimen/spacing_medium"
+
+            android:text="Project Groupname"
+
+            android:textAlignment="center"
+            android:textColor="@color/secondaryLightColor"
+            android:textSize="@dimen/font_xl"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_group_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp"
+            app:cardCornerRadius="0dp"
+            app:contentPadding="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/group_header"
+            app:layout_constraintTop_toBottomOf="@id/group_header"
+
+            app:strokeColor="@android:color/white"
+            app:strokeWidth="1dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:textAppearance="@style/CustomOverlineLarge"
+
+                    android:text="About this group"
+                    />
+
+
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/my_reservation_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:layout_marginStart="@dimen/spacing_small"
+                    android:layout_marginEnd="@dimen/spacing_small"
+                    android:textAppearance="@style/CustomTextGroupInfo"
+
+                    android:text="-"
+                    />
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    >
+
+
+                    <com.google.android.material.textview.MaterialTextView
+                        style="@style/TextBoldMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/spacing_medium"
+                        android:layout_marginStart="@dimen/spacing_small"
+                        android:layout_marginEnd="@dimen/spacing_small"
+                        android:textAppearance="@style/CustomTextGroupInfo"
+
+                        android:text="@string/course_code"
+                        />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/course_code_group_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:textAppearance="@style/CustomTextGroupInfo"
+
+                        android:text="MOB3000"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    >
+
+                    <com.google.android.material.textview.MaterialTextView
+                        style="@style/TextBoldMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/spacing_medium"
+                        android:layout_marginStart="@dimen/spacing_small"
+                        android:layout_marginEnd="@dimen/spacing_small"
+                        android:textAppearance="@style/CustomTextGroupInfo"
+
+                        android:text="@string/location"
+                        />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/location_group_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:textAppearance="@style/CustomTextGroupInfo"
+
+                        android:text="Bø"
+                        />
+
+                </LinearLayout>
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/spacing_medium"
+                    android:layout_marginStart="@dimen/spacing_small"
+                    android:layout_marginEnd="@dimen/spacing_small"
+                    android:textAppearance="@style/CustomTextGroupInfo"
+                    style="@style/TextBoldMedium"
+
+                    android:text="@string/description"
+                    />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/group_description_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:layout_marginStart="@dimen/spacing_small"
+                    android:layout_marginEnd="@dimen/spacing_small"
+                    android:textAppearance="@style/CustomTextGroupInfo"
+
+                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut id tristique dui, eget blandit massa. Vestibulum ultricies eu leo vitae aliquet. "
+                    />
+
+
+
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/group_title_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:paddingBottom="@dimen/spacing_medium"
+
+            android:text="@string/group_memebers"
+            android:textAppearance="@style/CustomOverlineSmall"
+
+            android:textStyle="bold"
+
+            app:layout_constraintEnd_toEndOf="@+id/group_members_list"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/group_members_list"
+            app:layout_constraintTop_toBottomOf="@id/card_group_info"
+            />
+
+        <!--TODO// ListView -> Hent ut data fra DB, navn + bilde? av gruppe medlemmer i den gruppa -->
+        <ListView
+            android:id="@+id/group_members_list"
+            android:layout_width="300dp"
+            android:layout_height="130dp"
+
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/group_title_text_view"
+            tools:listitem="@layout/user_card_info" />
+
+        <!--TODO// Cancel knappen -> Sender deg tilbake til der du var Hjem eller Groups fragment -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/group_cancel_button"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="@string/cancel"
+
+            app:backgroundTint="@android:color/holo_red_dark"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/group_members_list"
+            app:layout_constraintTop_toBottomOf="@+id/group_members_list" />
+
+
+        <!--TODO// Join knappen -> Funksjon som blir med i gruppen -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/group_join_button"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="@string/join"
+
+            app:backgroundTint="@android:color/holo_green_dark"
+
+            app:layout_constraintBottom_toBottomOf="@+id/group_cancel_button"
+            app:layout_constraintEnd_toEndOf="@+id/group_members_list"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/group_cancel_button"
+            app:layout_constraintTop_toTopOf="@+id/group_cancel_button"
+            app:layout_constraintVertical_bias="0.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

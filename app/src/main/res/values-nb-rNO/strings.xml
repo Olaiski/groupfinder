@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="password_hint" translatable="false">Passord</string>
+    <string name="no_account_text" translatable="false">Har du ikke bruker?</string>
+    <string name="sign_up_btn_text" translatable="false">REGISTRER</string>
+    <string name="sign_up_text" translatable="false">Registrer</string>
+    <string name="forename_hint" translatable="false">Fornavn</string>
+    <string name="lastname_hint" translatable="false">Etternavn</string>
+    <string name="email_hint" translatable="false">E-post</string>
+    <string name="phonenumber_hint" translatable="false">Telefonnummer</string>
+    <string name="already_have_an_account">Er du allerede registrert?</string>
+    <string name="back_to_login">Tilbake til login</string>
+    <string name="home">Hjem</string>
+    <string name="about">Om</string>
+    <string name="calendar">Kalender</string>
+    <string name="groups">Grupper</string>
+    <string name="settings">Innstillinger</string>
+    <string name="logout">Logg ut</string>
+    <string name="course_code">Kurs kode:</string>
+    <string name="location">Sted:</string>
+    <string name="details">Detaljer:</string>
+    <string name="group_members">Gruppe medlemmer:</string>
+    <string name="prompt_email">Epost</string>
+    <string name="prompt_password">Passord</string>
+    <string name="action_sign_in">Logg inn eller registrer</string>
+    <string name="action_sign_in_short">Logg inn</string>
+    <string name="welcome">Velkommen!</string>
+    <string name="description">Beskrivelse:</string>
+    <string name="group_memebers">Gruppe medlemmer</string>
+    <string name="join">Bli med</string>
+    <string name="cancel">Tilbake</string>
+    <string name="about_this_group">Om gruppen</string>
+</resources>
