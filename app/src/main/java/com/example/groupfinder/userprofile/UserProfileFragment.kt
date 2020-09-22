@@ -45,6 +45,8 @@ class UserProfileFragment : Fragment() {
         val createGroupDialog = CreateGroupDialogFragment()
         val createGroupButton = binding.createGroupButton
 
+        val resString = userProfileViewModel.setDummyRes()
+
         createGroupButton.setOnClickListener {
             createGroupDialog.show(parentFragmentManager, "test")
         }

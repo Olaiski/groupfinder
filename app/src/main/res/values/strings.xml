@@ -56,6 +56,7 @@
     <string name="create">Create</string>
     <string name="create_a_group">Create a group</string>
     <string name="date">Date:</string>
+    <string name="new_reservation">New reservation</string>
 
 
     <string-array name="start_time_array">

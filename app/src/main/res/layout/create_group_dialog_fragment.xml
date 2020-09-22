@@ -20,15 +20,18 @@
         android:orientation="vertical">
 
         <com.google.android.material.textview.MaterialTextView
+
+            android:background="@color/primaryColor"
+            android:textColor="@color/secondaryLightColor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:textAlignment="center"
-            android:layout_marginStart="@dimen/spacing_large"
-            android:layout_marginEnd="@dimen/spacing_large"
-            android:layout_marginTop="20dp"
+            android:paddingBottom="@dimen/spacing_medium"
             android:layout_marginBottom="@dimen/spacing_medium"
+            android:paddingTop="@dimen/spacing_medium"
             android:textAppearance="@style/CustomOverlineLarge"
+
 
             android:text="@string/create_a_group"
             />

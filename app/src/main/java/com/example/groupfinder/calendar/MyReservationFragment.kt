@@ -37,11 +37,13 @@ class MyReservationFragment : Fragment() {
         binding.lifecycleOwner = this
 
 
+
+
         // TODO: 21/09/2020 Dummy data.. Fjernes.
         val resString = myReservationViewModel.setDummyRes()
 
         binding.navToReservationButton.setOnClickListener {
-            myReservationViewModel.setNavigation(true)
+            myReservationViewModel.onNavigateToReservation()
         }
 
         myReservationViewModel.navigateToReservation.observe(viewLifecycleOwner, Observer { e ->

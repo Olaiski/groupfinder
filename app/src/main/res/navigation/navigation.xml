@@ -43,14 +43,26 @@
             android:id="@+id/action_myReservationFragment_to_reservationFragment"
             app:destination="@id/reservationFragment"
             app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left" />
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left"
+            app:popUpTo="@id/myReservationFragment"
+            />
     </fragment>
 
     <fragment
         android:id="@+id/reservationFragment"
         android:name="com.example.groupfinder.calendar.ReservationFragment"
         android:label="Reservation"
-        tools:layout="@layout/reservation_fragment" />
+        tools:layout="@layout/reservation_fragment" >
+        <action
+            android:id="@+id/action_reservationFragment_to_myReservationFragment"
+            app:destination="@id/myReservationFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
+    </fragment>
 
 
     <fragment

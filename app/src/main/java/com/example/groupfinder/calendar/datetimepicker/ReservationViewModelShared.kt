@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 class ReservationViewModelShared : ViewModel() {
 
 
-
+    // TODO: 22/09/2020 Dummy data
     private lateinit var timeStringList: ArrayList<String>
     private lateinit var roomStringList: ArrayList<String>
     private lateinit var groupStringList: ArrayList<String>
@@ -40,8 +40,6 @@ class ReservationViewModelShared : ViewModel() {
         _startTime.value = item
     }
 
-
-
     private val _endTime = MutableLiveData<String>()
     val endTime: LiveData<String>
         get() = _endTime
@@ -62,7 +60,7 @@ class ReservationViewModelShared : ViewModel() {
     fun setRoomNumberList() : ArrayList<String> {
         roomStringList = ArrayList()
         for (i in 110..145) {
-            roomStringList.add("4 -$i")
+            roomStringList.add("4-$i")
         }
         return roomStringList
     }
@@ -105,9 +103,24 @@ class ReservationViewModelShared : ViewModel() {
 
     // TODO: 21/09/2020 DB Query..
     fun onReserveRoom(startTime: String, endTime: String, date: String, roomNumber: String, groupName: String) {
-        println("$startTime $endTime $roomNumber $groupName")
+        println("$startTime $endTime $date $roomNumber $groupName")
+
         _showSnackBarEvent.value = true
+//        _navigateToMyReservations.value = true
     }
+
+
+
+    // Navigation - After reservation btn clicked
+    private val _navigateToMyReservations = MutableLiveData<Boolean>()
+    val navigateToMyReservations: LiveData<Boolean>
+        get() = _navigateToMyReservations
+
+
+    fun onReservationComplete() {
+        _navigateToMyReservations.value = false
+    }
+
 
 }
 

@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.groupfinder.database.models.Reservation
 import java.lang.StringBuilder
 import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 @SuppressLint("SimpleDateFormat")
@@ -45,6 +47,38 @@ fun formatReservations(reservations: ArrayList<com.example.groupfinder.calendar.
     } else {
         HtmlCompat.fromHtml(sb.toString(), HtmlCompat.FROM_HTML_MODE_LEGACY)
     }
+}
+
+// Dummy
+fun formatGroup(groups: ArrayList<com.example.groupfinder.userprofile.Group>, resource: Resources) : Spanned {
+
+    val sb = StringBuilder()
+
+    sb.apply {
+        groups.forEach {
+            append("<b>${it.courseCode}<b><br>")
+            append("\t${it.title}<br>")
+            append("\t${it.description}<br><br>")
+        }
+    }
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        Html.fromHtml(sb.toString(), Html.FROM_HTML_MODE_LEGACY)
+    } else {
+        HtmlCompat.fromHtml(sb.toString(), HtmlCompat.FROM_HTML_MODE_LEGACY)
+    }
+}
+
+
+/**
+ *  Formats date from the datepicker
+ */
+fun onDateSet(dateString: String) : String{
+
+    val targetFormat = SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH)
+    val originalFormat = SimpleDateFormat("MMM dd, yyy", Locale.ENGLISH)
+    val date : Date = originalFormat.parse(dateString)!!
+
+    return targetFormat.format(date)
 }
 
 

@@ -39,7 +39,7 @@ class MyReservationViewModel(val database: GroupFinderDatabaseDao,
         _navigateToReservation.value = false
     }
 
-    fun setNavigation(nav: Boolean) {
+    fun onNavigateToReservation() {
         _navigateToReservation.value = true
     }
 
@@ -52,10 +52,12 @@ class MyReservationViewModel(val database: GroupFinderDatabaseDao,
         val res1 = Reservation("13:00", "15:00", "27/09/2020", "Bø", "GruppeNavn1", "4-113")
         val res2 = Reservation("16:00", "19:00", "29/09/2020", "Bø", "GruppeNavn1", "2-115")
         val res3 = Reservation("20:00", "23:00", "27/09/2020", "Bø", "GruppeNavn2", "4-115")
+        val res4 = Reservation("20:00", "23:00", "27/09/2020", "Bø", "GruppeNavn2", "4-115")
 
         resDummyList.add(res1)
         resDummyList.add(res2)
         resDummyList.add(res3)
+        resDummyList.add(res4)
 
         return resDummyList
     }

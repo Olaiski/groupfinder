@@ -52,8 +52,6 @@ class CreateGroupDialogFragment : DialogFragment() {
 //            createGroupViewModel.setCourseCode(binding.courseCodeInputText.text.toString())
 //            createGroupViewModel.setDescription(binding.courseDescriptionInputText.text.toString())
 
-
-
             createGroupViewModel.onCreateGroup(
                 groupName = binding.courseGroupNameInputText.text.toString(),
                 courseCode = binding.courseCodeInputText.text.toString(),
@@ -67,7 +65,7 @@ class CreateGroupDialogFragment : DialogFragment() {
             if (it == true) {
                 Snackbar.make(
                     requireActivity().findViewById(android.R.id.content),
-                    "Res OK..!",
+                    "New group created!",
                     Snackbar.LENGTH_LONG
                 ).show()
                 createGroupViewModel.doneShowingSnackbar()

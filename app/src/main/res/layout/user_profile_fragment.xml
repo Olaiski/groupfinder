@@ -86,7 +86,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
                                 android:layout_marginTop="60dp"
-                                android:text="Student Name"
+                                android:text="Student name"
                                 android:textAppearance="@style/CustomOverlineLarge" />
 
                             <com.google.android.material.textview.MaterialTextView
@@ -103,10 +103,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
                                 android:layout_marginTop="10dp"
-                                android:text="USN Bø"
+                                android:text="USN"
                                 android:textSize="17sp" />
-
-
 
 
                         </LinearLayout>
@@ -152,15 +150,24 @@
                         android:layout_height="match_parent">
 
                         <!-- TODO// Skal inneholde de gruppene man er medlem av.
-                                    SQL SELECT... -->
-                        <androidx.recyclerview.widget.RecyclerView
+                                    SQL SELECT...
+                                    Må Erstattes med recyclerview + adapter-->
+                        <ScrollView
+                            android:id="@+id/group_list"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            tools:listitem="@layout/card_view_item"
+                            android:layout_height="wrap_content"
+
                             >
 
-
-                        </androidx.recyclerview.widget.RecyclerView>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="16dp"
+                                android:layout_marginEnd="16dp"
+                                android:text="@{ userProfileViewModel.resString }"
+                                />
+                        </ScrollView>
 
 
                     </LinearLayout>

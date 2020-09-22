@@ -44,6 +44,7 @@ class CreateGroupViewModel(
     }
 
 
+    // TODO: 22/09/2020 DB Query 
     fun onCreateGroup(groupName: String, courseCode: String, desc: String) {
       uiScope.launch {
           println("$groupName $courseCode $desc")
