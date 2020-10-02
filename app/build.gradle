@@ -16,6 +16,7 @@ android {
         versionCode 1
         versionName "1.0"
 
+        multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -82,6 +83,7 @@ dependencies {
 
     // Moshi
     implementation "com.squareup.moshi:moshi:$version_moshi"
+    implementation "com.squareup.moshi:moshi-kotlin:$version_moshi"
 
     // Retrofit with Moshi Converter
     implementation "com.squareup.retrofit2:retrofit:$version_retrofit"
@@ -89,5 +91,11 @@ dependencies {
 
     // RecyclerView
     implementation "androidx.recyclerview:recyclerview:$version_recyclerview"
+
+    // Multidex:
+    // When your app and the libraries it references exceed 65,536 methods,
+    // you encounter a build error that indicates your app has reached the limit of the Android build architecture
+    implementation "androidx.multidex:multidex:$multidex_version"
+
 
 }
