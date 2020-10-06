@@ -4,8 +4,6 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.groupfinder.database.GroupFinderDatabaseDao
-import java.lang.IllegalArgumentException
-import javax.sql.DataSource
 
 
 /**

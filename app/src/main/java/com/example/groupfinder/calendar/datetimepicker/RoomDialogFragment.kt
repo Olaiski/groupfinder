@@ -1,6 +1,5 @@
 package com.example.groupfinder.calendar.datetimepicker
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +9,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import com.example.groupfinder.R
-import com.example.groupfinder.calendar.Reservation
 import com.example.groupfinder.databinding.ListDialogFragmentBinding
 
 class RoomDialogFragment : DialogFragment() {

@@ -1,16 +1,10 @@
 package com.example.groupfinder.database
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import com.example.groupfinder.database.models.Reservation
 import com.example.groupfinder.database.models.User
-import com.example.groupfinder.login.data.model.LoggedInUser
-import java.io.IOException
-import java.util.*
-import kotlin.collections.ArrayList
 
 
 @Dao

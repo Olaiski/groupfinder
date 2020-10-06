@@ -2,8 +2,6 @@ package com.example.groupfinder.calendar
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.groupfinder.database.GroupFinderDatabaseDao
 import kotlinx.coroutines.CoroutineScope

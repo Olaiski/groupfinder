@@ -7,27 +7,18 @@
 
     <data>
         <variable
-            name="groupViewModel"
-            type="com.example.groupfinder.group.GroupViewModel" />
-
-
-        <variable
             name="group"
-            type="com.example.groupfinder.database.models.Group" />
-
-        <variable
-            name="clickListener"
-            type="com.example.groupfinder.group.GroupListener" />
+            type="com.example.groupfinder.network.models.Group" />
 
     </data>
 
 
 <LinearLayout
+    android:id="@+id/root_list_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".group.GroupFragment"
-    android:onClick="@{() -> clickListener.onClick(group)}"
     >
 
     <com.google.android.material.card.MaterialCardView
@@ -36,47 +27,59 @@
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@android:color/white"
         android:layout_marginBottom="@dimen/spacing_medium"
+        app:strokeColor="@android:color/black"
+        app:strokeWidth="1dp"
         >
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="70dp"
             android:orientation="vertical"
             >
 
             <!-- TODO // Coursecode, Title og Description hentes fra DB -->
             <com.google.android.material.textview.MaterialTextView
-                android:padding="@dimen/spacing_small"
+                android:id="@+id/group_title_text"
+                android:text="@{group.courseCode}"
+                android:paddingTop="@dimen/spacing_small"
+                android:paddingStart="@dimen/spacing_small"
+                android:paddingEnd="0dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/CustomOverlineSmall"
-                android:text="Coursecode"
+                tools:text="MOB3000"
                 />
 
             <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/group_group_name_text"
+                android:text="@{group.groupName}"
                 android:textAppearance="@style/CustomHeadlineSmall"
-                android:padding="@dimen/spacing_xs"
+                android:paddingStart="@dimen/spacing_xs"
+                android:paddingEnd="0dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Title"
+                tools:text="Cool Guyz92"
                 />
 
             <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/group_description_text"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:padding="@dimen/spacing_xs"
+
                 android:layout_marginStart="@dimen/spacing_small"
-                android:text="Description"
+                android:text="@{group.description}"
                 android:maxLines="2"
                 android:scrollHorizontally="false"
                 android:layout_weight="1"
                 android:ellipsize="none"
+                tools:text="Jobba med javaa,letar eter gode vener. la oss jobe samen"
 
                 />
 
             <!--TODO // cardBackgroudColor = farge kode når man oppretter gruppe? -->
             <androidx.cardview.widget.CardView
+                android:id="@+id/group_color"
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
                 app:cardBackgroundColor="@color/primaryColor"

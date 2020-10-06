@@ -1,7 +1,5 @@
 package com.example.groupfinder.login.data
 
-import com.example.groupfinder.database.GroupFinderDatabase
-import com.example.groupfinder.database.GroupFinderDatabaseDao
 import com.example.groupfinder.login.data.model.LoggedInUser
 
 /**

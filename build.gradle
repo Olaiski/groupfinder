@@ -14,6 +14,11 @@ buildscript {
         version_retrofit = "2.9.0"
         version_recyclerview = "1.1.0"
         multidex_version = "2.0.1"
+        version_retrofit_coroutines_adapter = "0.9.2"
+
+        version_gson_converter = "2.9.0"
+        version_gson = "2.8.6"
+        version_okhttp = "4.9.0"
 
     }
     repositories {

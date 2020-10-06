@@ -1,32 +1,33 @@
 package com.example.groupfinder.group
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.groupfinder.R
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import com.example.groupfinder.databinding.GroupFragmentBinding
 
+
+/**
+ * This [Fragment] shows the detailed information about a selected group.
+ * It sets this information in the [GroupViewModel], which it gets as a Parcelable property
+ * through Jetpack Navigation's safeArgs
+ */
 class GroupFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = GroupFragment()
-    }
-
-    private lateinit var viewModel: GroupViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.group_fragment, container, false)
-    }
+        val application = requireNotNull(activity).application
+        val binding = GroupFragmentBinding.inflate(inflater)
+        binding.lifecycleOwner = this
+        val group = GroupFragmentArgs.fromBundle(requireArguments()).selectedGroup
+        val viewModelFactory = GroupViewModelFactory(group, application)
+        binding.groupViewModel = ViewModelProvider(this, viewModelFactory).get(GroupViewModel::class.java)
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(GroupViewModel::class.java)
-        // TODO: Use the ViewModel
+        return binding.root
     }
 
 }
