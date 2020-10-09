@@ -14,7 +14,7 @@
         android:label="Home"
         tools:layout="@layout/user_profile_fragment" >
         <action
-            android:id="@+id/action_userProfileFragment_to_groupFragment"
+            android:id="@+id/show_group_fragment"
             app:destination="@id/groupFragment" />
     </fragment>
     <fragment

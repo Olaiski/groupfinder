@@ -27,7 +27,8 @@
             android:textColor="@color/secondaryLightColor"
             android:paddingTop="@dimen/spacing_medium"
 
-            android:text="Project Groupname"
+            android:text="@{groupViewModel.selectedGroup.groupName}"
+            tools:text="GroupName"
 
             android:textAlignment="center"
             android:textSize="@dimen/font_xl"
@@ -63,7 +64,7 @@
                     android:layout_marginTop="20dp"
                     android:textAppearance="@style/CustomOverlineLarge"
 
-                    android:text="About this group"
+                    android:text="@string/about_this_group"
                     />
 
 
@@ -110,7 +111,8 @@
 
                         android:textAppearance="@style/CustomTextGroupInfo"
 
-                        android:text="MOB3000"
+                        android:text="@{groupViewModel.selectedGroup.courseCode}"
+                        tools:text="MOB3000"
                         />
 
                 </LinearLayout>
@@ -140,7 +142,8 @@
 
                         android:textAppearance="@style/CustomTextGroupInfo"
 
-                        android:text="Bø"
+                        tools:text="@{groupViewModel.selectedGroup.location}"
+
                         />
 
                 </LinearLayout>
@@ -168,7 +171,8 @@
                     android:layout_marginEnd="@dimen/spacing_small"
                     android:textAppearance="@style/CustomTextGroupInfo"
 
-                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut id tristique dui, eget blandit massa. Vestibulum ultricies eu leo vitae aliquet. "
+                    tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut id tristique dui, eget blandit massa. Vestibulum ultricies eu leo vitae aliquet. "
+                    android:text="@{groupViewModel.selectedGroup.description}"
                     />
 
 
@@ -198,13 +202,13 @@
             />
 
         <!--TODO// ListView -> Hent ut data fra DB, navn + bilde? av gruppe medlemmer i den gruppa -->
-        <ListView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/group_members_list"
             android:layout_width="300dp"
             android:layout_height="130dp"
+            app:studentData="@{groupViewModel.student}"
 
-
-
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/group_title_text_view"

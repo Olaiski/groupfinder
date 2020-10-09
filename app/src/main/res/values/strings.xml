@@ -24,7 +24,7 @@
     <string name="details">Details:</string>
     <string name="group_members">Group members:</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -39,7 +39,6 @@
     <string name="group_memebers">Group memebers</string>
     <string name="join">Join</string>
     <string name="cancel">Cancel</string>
-    <string name="about_this_group">About this group</string>
     <string name="group_finder">Group Finder</string>
     <string name="search_for_groups_hint">Search for groups..</string>
     <string name="select_a_date">Select a date</string>
@@ -57,6 +56,7 @@
     <string name="create_a_group">Create a group</string>
     <string name="date">Date:</string>
     <string name="new_reservation">New reservation</string>
+    <string name="about_this_group">About this group</string>
 
 
     <string-array name="start_time_array">

@@ -13,7 +13,6 @@ data class ResponseStudent (
 
 @Parcelize
 data class Student(
-
     val id: Int,
     val firstname: String,
     val lastname: String,

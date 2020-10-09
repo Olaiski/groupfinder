@@ -6,7 +6,9 @@
     >
 
     <data>
-
+        <variable
+            name="student"
+            type="com.example.groupfinder.network.models.Student" />
 
     </data>
 
@@ -52,14 +54,14 @@
                 >
 
                 <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/group_member_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
                     android:textSize="@dimen/font_small"
 
                     android:textColor="@color/secondaryLightColor"
-
-                    android:text="Student Navn"
+                    android:text="@{student.firstname}"
                     />
 
 

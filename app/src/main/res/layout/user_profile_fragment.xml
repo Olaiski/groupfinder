@@ -88,7 +88,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
                                 android:layout_marginTop="60dp"
-                                android:text="@{viewModel.firstname}"
+                                android:text="@{viewModel.fullname}"
                                 tools:text="Bjarne Brønnbo"
                                 android:textAppearance="@style/CustomOverlineLarge" />
 
@@ -155,19 +155,28 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/user_group_list"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            app:listData="@{viewModel.groups}"
+                            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                             tools:listitem="@layout/card_view_item"
                             tools:itemCount="4"
                             />
 
+                        <ImageView
+                            android:id="@+id/status_image"
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            app:apiStatus="@{viewModel.status}"
+                            android:contentDescription="TODO" />
 
                     </LinearLayout>
+
 
                 </LinearLayout>
 

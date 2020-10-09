@@ -17,6 +17,7 @@ data class Group(
     val groupName: String,
     val description: String,
     val courseCode: String,
+    val location: String,
     val gId: Int
 
 ) : Parcelable
