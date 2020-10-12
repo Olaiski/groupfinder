@@ -6,7 +6,7 @@
 
     <data>
         <variable
-            name="createGroupViewModel"
+            name="viewModel"
             type="com.example.groupfinder.userprofile.CreateGroupViewModel" />
     </data>
 
@@ -86,14 +86,12 @@
             />
 
         <com.google.android.material.textfield.TextInputLayout
-
             android:layout_width="match_parent"
             android:layout_height="@dimen/edit_text_height_medium"
             android:layout_marginStart="@dimen/spacing_xxl"
             android:layout_marginEnd="@dimen/spacing_xxl"
 
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/course_code_input_text"
@@ -104,6 +102,32 @@
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:text="@string/location"
+            android:textAlignment="center"
+            style="@style/CustomOverlineSmall"
+            />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/edit_text_height_medium"
+            android:layout_marginStart="@dimen/spacing_xxl"
+            android:layout_marginEnd="@dimen/spacing_xxl"
+
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/location_input_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textSize="@dimen/font_xs"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <TextView

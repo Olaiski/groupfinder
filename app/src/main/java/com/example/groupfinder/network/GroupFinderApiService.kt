@@ -1,9 +1,6 @@
 package com.example.groupfinder.network
 
-import com.example.groupfinder.network.models.Group
-import com.example.groupfinder.network.models.ResponseStudent
-import com.example.groupfinder.network.models.Student
-import com.example.groupfinder.network.models.UserGroups
+import com.example.groupfinder.network.models.*
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -13,7 +10,9 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Query
 
 
@@ -67,6 +66,10 @@ private val moshi = Moshi.Builder()
     .build()
 
 
+/**
+ * Use the Retrofit builder to build a retrofit object using a Moshi converter with our Moshi
+ * object.
+ */
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(MoshiConverterFactory.create(moshi))
     .addCallAdapterFactory(CoroutineCallAdapterFactory())
@@ -77,23 +80,32 @@ private val retrofit = Retrofit.Builder()
  * A public interface that exposes the [getProperties] method
  */
 interface GroupFinderApiService {
+
+
+    // GET-endpoints
+
     /**
-     *
-     * The @GET annotation indicates that the "groups" endpoint will be requested with the GET
-     * HTTP method
+     *  Gets all groups related to the student, query by email.
      */
-//    @GET("api/user/userGroups")
-//    fun getUserGroups(@Query("email") type: String) : Call<UserGroups>
-
-
     @GET("api/user/userGroups")
     fun getUserGroupsAsync(@Query("email") type: String) : Deferred<UserGroups>
 
+    /**
+     *  Gets information about the logged in student, query by email.
+     */
     @GET("api/user/home")
     fun getStudentAsync(@Query("email") type: String) : Deferred<ResponseStudent>
 
+    /**
+     *  Gets all group members related to a group, query by groupId.
+     */
     @GET("api/user/groupMembers")
-    fun getGroupMembersAsync(@Query("gid") type: Int) : Deferred<Student>
+    fun getGroupMembersAsync(@Query("gid") type: Int) : Deferred<GroupMembers>
+
+
+    // POST-endpoints
+    @POST("api/user/registerGroup")
+    fun postRegisterGroup(@Body group: PostGroup) : Deferred<PostGroup>
 }
 
 

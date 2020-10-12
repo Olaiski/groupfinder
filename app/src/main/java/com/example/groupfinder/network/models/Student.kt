@@ -11,6 +11,7 @@ data class ResponseStudent (
 
 ) : Parcelable
 
+
 @Parcelize
 data class Student(
     val id: Int,
@@ -19,4 +20,11 @@ data class Student(
     val email: String,
     val phonenumber: Int
 
+) : Parcelable
+
+@Parcelize
+data class StudentCompact(
+    val id: Int,
+    val firstname: String,
+    val lastname: String
 ) : Parcelable

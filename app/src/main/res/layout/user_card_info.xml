@@ -8,7 +8,7 @@
     <data>
         <variable
             name="student"
-            type="com.example.groupfinder.network.models.Student" />
+            type="com.example.groupfinder.network.models.StudentCompact" />
 
     </data>
 
@@ -60,6 +60,7 @@
 
                     android:textSize="@dimen/font_small"
 
+                    tools:text="Ola normann"
                     android:textColor="@color/secondaryLightColor"
                     android:text="@{student.firstname}"
                     />

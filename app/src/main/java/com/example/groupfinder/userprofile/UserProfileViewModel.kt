@@ -41,6 +41,10 @@ class UserProfileViewModel : ViewModel(){
     private val coroutineScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
 
+    private val _sId = MutableLiveData<Int>()
+    val sId: LiveData<Int>
+        get() = _sId
+
     private val _email = MutableLiveData<String>()
     val email: LiveData<String>
         get() = _email
@@ -71,7 +75,6 @@ class UserProfileViewModel : ViewModel(){
     }
 
     fun displayGroupDetails(group: Group) {
-        println(group)
         _navigateToSelectedGroup.value = group
     }
 
@@ -80,7 +83,6 @@ class UserProfileViewModel : ViewModel(){
     }
 
     private fun concatName(s1: String, s2: String) : String? {
-        println(s1.length + s2.length)
         return if (s1.length + s2.length >= NAME_LENGTH) s1 else "$s1 $s2"
     }
 
@@ -118,6 +120,7 @@ class UserProfileViewModel : ViewModel(){
                 _fullname.value = concatName(result.student.firstname, result.student.lastname)
                 _phonenumber.value = result.student.phonenumber.toString()
                 _email.value = result.student.email
+                _sId.value = result.student.id
 
             }catch (e : Exception) {
                 _status.value = ApiStatus.ERROR

@@ -35,6 +35,8 @@ class UserProfileFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
+        val userId = viewModel.sId
+
 
         val createGroupDialog = CreateGroupDialogFragment()
         val createGroupButton = binding.createGroupButton
@@ -45,8 +47,11 @@ class UserProfileFragment : Fragment() {
 
 
 
+
+
         binding.userGroupList.adapter = GroupListAdapter(GroupListAdapter.OnClickListener {
             viewModel.displayGroupDetails(it)
+
         })
 
         viewModel.navigateToSelectedGroup.observe(viewLifecycleOwner, Observer {

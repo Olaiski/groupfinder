@@ -24,8 +24,21 @@ class GroupFragment : Fragment() {
         val binding = GroupFragmentBinding.inflate(inflater)
         binding.lifecycleOwner = this
         val group = GroupFragmentArgs.fromBundle(requireArguments()).selectedGroup
+
+
         val viewModelFactory = GroupViewModelFactory(group, application)
-        binding.groupViewModel = ViewModelProvider(this, viewModelFactory).get(GroupViewModel::class.java)
+        val viewModel = ViewModelProvider(this, viewModelFactory).get(GroupViewModel::class.java)
+        binding.groupViewModel = viewModel
+
+
+        /**
+         * GroupMember adapter. Functional clicklistener. Not in use at the moment.
+         * Implemented for later use.
+         */
+        binding.groupMembersList.adapter = StudentMembersListAdapter(StudentMembersListAdapter.OnClickListener {
+            viewModel.displayGroupMembers(it)
+        })
+
 
         return binding.root
     }

@@ -11,34 +11,23 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.groupfinder.R
 import com.example.groupfinder.database.GroupFinderDatabase
 import com.example.groupfinder.databinding.CreateGroupDialogFragmentBinding
+import com.example.groupfinder.network.models.Group
+import com.example.groupfinder.network.models.PostGroup
 import com.google.android.material.snackbar.Snackbar
 
 class CreateGroupDialogFragment : DialogFragment() {
 
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-        val binding: CreateGroupDialogFragmentBinding = DataBindingUtil.inflate(
-            inflater, R.layout.create_group_dialog_fragment, container, false)
+    private val viewModel: CreateGroupViewModel by lazy {
+        ViewModelProvider(this).get(CreateGroupViewModel::class.java)
+    }
 
 
-        val application = requireNotNull(this.activity).application
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle? ): View? {
 
-        val dataSource = GroupFinderDatabase.getInstance(application).groupFinderDatabaseDao
-
-        val viewModelFactory = CreateGroupViewModelFactory(dataSource, application)
-
-        val createGroupViewModel = ViewModelProvider(this, viewModelFactory).get(CreateGroupViewModel::class.java)
-
-        binding.createGroupViewModel = createGroupViewModel
-
+        val binding = CreateGroupDialogFragmentBinding.inflate(inflater)
         binding.lifecycleOwner = this
-
-
+        binding.viewModel = viewModel
 
 
         binding.createGroupCancelButton.setOnClickListener {
@@ -47,27 +36,27 @@ class CreateGroupDialogFragment : DialogFragment() {
 
 
         binding.createGroupCreateButton.setOnClickListener {
-//            createGroupViewModel.setGroupName(binding.courseGroupNameInputText.text.toString())
-//            createGroupViewModel.setCourseCode(binding.courseCodeInputText.text.toString())
-//            createGroupViewModel.setDescription(binding.courseDescriptionInputText.text.toString())
+            val group = PostGroup(
 
-            createGroupViewModel.onCreateGroup(
                 groupName = binding.courseGroupNameInputText.text.toString(),
+                description = binding.courseDescriptionInputText.text.toString(),
                 courseCode = binding.courseCodeInputText.text.toString(),
-                desc = binding.courseDescriptionInputText.text.toString()
-            )
+                location = binding.locationInputText.text.toString()
+                )
 
-            this.dismiss()
+            viewModel.onCreateGroup(group)
+
+//            this.dismiss()
         }
 
-        createGroupViewModel.showSnackBarEvent.observe(viewLifecycleOwner, Observer {
+        viewModel.showSnackBarEvent.observe(viewLifecycleOwner, Observer {
             if (it == true) {
                 Snackbar.make(
                     requireActivity().findViewById(android.R.id.content),
                     "New group created!",
                     Snackbar.LENGTH_LONG
                 ).show()
-                createGroupViewModel.doneShowingSnackbar()
+                viewModel.doneShowingSnackbar()
             }
         })
 

@@ -2,19 +2,19 @@ package com.example.groupfinder
 
 import android.view.View
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.groupfinder.group.StudentMembersListAdapter
 import com.example.groupfinder.network.models.Group
-import com.example.groupfinder.network.models.Student
+import com.example.groupfinder.network.models.StudentCompact
 import com.example.groupfinder.userprofile.ApiStatus
 import com.example.groupfinder.userprofile.GroupListAdapter
-import com.google.android.material.textview.MaterialTextView
+import com.example.groupfinder.group.GroupFragment
+import com.example.groupfinder.group.GroupViewModel
 
 
 /**
- * When there is no Group data (data is null), hide the [RecyclerView], otherwise show it.
+ * When there is no Group/Student data (data is null), hide the [RecyclerView], otherwise show it.
  */
 @BindingAdapter("listData")
 fun bindRecyclerView(recyclerView: RecyclerView, data: List<Group>?) {
@@ -23,9 +23,22 @@ fun bindRecyclerView(recyclerView: RecyclerView, data: List<Group>?) {
 }
 
 @BindingAdapter("studentData")
-fun bindRecyclerViewGroupMembers(recyclerView: RecyclerView, data: List<Student>?) {
+fun bindRecyclerViewGroupMembers(recyclerView: RecyclerView, data: List<StudentCompact>?) {
     val adapter = recyclerView.adapter as StudentMembersListAdapter
     adapter.submitList(data)
+}
+
+/**
+ * Binding adapter to set visibility of buttons in [GroupFragment] / [GroupViewModel]
+ */
+@BindingAdapter("joinButtonVisible")
+fun setJoinButtonVisible(view: View, visible: Boolean) {
+    view.visibility = if (visible) View.VISIBLE else View.INVISIBLE
+}
+
+@BindingAdapter("cancelButtonVisible")
+fun setCancelButtonVisible(view: View, visible: Boolean) {
+    view.visibility = if (visible) View.VISIBLE else View.INVISIBLE
 }
 
 /**
@@ -48,16 +61,5 @@ fun bindStatus(statusImageView: ImageView, status: ApiStatus?) {
         ApiStatus.DONE -> {
             statusImageView.visibility = View.GONE
         }
-    }
-}
-
-
-// FIXME: 09/10/2020 Blir ikke brukt per nå.. Se nærmere på senere.  
-@BindingAdapter("studentData")
-fun bindStudentData(textView: MaterialTextView, data: String) {
-    if (data.isEmpty()) {
-        textView.text = "..."
-    } else {
-        textView.text = data
     }
 }
