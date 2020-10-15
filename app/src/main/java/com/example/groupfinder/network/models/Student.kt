@@ -28,3 +28,14 @@ data class StudentCompact(
     val firstname: String,
     val lastname: String
 ) : Parcelable
+
+@Parcelize
+data class PostStudent(
+
+    val firstname: String,
+    val lastname: String,
+    val email: String,
+    val phonenumber: Int,
+    val password: String
+
+) : Parcelable

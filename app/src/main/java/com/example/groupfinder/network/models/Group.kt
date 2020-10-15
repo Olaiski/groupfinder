@@ -2,6 +2,7 @@ package com.example.groupfinder.network.models
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
 
 
@@ -29,13 +30,23 @@ data class Group(
 
 ) : Parcelable
 
+
 @Parcelize
 data class PostGroup(
 
+
+    val studentId: Int,
     val groupName: String,
     val description: String,
     val courseCode: String,
     val location: String
 
-) : Parcelable
+    ) : Parcelable
 
+
+@Parcelize
+data class PostMessage(
+
+    val message: String
+
+): Parcelable

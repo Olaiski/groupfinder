@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.groupfinder.databinding.UserProfileFragmentBinding
 import kotlinx.android.synthetic.main.user_profile_fragment.*
@@ -21,11 +21,11 @@ import kotlinx.android.synthetic.main.user_profile_fragment.*
 class UserProfileFragment : Fragment() {
 
 
-//    private val viewModel: UserProfileViewModel by activityViewModels()
+    private val viewModel: UserProfileViewModel by activityViewModels()
 
-    private val viewModel: UserProfileViewModel by lazy {
-        ViewModelProvider(this).get(UserProfileViewModel::class.java)
-    }
+//    private val viewModel: UserProfileViewModel by lazy {
+//        ViewModelProvider(this).get(UserProfileViewModel::class.java)
+//    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -35,8 +35,6 @@ class UserProfileFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-        val userId = viewModel.sId
-
 
         val createGroupDialog = CreateGroupDialogFragment()
         val createGroupButton = binding.createGroupButton
@@ -44,7 +42,6 @@ class UserProfileFragment : Fragment() {
         createGroupButton.setOnClickListener {
             createGroupDialog.show(parentFragmentManager, "cgd")
         }
-
 
 
 
@@ -64,9 +61,6 @@ class UserProfileFragment : Fragment() {
 
 
 
-
-
-
         return binding.root
     }
 
@@ -75,7 +69,4 @@ class UserProfileFragment : Fragment() {
         user_group_list.adapter = null
     }
 
-    private fun showWelcomeMessage() {
-        // ...
-    }
 }

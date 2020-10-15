@@ -7,7 +7,7 @@
 
     <data>
         <variable
-            name="signUpViewModel"
+            name="viewModel"
             type="com.example.groupfinder.signup.SignUpViewModel" />
     </data>
 
@@ -58,6 +58,7 @@
 
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/forenameInputText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
@@ -85,6 +86,7 @@
         >
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/lastnameInputText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
@@ -117,6 +119,7 @@
         >
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/emailInputText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
@@ -143,6 +146,7 @@
         >
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/phoneInputText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="phone"
@@ -178,6 +182,7 @@
 
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passwordInputText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/password_hint"

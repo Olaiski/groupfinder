@@ -1,23 +1,35 @@
 package com.example.groupfinder.userprofile
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.groupfinder.network.GroupFinderApi
-
 import com.example.groupfinder.network.models.Group
+import com.example.groupfinder.network.models.PostGroup
 import com.example.groupfinder.network.models.Student
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
-import java.lang.Exception
+import kotlinx.coroutines.*
 
+
+private const val EMAIL = "dde@msn.no"
 
 enum class ApiStatus { LOADING, ERROR, DONE }
-private const val NAME_LENGTH = 17
+private const val NAME_MAX_LENGTH = 17
 
 class UserProfileViewModel : ViewModel(){
+
+    /**
+     * A [CoroutineScope] keeps track of all coroutines started by this ViewModel.
+     *
+     * Because we pass it [viewModelJob], any coroutine started in this uiScope can be cancelled
+     * by calling `viewModelJob.cancel()`
+     *
+     * By default, all coroutines started in uiScope will launch in [Dispatchers.Main] which is
+     * the main thread on Android. This is a sensible default because most coroutines started by
+     * a [ViewModel] update the UI after performing some processing.
+     */
+    private var viewModelJob = Job()
+    private val coroutineScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
 
     private val _status = MutableLiveData<ApiStatus>()
@@ -29,16 +41,10 @@ class UserProfileViewModel : ViewModel(){
     val groups: LiveData<List<Group>>
         get() = _groups
 
-
     // Internally, we use a MutableLiveData to handle navigation to the selected property
     private val _navigateToSelectedGroup = MutableLiveData<Group>()
     val navigateToSelectedGroup: LiveData<Group>
         get() = _navigateToSelectedGroup
-
-    // Create a Coroutine scope using a job to be able to cancel when needed
-    private var viewModelJob = Job()
-    // the Coroutine runs using the Main (UI) dispatcher
-    private val coroutineScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
 
     private val _sId = MutableLiveData<Int>()
@@ -62,18 +68,42 @@ class UserProfileViewModel : ViewModel(){
         get() = _student
 
 
+
+    private var _groupName = MutableLiveData<String>()
+    val groupName: LiveData<String>
+        get() = _groupName
+
+    private var _courseCode = MutableLiveData<String>()
+    val courseCode: LiveData<String>
+        get() = _courseCode
+
+    private var _description = MutableLiveData<String>()
+    val description: LiveData<String>
+        get() = _description
+
+
+    private var _showSnackBarEvent = MutableLiveData<Boolean>()
+    val showSnackBarEvent: LiveData<Boolean>
+        get() = _showSnackBarEvent
+
+
+
+
+
     init {
-        getStudent("th@msn.no")
-        getGroups("th@msn.no")
+        getStudent(EMAIL)
+        getGroups(EMAIL)
     }
 
 
-
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
+    fun doneShowingSnackbar() {
+        _showSnackBarEvent.value = false
     }
 
+
+    /**
+     *  Navigates to group via click listener in [UserProfileFragment]
+     */
     fun displayGroupDetails(group: Group) {
         _navigateToSelectedGroup.value = group
     }
@@ -82,12 +112,32 @@ class UserProfileViewModel : ViewModel(){
         _navigateToSelectedGroup.value = null
     }
 
-    private fun concatName(s1: String, s2: String) : String? {
-        return if (s1.length + s2.length >= NAME_LENGTH) s1 else "$s1 $s2"
+
+    /**
+     * @param group POST request to backend with group information and studentId
+     */
+    fun onCreateGroup(group: PostGroup) {
+        coroutineScope.launch {
+
+            val postGroup = GroupFinderApi.retrofitService.postRegisterGroupAsync(group)
+
+            try {
+                val res = postGroup.await()
+                val resMessage = res.message
+
+                getGroups(EMAIL)
+
+            }catch (e : Exception) {
+                Log.i("PostGroup", e.toString())
+            }
+        }
     }
 
 
-    private fun getGroups(email: String) {
+    /**
+     * @param email gets groups related to student base on this email
+     */
+    fun getGroups(email: String) {
         coroutineScope.launch {
             var getGroupsDeferred = GroupFinderApi.retrofitService.getUserGroupsAsync(email)
 
@@ -105,9 +155,13 @@ class UserProfileViewModel : ViewModel(){
         }
     }
 
+    /**
+     * @param email gets student information based on this email
+     */
     private fun getStudent(email: String) {
         coroutineScope.launch {
             var getStudentDeferred = GroupFinderApi.retrofitService.getStudentAsync(email)
+
 
             try {
                 loadStudentString()
@@ -116,8 +170,9 @@ class UserProfileViewModel : ViewModel(){
                 val result = getStudentDeferred.await()
                 _status.value = ApiStatus.DONE
 
+
                 _student.value = result.student
-                _fullname.value = concatName(result.student.firstname, result.student.lastname)
+                _fullname.value = concatName(result.student.firstname, result.student.lastname, NAME_MAX_LENGTH)
                 _phonenumber.value = result.student.phonenumber.toString()
                 _email.value = result.student.email
                 _sId.value = result.student.id
@@ -131,10 +186,20 @@ class UserProfileViewModel : ViewModel(){
         }
     }
 
+
+    /** TODO: Fikse dette? Lagre bruker på telefon, ROOM DB?
+     * If the query fails, set fields to "..."
+     *  In reality i would save these variables locally on the phone..
+     */
     private fun loadStudentString() {
         _fullname.value = "..."
         _phonenumber.value = "..."
         _email.value = "..."
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
     }
 
 

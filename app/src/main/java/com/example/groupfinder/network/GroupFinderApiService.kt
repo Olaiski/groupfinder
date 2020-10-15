@@ -15,46 +15,10 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
 
-
+/**
+ *  http://LOCALIP:PORT/
+ */
 private const val BASE_URL = ""
-
-
-
-///**
-// * Build the Moshi object that Retrofit will be using, making sure to add the Kotlin adapter for
-// * full Kotlin compatibility.
-// */
-//private val moshi = Moshi.Builder()
-//    .add(KotlinJsonAdapterFactory())
-//    .build()
-//
-//
-///**
-// * Use the Retrofit builder to build a retrofit object using a Moshi converter with our Moshi
-// * object.
-// */
-
-//object ServiceBuilder {
-//
-//    private val client = OkHttpClient.Builder().build()
-//
-//    private val retrofit = Retrofit.Builder()
-//        .baseUrl(BASE_URL)
-//        .addConverterFactory(GsonConverterFactory.create())
-//        .client(client)
-//        .build()
-//
-//    fun<T> buildService(service: Class<T>): T {
-//        return retrofit.create(service)
-//    }
-//
-//    /**
-//     * A public Api object that exposes the lazy-initialized Retrofit service
-//     */
-//    object GroupFinderApi {
-//        val retrofitService : GroupFinderApiService by lazy { retrofit.create(GroupFinderApiService::class.java) }
-//    }
-//}
 
 
 /**
@@ -77,7 +41,7 @@ private val retrofit = Retrofit.Builder()
     .build()
 
 /**
- * A public interface that exposes the [getProperties] method
+ * A public interface that exposes the POST/GET request methods
  */
 interface GroupFinderApiService {
 
@@ -104,8 +68,19 @@ interface GroupFinderApiService {
 
 
     // POST-endpoints
+
+    /**
+     * @param group as body, inserts a new group, returns a message
+     */
     @POST("api/user/registerGroup")
-    fun postRegisterGroup(@Body group: PostGroup) : Deferred<PostGroup>
+    fun postRegisterGroupAsync(@Body group: PostGroup) : Deferred<PostMessage>
+
+    /**
+     * @param student as body, inserts a new student, returns a message
+     */
+    @POST("api/auth/registerStudent")
+    fun postRegisterStudentAsync(@Body student: PostStudent) : Deferred<PostMessage>
+
 }
 
 

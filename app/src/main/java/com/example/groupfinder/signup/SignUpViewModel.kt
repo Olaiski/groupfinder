@@ -1,45 +1,46 @@
 package com.example.groupfinder.signup
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.groupfinder.database.GroupFinderDatabaseDao
 import com.example.groupfinder.database.models.User
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.withContext
+import com.example.groupfinder.network.GroupFinderApi
+import com.example.groupfinder.network.models.PostStudent
+import kotlinx.coroutines.*
+import java.lang.Exception
 
-class SignUpViewModel(
-    val database: GroupFinderDatabaseDao,
-    application: Application) : AndroidViewModel(application) {
+class SignUpViewModel : ViewModel() {
 
-
-    /**
-     * viewModelJob allows us to cancel all coroutines started by this ViewModel.
-     */
     private var viewModelJob = Job()
+    private val coroutineScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
 
-    /**
-     * A [CoroutineScope] keeps track of all coroutines started by this ViewModel.
-     *
-     * Because we pass it [viewModelJob], any coroutine started in this uiScope can be cancelled
-     * by calling `viewModelJob.cancel()`
-     *
-     * By default, all coroutines started in uiScope will launch in [Dispatchers.Main] which is
-     * the main thread on Android. This is a sensible default because most coroutines started by
-     * a [ViewModel] update the UI after performing some processing.
-     */
-    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+    private val _student = MutableLiveData<PostStudent>()
+    val student: LiveData<PostStudent>
+        get() = _student
 
 
 
-    private suspend fun insert(user : User) {
-        withContext(Dispatchers.IO) {
-            database.insert(user)
+
+    fun onCreateStudent(student: PostStudent) {
+        coroutineScope.launch {
+            val postStudent = GroupFinderApi.retrofitService.postRegisterStudentAsync(student)
+
+            try {
+                val res = postStudent.await()
+                val resMessage = res.message
+
+                println(resMessage)
+
+            }catch (e: Exception) {
+                Log.i("PostStudent", e.toString())
+            }
+
         }
     }
+
+
 
 
     override fun onCleared() {
