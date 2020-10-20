@@ -1,5 +1,7 @@
 package com.example.groupfinder.userprofile
 
+import android.app.Dialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -80,6 +82,7 @@ class CreateGroupDialogFragment : DialogFragment() {
 
 
 
+
         binding.createGroupCancelButton.setOnClickListener {
             this.dismiss()
         }
@@ -98,4 +101,5 @@ class CreateGroupDialogFragment : DialogFragment() {
 
         return binding.root
     }
+
 }

@@ -21,23 +21,47 @@ class SignUpViewModel : ViewModel() {
         get() = _student
 
 
+    private val _navigateToLogin = MutableLiveData<Boolean>()
+    val navigateToLogin: LiveData<Boolean>
+        get() = _navigateToLogin
+
+    private val _message = MutableLiveData<String?>()
+    val message: LiveData<String?>
+        get() = _message
+
+    private val _email = MutableLiveData<String>()
+    val email: LiveData<String>
+        get() = _email
+
+    private val _password = MutableLiveData<String>()
+    val password: LiveData<String>
+        get() = _password
 
 
-    fun onCreateStudent(student: PostStudent) {
+    init {
+
+    }
+
+
+    fun onCreateStudent(fname: String, lname: String, email: String, phone: Int, password: String) {
         coroutineScope.launch {
-            val postStudent = GroupFinderApi.retrofitService.postRegisterStudentAsync(student)
+            val postStudent = GroupFinderApi.retrofitService.postRegisterStudentAsync(fname,lname,email,phone,password)
 
             try {
                 val res = postStudent.await()
-                val resMessage = res.message
+                _message.value = res.message
 
-                println(resMessage)
-
+                _navigateToLogin.value = true
             }catch (e: Exception) {
                 Log.i("PostStudent", e.toString())
+                _message.value = "Email already in database"
             }
 
         }
+    }
+
+    fun navigateToLoginComplete() {
+        _navigateToLogin.value = false
     }
 
 

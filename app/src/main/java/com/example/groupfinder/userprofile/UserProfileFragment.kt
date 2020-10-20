@@ -44,8 +44,6 @@ class UserProfileFragment : Fragment() {
         }
 
 
-
-
         binding.userGroupList.adapter = GroupListAdapter(GroupListAdapter.OnClickListener {
             viewModel.displayGroupDetails(it)
 
@@ -58,6 +56,15 @@ class UserProfileFragment : Fragment() {
                 viewModel.displayGroupDetailsComplete()
             }
         })
+
+        viewModel.createGroupSuccess.observe(viewLifecycleOwner, Observer {
+            if (it) {
+                println("UPF ${viewModel.email.value.toString()}")
+                viewModel.getGroups(viewModel.email.value.toString())
+            }
+        })
+
+        viewModel.getGroups(viewModel.email.value.toString())
 
 
 

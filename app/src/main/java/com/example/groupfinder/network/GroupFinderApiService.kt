@@ -10,10 +10,7 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 /**
  *  http://LOCALIP:PORT/
@@ -79,7 +76,22 @@ interface GroupFinderApiService {
      * @param student as body, inserts a new student, returns a message
      */
     @POST("api/auth/registerStudent")
-    fun postRegisterStudentAsync(@Body student: PostStudent) : Deferred<PostMessage>
+    @FormUrlEncoded
+    fun postRegisterStudentAsync(@Field("firstname") fname: String,
+                                 @Field("lastname") lname: String,
+                                 @Field("email") email: String,
+                                 @Field("phonenumber") phonenumber: Int,
+                                 @Field("password") password: String) : Deferred<PostMessage>
+
+
+    /**
+     * @param email
+     * @param password
+     */
+    @POST("api/auth/loginStudent")
+    @FormUrlEncoded
+    fun postLoginStudentAsync(@Field("email") email: String,
+                              @Field("password") password: String) : Deferred<ResponseStudent>
 
 }
 

@@ -18,9 +18,9 @@ import com.example.groupfinder.group.GroupViewModel
  */
 @BindingAdapter("listData")
 fun bindRecyclerView(recyclerView: RecyclerView, data: List<Group>?) {
-    val adapter = recyclerView.adapter as GroupListAdapter
-    adapter.submitList(data)
+    (recyclerView.adapter as? GroupListAdapter)?.submitList(data)
 }
+
 
 @BindingAdapter("studentData")
 fun bindRecyclerViewGroupMembers(recyclerView: RecyclerView, data: List<StudentCompact>?) {

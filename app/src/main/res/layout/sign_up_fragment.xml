@@ -164,7 +164,7 @@
         android:id="@+id/passwordInput"
         android:layout_width="match_parent"
         android:layout_height="@dimen/edit_text_height_medium"
-        app:layout_constraintBottom_toTopOf="@+id/login_button_login"
+        app:layout_constraintBottom_toTopOf="@+id/register_button"
         app:layout_constraintEnd_toEndOf="@+id/forenameInput"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/forenameInput"
@@ -194,17 +194,17 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/login_button_login"
+        android:id="@+id/register_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
         style="@style/floatingButtonArrow"
 
 
-        app:layout_constraintBottom_toTopOf="@+id/login_to_register_button"
+        app:layout_constraintBottom_toTopOf="@+id/register_to_login_button"
         app:layout_constraintEnd_toEndOf="@+id/passwordInput"
         app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintStart_toEndOf="@+id/login_to_register_button"
+        app:layout_constraintStart_toEndOf="@+id/register_to_login_button"
         app:srcCompat="@drawable/ic_arrow_forward"
 
 
@@ -219,14 +219,14 @@
 
 
         android:text="@string/already_have_an_account"
-        app:layout_constraintBottom_toTopOf="@+id/login_to_register_button"
+        app:layout_constraintBottom_toTopOf="@+id/register_to_login_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_button_login"
+        app:layout_constraintTop_toBottomOf="@+id/register_button"
         app:layout_constraintVertical_bias="1.0" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/login_to_register_button"
+        android:id="@+id/register_to_login_button"
         android:layout_width="200dp"
         android:layout_height="40dp"
 

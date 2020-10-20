@@ -11,7 +11,8 @@ import com.example.groupfinder.network.models.Student
 import kotlinx.coroutines.*
 
 
-private const val EMAIL = "dde@msn.no"
+//private const val EMAIL = "dde@msn.no"
+private lateinit var EMAIL: String
 
 enum class ApiStatus { LOADING, ERROR, DONE }
 private const val NAME_MAX_LENGTH = 17
@@ -46,6 +47,14 @@ class UserProfileViewModel : ViewModel(){
     val navigateToSelectedGroup: LiveData<Group>
         get() = _navigateToSelectedGroup
 
+    private val _loginSuccess = MutableLiveData<Boolean>()
+    val loginSuccess: LiveData<Boolean>
+        get() = _loginSuccess
+
+    private val _createGroupSuccess = MutableLiveData<Boolean>()
+    val createGroupSuccess: LiveData<Boolean>
+        get() = _createGroupSuccess
+
 
     private val _sId = MutableLiveData<Int>()
     val sId: LiveData<Int>
@@ -67,8 +76,6 @@ class UserProfileViewModel : ViewModel(){
     val student: LiveData<Student>
         get() = _student
 
-
-
     private var _groupName = MutableLiveData<String>()
     val groupName: LiveData<String>
         get() = _groupName
@@ -86,13 +93,15 @@ class UserProfileViewModel : ViewModel(){
     val showSnackBarEvent: LiveData<Boolean>
         get() = _showSnackBarEvent
 
-
+    private val _message = MutableLiveData<String?>()
+    val message: LiveData<String?>
+        get() = _message
 
 
 
     init {
-        getStudent(EMAIL)
-        getGroups(EMAIL)
+//        val email = _student.value?.email
+        EMAIL = _email.value.toString()
     }
 
 
@@ -125,7 +134,9 @@ class UserProfileViewModel : ViewModel(){
                 val res = postGroup.await()
                 val resMessage = res.message
 
-                getGroups(EMAIL)
+//                getGroups(EMAIL)
+
+                _createGroupSuccess.value = true
 
             }catch (e : Exception) {
                 Log.i("PostGroup", e.toString())
@@ -158,7 +169,7 @@ class UserProfileViewModel : ViewModel(){
     /**
      * @param email gets student information based on this email
      */
-    private fun getStudent(email: String) {
+    fun getStudent(email: String) {
         coroutineScope.launch {
             var getStudentDeferred = GroupFinderApi.retrofitService.getStudentAsync(email)
 
@@ -186,6 +197,29 @@ class UserProfileViewModel : ViewModel(){
         }
     }
 
+
+    fun onLogin(email: String, password: String){
+
+
+        coroutineScope.launch {
+            val postStudent = GroupFinderApi.retrofitService.postLoginStudentAsync(email, password)
+
+            try {
+                val res = postStudent.await()
+                _message.value = res.message
+                _student.value = res.student
+
+                _email.value = res.student.email
+
+                println(res)
+                _loginSuccess.value = true
+            }catch (e: java.lang.Exception) {
+                Log.i("PostStudentLogin", e.toString())
+                _message.value = "Incorrect login info"
+            }
+
+        }
+    }
 
     /** TODO: Fikse dette? Lagre bruker på telefon, ROOM DB?
      * If the query fails, set fields to "..."

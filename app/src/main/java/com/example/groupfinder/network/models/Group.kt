@@ -34,14 +34,13 @@ data class Group(
 @Parcelize
 data class PostGroup(
 
-
     val studentId: Int,
     val groupName: String,
     val description: String,
     val courseCode: String,
     val location: String
 
-    ) : Parcelable
+) : Parcelable
 
 
 @Parcelize
