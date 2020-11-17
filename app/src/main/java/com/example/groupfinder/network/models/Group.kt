@@ -27,9 +27,21 @@ data class Group(
     val courseCode: String,
     val location: String,
     val gId: Int,
-
 ) : Parcelable
 
+
+@Parcelize
+data class GroupLeaderGroups(
+    val message: String,
+    val groupLeaderGroups: List<GroupLeaderGroup>
+) : Parcelable
+
+@Parcelize
+data class GroupLeaderGroup(
+    val id: Int,
+    val groupName: String,
+    val description: String
+) : Parcelable
 
 @Parcelize
 data class PostGroup(

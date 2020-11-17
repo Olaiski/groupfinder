@@ -33,21 +33,21 @@ class EndTimeDialogFragment : DialogFragment() {
         binding.lifecycleOwner = this
 
 
-        val timeList = binding.itemList
-        val timeString = reservationViewModelShared.setTimeList()
-
-        val arrayAdapter = this.context?.let { ArrayAdapter(it, R.layout.item_for_list_text_view, R.id.text_view_item, timeString) }
-
-        timeList.adapter = arrayAdapter
-
-
-        timeList.setOnItemClickListener { _, _, position, _ ->
-            val selectedEndTime = arrayAdapter?.getItem(position)
-            reservationViewModelShared.endTimeSelected(selectedEndTime.toString())
-
-
-            this.dismiss()
-        }
+//        val timeList = binding.groupList
+//        val timeString = reservationViewModelShared.setTimeList()
+//
+//        val arrayAdapter = this.context?.let { ArrayAdapter(it, R.layout.item_for_list_text_view, R.id.text_view_item, timeString) }
+//
+//        timeList.adapter = arrayAdapter
+//
+//
+//        timeList.setOnItemClickListener { _, _, position, _ ->
+//            val selectedEndTime = arrayAdapter?.getItem(position)
+//            reservationViewModelShared.endTimeSelected(selectedEndTime.toString())
+//
+//
+//            this.dismiss()
+//        }
 
         return binding.root
     }

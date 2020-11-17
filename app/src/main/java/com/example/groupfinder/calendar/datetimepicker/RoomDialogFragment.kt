@@ -30,20 +30,20 @@ class RoomDialogFragment : DialogFragment() {
 
         binding.lifecycleOwner = this
 
-        val roomList = binding.itemList
-        val roomString = reservationViewModelShared.setRoomNumberList()
-        val arrayAdapter = this.context?.let { ArrayAdapter(it, R.layout.item_for_list_text_view, R.id.text_view_item, roomString) }
+//        val roomList = binding.groupList
+//        val roomString = reservationViewModelShared.setRoomNumberList()
+//        val arrayAdapter = this.context?.let { ArrayAdapter(it, R.layout.item_for_list_text_view, R.id.text_view_item, roomString) }
 
 
-        roomList.adapter = arrayAdapter
-
-        // TODO: 20/09/2020 Bruke _, _, position, id -> for å hente ut?
-        roomList.setOnItemClickListener { _, _, position, _ ->
-            val selectedRoomId = arrayAdapter?.getItem(position)
-            reservationViewModelShared.roomNumberSelected(selectedRoomId.toString())
-
-            this.dismiss()
-        }
+//        roomList.adapter = arrayAdapter
+//
+//        // TODO: 20/09/2020 Bruke _, _, position, id -> for å hente ut?
+//        roomList.setOnItemClickListener { _, _, position, _ ->
+//            val selectedRoomId = arrayAdapter?.getItem(position)
+//            reservationViewModelShared.roomNumberSelected(selectedRoomId.toString())
+//
+//            this.dismiss()
+//        }
 
 
 

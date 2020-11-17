@@ -54,7 +54,7 @@ class SignUpViewModel : ViewModel() {
                 _navigateToLogin.value = true
             }catch (e: Exception) {
                 Log.i("PostStudent", e.toString())
-                _message.value = "Email already in database"
+
             }
 
         }

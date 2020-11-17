@@ -1,5 +1,6 @@
 package com.example.groupfinder.userprofile
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.preference.PreferenceManager
 import com.example.groupfinder.databinding.UserProfileFragmentBinding
+import com.example.groupfinder.util.Constants
+import com.example.groupfinder.util.PreferenceProvider
 import kotlinx.android.synthetic.main.user_profile_fragment.*
 
 
@@ -63,6 +67,7 @@ class UserProfileFragment : Fragment() {
                 viewModel.getGroups(viewModel.email.value.toString())
             }
         })
+
 
         viewModel.getGroups(viewModel.email.value.toString())
 

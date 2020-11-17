@@ -10,6 +10,9 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import com.example.groupfinder.R
 import com.example.groupfinder.databinding.ListDialogFragmentBinding
+import com.example.groupfinder.userprofile.GroupListAdapter
+import com.example.groupfinder.util.Constants
+import com.example.groupfinder.util.PreferenceProvider
 
 class GroupSelectDialogFragment : DialogFragment() {
 
@@ -30,21 +33,36 @@ class GroupSelectDialogFragment : DialogFragment() {
 
         binding.lifecycleOwner = this
 
+        val pref = this.context?.let { PreferenceProvider(it) }
+        val userEmail: String? = pref?.getEmailPreference(Constants.KEY_EMAIL)
+//        println(userEmail)
 
 
-        val groupList = binding.itemList
-        val groupString = reservationViewModelShared.setGroupList()
-        val arrayAdapter = this.context?.let { ArrayAdapter(it, R.layout.item_for_list_text_view, R.id.text_view_item, groupString) }
 
 
-        groupList.adapter = arrayAdapter
 
-        groupList.setOnItemClickListener{ _, _, position, _ ->
-            val selectedGroup = arrayAdapter?.getItem(position)
-            reservationViewModelShared.groupSelected(selectedGroup.toString())
+        binding.groupLeaderList.adapter = GroupLeaderListAdapter(GroupLeaderListAdapter.OnClickListener {
+            reservationViewModelShared.printGroup(it)
+        })
 
-            this.dismiss()
-        }
+
+//        val groupList = binding.groupList
+//        val groupString = reservationViewModelShared.setGroupList(userEmail.toString())
+//
+//
+//        val arrayAdapter = this.context?.let { ArrayAdapter(it, R.layout.item_for_list_text_view, R.id.text_view_item, groupString) }
+//
+//        groupList.adapter = arrayAdapter
+//
+//
+//
+//        groupList.setOnItemClickListener{ _, _, position, _ ->
+//            val selectedGroup = arrayAdapter?.getItem(position)
+//            println(selectedGroup)
+//            reservationViewModelShared.groupSelected(selectedGroup.toString())
+//
+//            this.dismiss()
+//        }
 
 
 

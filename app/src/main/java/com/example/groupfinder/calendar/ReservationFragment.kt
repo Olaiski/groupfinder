@@ -4,13 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import com.example.groupfinder.R
 import com.example.groupfinder.calendar.datetimepicker.*
 import com.example.groupfinder.databinding.ReservationFragmentBinding
-import com.example.groupfinder.onDateSet
+import com.example.groupfinder.util.PreferenceProvider
+import com.example.groupfinder.util.Constants
+import com.example.groupfinder.util.onDateSet
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.snackbar.Snackbar
 import java.util.*
@@ -19,8 +24,6 @@ import java.util.*
 class ReservationFragment : Fragment() {
 
     private val reservationViewModelShared: ReservationViewModelShared by activityViewModels()
-
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle? ) : View? {
@@ -36,7 +39,19 @@ class ReservationFragment : Fragment() {
 //        binding.calenderViewModel = reservationViewModel
 
 
+        val pref = this.context?.let { PreferenceProvider(it) }
+        val userEmail: String? = pref?.getEmailPreference(Constants.KEY_EMAIL)
+        println(userEmail)
+
+
+//        if (userEmail != null) {
+//            reservationViewModelShared.setGroupList(userEmail)
+//        }
+
+
         binding.lifecycleOwner = this
+
+
 
 
         // Start time dialog / button
@@ -100,12 +115,14 @@ class ReservationFragment : Fragment() {
         val groupInput = binding.groupInput
         val groupDialog = GroupSelectDialogFragment()
         groupInput.setOnClickListener {
+            reservationViewModelShared.getGroups(userEmail.toString())
             groupDialog.show(parentFragmentManager, groupInput.toString())
         }
 
-        reservationViewModelShared.groupName.observe(viewLifecycleOwner, { item ->
-            groupInput.text = item.toString()
-        })
+//
+//        reservationViewModelShared.groupName.observe(viewLifecycleOwner, { item ->
+//            groupInput.text = item.toString()
+//        })
 
 
         binding.reserveButton.setOnClickListener {
@@ -118,6 +135,8 @@ class ReservationFragment : Fragment() {
             )
 
         }
+
+
 
         reservationViewModelShared.showSnackBarEvent.observe(viewLifecycleOwner, {
             if (it == true) {

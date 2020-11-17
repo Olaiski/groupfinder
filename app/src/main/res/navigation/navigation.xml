@@ -16,6 +16,9 @@
         <action
             android:id="@+id/show_group_fragment"
             app:destination="@id/groupFragment" />
+        <action
+            android:id="@+id/action_userProfileFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"

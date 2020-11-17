@@ -1,12 +1,11 @@
-package com.example.groupfinder.calendar;
+package com.example.groupfinder.calendar
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import com.example.groupfinder.database.GroupFinderDatabaseDao
-import com.example.groupfinder.formatReservations
+import com.example.groupfinder.util.formatReservations
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

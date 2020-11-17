@@ -59,7 +59,6 @@
                     android:layout_height="wrap_content"
 
                     android:textSize="@dimen/font_small"
-
                     tools:text="Ola normann"
                     android:textColor="@color/secondaryLightColor"
                     android:text="@{student.firstname}"

@@ -1,9 +1,12 @@
 package com.example.groupfinder.userprofile
 
+
+import android.content.SharedPreferences
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.preference.PreferenceManager
 import com.example.groupfinder.network.GroupFinderApi
 import com.example.groupfinder.network.models.Group
 import com.example.groupfinder.network.models.PostGroup
@@ -102,6 +105,7 @@ class UserProfileViewModel : ViewModel(){
     init {
 //        val email = _student.value?.email
         EMAIL = _email.value.toString()
+
     }
 
 
@@ -148,9 +152,10 @@ class UserProfileViewModel : ViewModel(){
     /**
      * @param email gets groups related to student base on this email
      */
+    // TODO: 21/10/2020 getGroups() UserProfileViewModel
     fun getGroups(email: String) {
         coroutineScope.launch {
-            var getGroupsDeferred = GroupFinderApi.retrofitService.getUserGroupsAsync(email)
+            val getGroupsDeferred = GroupFinderApi.retrofitService.getUserGroupsAsync(email)
 
             try {
                 _status.value = ApiStatus.LOADING
@@ -199,8 +204,6 @@ class UserProfileViewModel : ViewModel(){
 
 
     fun onLogin(email: String, password: String){
-
-
         coroutineScope.launch {
             val postStudent = GroupFinderApi.retrofitService.postLoginStudentAsync(email, password)
 

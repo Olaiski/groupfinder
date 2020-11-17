@@ -1,4 +1,4 @@
-package com.example.groupfinder
+package com.example.groupfinder.util
 
 import android.annotation.SuppressLint
 import android.content.res.Resources
@@ -71,7 +71,7 @@ fun formatReservations(reservations: ArrayList<com.example.groupfinder.calendar.
  */
 fun onDateSet(dateString: String) : String{
 
-    val targetFormat = SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH)
+    val targetFormat = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
     val originalFormat = SimpleDateFormat("MMM dd, yyy", Locale.ENGLISH)
     val date : Date = originalFormat.parse(dateString)!!
 

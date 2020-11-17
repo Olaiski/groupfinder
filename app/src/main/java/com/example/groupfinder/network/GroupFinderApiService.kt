@@ -15,12 +15,14 @@ import retrofit2.http.*
 /**
  *  http://LOCALIP:PORT/
  */
-private const val BASE_URL = ""
+//private const val BASE_URL = "http://192.168.11.130:3000/"
+private const val BASE_URL = "http://10.0.2.2:3000/"
 
 
 /**
  * Build the Moshi object that Retrofit will be using, making sure to add the Kotlin adapter for
  * full Kotlin compatibility.
+ * Moshi is a modern JSON library for Android and Java. It makes it easy to parse JSON into Java objects
  */
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -30,6 +32,8 @@ private val moshi = Moshi.Builder()
 /**
  * Use the Retrofit builder to build a retrofit object using a Moshi converter with our Moshi
  * object.
+ *
+ * Retrofit turns your HTTP API into a Java interface.
  */
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(MoshiConverterFactory.create(moshi))
@@ -46,22 +50,29 @@ interface GroupFinderApiService {
     // GET-endpoints
 
     /**
-     *  Gets all groups related to the student, query by email.
+     *  @param email Gets all groups related to the student, query by email.
      */
     @GET("api/user/userGroups")
-    fun getUserGroupsAsync(@Query("email") type: String) : Deferred<UserGroups>
+    fun getUserGroupsAsync(@Query("email") email: String) : Deferred<UserGroups>
 
     /**
-     *  Gets information about the logged in student, query by email.
+     * @param email Gets information about the logged in student, query by email.
+     *
      */
     @GET("api/user/home")
-    fun getStudentAsync(@Query("email") type: String) : Deferred<ResponseStudent>
+    fun getStudentAsync(@Query("email") email: String) : Deferred<ResponseStudent>
 
     /**
-     *  Gets all group members related to a group, query by groupId.
+     * @param groupId  Gets all group members related to a group, query by groupId.
      */
     @GET("api/user/groupMembers")
-    fun getGroupMembersAsync(@Query("gid") type: Int) : Deferred<GroupMembers>
+    fun getGroupMembersAsync(@Query("gid") groupId: Int) : Deferred<GroupMembers>
+
+    /**
+     * @param email Gets all groups that the user created, query by email
+     */
+    @GET("api/user/groupLeaderGroups")
+    fun getGroupLeaderGroups(@Query("email") email: String) : Deferred<GroupLeaderGroups>
 
 
     // POST-endpoints
@@ -73,7 +84,8 @@ interface GroupFinderApiService {
     fun postRegisterGroupAsync(@Body group: PostGroup) : Deferred<PostMessage>
 
     /**
-     * @param student as body, inserts a new student, returns a message
+     * Inserts a new student based on @Field(), returns a message
+     *
      */
     @POST("api/auth/registerStudent")
     @FormUrlEncoded

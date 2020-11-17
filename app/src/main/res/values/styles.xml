@@ -83,6 +83,12 @@
     </style>
 
 
+    <style name="DialogStyle" parent="Base.Theme.AppCompat.Dialog">
+        <item name="android:windowMinWidthMajor">97%</item>
+        <item name="android:windowMinWidthMinor">97%</item>
+<!--        <item name="android:layout_gravity">center</item>-->
+    </style>
+
 
 
 </resources>

@@ -1,9 +1,11 @@
-package com.example.groupfinder
+package com.example.groupfinder.util
 
 import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.groupfinder.R
+import com.example.groupfinder.calendar.datetimepicker.GroupLeaderListAdapter
 import com.example.groupfinder.group.StudentMembersListAdapter
 import com.example.groupfinder.network.models.Group
 import com.example.groupfinder.network.models.StudentCompact
@@ -11,6 +13,8 @@ import com.example.groupfinder.userprofile.ApiStatus
 import com.example.groupfinder.userprofile.GroupListAdapter
 import com.example.groupfinder.group.GroupFragment
 import com.example.groupfinder.group.GroupViewModel
+import com.example.groupfinder.network.models.GroupLeaderGroup
+import com.example.groupfinder.network.models.GroupLeaderGroups
 
 
 /**
@@ -25,6 +29,12 @@ fun bindRecyclerView(recyclerView: RecyclerView, data: List<Group>?) {
 @BindingAdapter("studentData")
 fun bindRecyclerViewGroupMembers(recyclerView: RecyclerView, data: List<StudentCompact>?) {
     val adapter = recyclerView.adapter as StudentMembersListAdapter
+    adapter.submitList(data)
+}
+
+@BindingAdapter("groupData")
+fun bindRecyclerViewGroupLeaderGroups(recyclerView: RecyclerView, data: List<GroupLeaderGroup>?) {
+    val adapter = recyclerView.adapter as GroupLeaderListAdapter
     adapter.submitList(data)
 }
 

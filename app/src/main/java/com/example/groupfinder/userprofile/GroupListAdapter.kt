@@ -55,7 +55,7 @@ class GroupListAdapter (val onClickListener: OnClickListener) :
     }
 
     /**
-     * Replaces the contents of a view (invoked by the layour manager)
+     * Replaces the contents of a view (invoked by the layout manager)
      */
     override fun onBindViewHolder(holder: GroupViewHolder, position: Int) {
         val group = getItem(position)

@@ -42,7 +42,7 @@ class GroupViewModel(group: Group, app: Application) : AndroidViewModel(app) {
     // TODO: 09/10/2020 Hent ut studenter for group fragment.. -> User_card_info -> BindingAdapter? 
     private fun getGroupMembers(groupId: Int) {
         coroutineScope.launch {
-            var getGroupMembersDeferred = GroupFinderApi.retrofitService.getGroupMembersAsync(groupId)
+            val getGroupMembersDeferred = GroupFinderApi.retrofitService.getGroupMembersAsync(groupId)
 
             println(groupId)
 

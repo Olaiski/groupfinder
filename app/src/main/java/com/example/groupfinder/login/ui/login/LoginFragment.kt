@@ -14,6 +14,8 @@ import com.example.groupfinder.R
 import com.example.groupfinder.databinding.LoginFragmentBinding
 import com.example.groupfinder.signup.SignUpFragment
 import com.example.groupfinder.userprofile.UserProfileViewModel
+import com.example.groupfinder.util.Constants
+import com.example.groupfinder.util.PreferenceProvider
 
 class LoginFragment : Fragment() {
 
@@ -35,6 +37,7 @@ class LoginFragment : Fragment() {
         val binding: LoginFragmentBinding = DataBindingUtil.inflate(
             inflater, R.layout.login_fragment, container, false)
 
+        val pref = this.context?.let { PreferenceProvider(it) }
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
@@ -55,6 +58,7 @@ class LoginFragment : Fragment() {
                 return@setOnClickListener
             }
 
+            pref?.putEmailPreference(Constants.KEY_EMAIL, email)
             viewModel.onLogin(email, password)
             viewModel.getStudent(email)
             viewModel.getGroups(email)

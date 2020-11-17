@@ -2,13 +2,21 @@ package com.example.groupfinder
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
+import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.onNavDestinationSelected
 import com.example.groupfinder.databinding.ActivityMainBinding
+import com.example.groupfinder.userprofile.UserProfileFragmentDirections
+import com.example.groupfinder.util.PreferenceProvider
+import com.google.android.material.navigation.NavigationView
+import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,14 +38,18 @@ class MainActivity : AppCompatActivity() {
             } else {
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
             }
+
         }
 
-
-
+        // FIXME: 16/11/2020 Logout funker ikke helt, men skal cleare PreferenceProvider email
+        binding.navView.menu.findItem(R.id.logoutFragment).setOnMenuItemClickListener {
+            logout()
+        }
 
 
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
         NavigationUI.setupWithNavController(binding.navView, navController)
+
 
 
 
@@ -49,5 +61,11 @@ class MainActivity : AppCompatActivity() {
         return NavigationUI.navigateUp(navController, drawerLayout)
     }
 
+    private fun logout() : Boolean {
+        val pref = PreferenceProvider(context = applicationContext)
+        pref.clear()
+
+        return true
+    }
 
 }
