@@ -14,16 +14,11 @@
 
 
     <ListView
-        android:id="@+id/end_time_list"
+        android:id="@+id/time_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
-        tools:listitem="@layout/end_time_text_view"
-
-
-
+        tools:listitem="@layout/item_for_list_text_view"
         />
-
-
 
 </layout>

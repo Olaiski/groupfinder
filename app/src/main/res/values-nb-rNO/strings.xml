@@ -30,4 +30,26 @@
     <string name="join">Bli med</string>
     <string name="cancel">Tilbake</string>
     <string name="about_this_group">Om gruppen</string>
+    <string name="loginHeadline">Log inn</string>
+    <string name="invalid_username">Ikke gyldig brukernavn</string>
+    <string name="invalid_password">Passord må være > 5 tegn</string>
+    <string name="login_failed">Innlogging gikk galt</string>
+    <string name="group">gruppe</string>
+    <string name="search_for_groups_hint">Søk etter grupper</string>
+    <string name="select_a_date">Velg dato</string>
+    <string name="start_time">Start tid:</string>
+    <string name="select">Velg</string>
+    <string name="end_time">Slutt tid:</string>
+    <string name="room_number">Romnummer:</string>
+    <string name="room_reservation">Rom reservasjon</string>
+    <string name="select_date">velg dato</string>
+    <string name="groupwsemi">Gruppe:</string>
+    <string name="reserve">Reservere</string>
+    <string name="my_groups">Mine Grupper</string>
+    <string name="create_new_group">Opprett gruppe</string>
+    <string name="create">Opprett</string>
+    <string name="create_a_group">Opprett en gruppe</string>
+    <string name="date">Dato:</string>
+    <string name="new_reservation">Ny reservasjon</string>
+    <string name="choose_group">Velg gruppe</string>
 </resources>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">groupfinder</string>
+    <string name="app_name" translatable="false">groupfinder</string>
     <string name="password_hint">Password</string>
     <string name="groupfinderLogo">GroupFinder</string>
     <string name="loginHeadline">Login</string>
@@ -39,7 +39,7 @@
     <string name="group_memebers">Group memebers</string>
     <string name="join">Join</string>
     <string name="cancel">Cancel</string>
-    <string name="group_finder">Group Finder</string>
+    <string name="group_finder" translatable="false">Group Finder</string>
     <string name="search_for_groups_hint">Search for groups..</string>
     <string name="select_a_date">Select a date</string>
     <string name="start_time">Start time:</string>
@@ -57,6 +57,7 @@
     <string name="date">Date:</string>
     <string name="new_reservation">New reservation</string>
     <string name="about_this_group">About this group</string>
+    <string name="choose_group">Choose group</string>
 
 
     <string-array name="start_time_array">

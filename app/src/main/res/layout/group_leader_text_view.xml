@@ -49,12 +49,12 @@
 
         </com.google.android.material.card.MaterialCardView>
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            app:cardBackgroundColor="@android:color/black"
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="1dp"-->
+<!--            app:cardBackgroundColor="@android:color/black"-->
 
-            />
+<!--            />-->
 
 
     </LinearLayout>

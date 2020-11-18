@@ -10,6 +10,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import com.example.groupfinder.R
 import com.example.groupfinder.databinding.ListDialogFragmentBinding
+import com.example.groupfinder.databinding.TimeDialogFragmentBinding
 
 
 class EndTimeDialogFragment : DialogFragment() {
@@ -23,8 +24,8 @@ class EndTimeDialogFragment : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding: ListDialogFragmentBinding = DataBindingUtil.inflate(
-            inflater, R.layout.list_dialog_fragment, container, false)
+        val binding: TimeDialogFragmentBinding = DataBindingUtil.inflate(
+            inflater, R.layout.time_dialog_fragment, container, false)
 
 
 
@@ -33,21 +34,18 @@ class EndTimeDialogFragment : DialogFragment() {
         binding.lifecycleOwner = this
 
 
-//        val timeList = binding.groupList
-//        val timeString = reservationViewModelShared.setTimeList()
-//
-//        val arrayAdapter = this.context?.let { ArrayAdapter(it, R.layout.item_for_list_text_view, R.id.text_view_item, timeString) }
-//
-//        timeList.adapter = arrayAdapter
-//
-//
-//        timeList.setOnItemClickListener { _, _, position, _ ->
-//            val selectedEndTime = arrayAdapter?.getItem(position)
-//            reservationViewModelShared.endTimeSelected(selectedEndTime.toString())
-//
-//
-//            this.dismiss()
-//        }
+        val timeList = binding.timeList
+        val timeString = reservationViewModelShared.getEndTimeList()
+        val arrayAdapter = this.context?.let { ArrayAdapter(it, R.layout.item_for_list_text_view, R.id.text_view_item, timeString) }
+
+        timeList.adapter = arrayAdapter
+
+
+        timeList.setOnItemClickListener { _, _, position, _ ->
+            val selectedEndTime = arrayAdapter?.getItem(position)
+            reservationViewModelShared.endTimeSelected(selectedEndTime.toString())
+            this.dismiss()
+        }
 
         return binding.root
     }

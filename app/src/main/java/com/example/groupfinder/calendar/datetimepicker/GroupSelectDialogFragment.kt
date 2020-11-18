@@ -19,11 +19,7 @@ class GroupSelectDialogFragment : DialogFragment() {
     private val reservationViewModelShared: ReservationViewModelShared by activityViewModels()
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
 
         val binding: ListDialogFragmentBinding = DataBindingUtil.inflate(
@@ -43,6 +39,8 @@ class GroupSelectDialogFragment : DialogFragment() {
 
         binding.groupLeaderList.adapter = GroupLeaderListAdapter(GroupLeaderListAdapter.OnClickListener {
             reservationViewModelShared.printGroup(it)
+
+            this.dismiss()
         })
 
 
