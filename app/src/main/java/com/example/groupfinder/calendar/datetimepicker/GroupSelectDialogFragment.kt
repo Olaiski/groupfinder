@@ -29,40 +29,10 @@ class GroupSelectDialogFragment : DialogFragment() {
 
         binding.lifecycleOwner = this
 
-        val pref = this.context?.let { PreferenceProvider(it) }
-        val userEmail: String? = pref?.getEmailPreference(Constants.KEY_EMAIL)
-//        println(userEmail)
-
-
-
-
-
         binding.groupLeaderList.adapter = GroupLeaderListAdapter(GroupLeaderListAdapter.OnClickListener {
-            reservationViewModelShared.printGroup(it)
-
+            reservationViewModelShared.selectedGroupId(it)
             this.dismiss()
         })
-
-
-//        val groupList = binding.groupList
-//        val groupString = reservationViewModelShared.setGroupList(userEmail.toString())
-//
-//
-//        val arrayAdapter = this.context?.let { ArrayAdapter(it, R.layout.item_for_list_text_view, R.id.text_view_item, groupString) }
-//
-//        groupList.adapter = arrayAdapter
-//
-//
-//
-//        groupList.setOnItemClickListener{ _, _, position, _ ->
-//            val selectedGroup = arrayAdapter?.getItem(position)
-//            println(selectedGroup)
-//            reservationViewModelShared.groupSelected(selectedGroup.toString())
-//
-//            this.dismiss()
-//        }
-
-
 
         return binding.root
     }

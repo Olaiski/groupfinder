@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <data>
+        <variable
+            name="room"
+            type="com.example.groupfinder.network.models.Room" />
+    </data>
+
+
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:textAlignment="center"
+        android:text="@{room.name}"
+        android:textSize="@dimen/font_xl"
+        android:paddingTop="@dimen/spacing_medium"
+        android:paddingBottom="@dimen/spacing_medium"
+
+        />
+</RelativeLayout>
+
+</layout>

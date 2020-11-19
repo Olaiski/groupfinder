@@ -57,7 +57,5 @@ data class PostGroup(
 
 @Parcelize
 data class PostMessage(
-
     val message: String
-
 ): Parcelable

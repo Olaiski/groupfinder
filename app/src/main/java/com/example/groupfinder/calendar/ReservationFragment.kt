@@ -9,6 +9,7 @@ import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.groupfinder.R
 import com.example.groupfinder.calendar.datetimepicker.*
 import com.example.groupfinder.databinding.ReservationFragmentBinding
@@ -17,6 +18,7 @@ import com.example.groupfinder.util.Constants
 import com.example.groupfinder.util.onDateSet
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.*
 import java.util.*
 
 
@@ -32,24 +34,14 @@ class ReservationFragment : Fragment() {
             inflater, R.layout.reservation_fragment, container, false)
 
 
-//        val application = requireNotNull(this.activity).application
-//        val dataSource = GroupFinderDatabase.getInstance(application).groupFinderDatabaseDao
-//        val viewModelFactory = ReservationViewModelFactory(dataSource, application)
-//        val reservationViewModel = ViewModelProvider(this, viewModelFactory).get(ReservationViewModel::class.java)
-//        binding.calenderViewModel = reservationViewModel
-
-
         val pref = this.context?.let { PreferenceProvider(it) }
         val userEmail: String? = pref?.getEmailPreference(Constants.KEY_EMAIL)
-        println(userEmail)
 
-
-//        if (userEmail != null) {
-//            reservationViewModelShared.setGroupList(userEmail)
-//        }
 
 
         binding.lifecycleOwner = this
+
+
 
 
         // Calendar, DatePickerDialog / Button
@@ -70,8 +62,6 @@ class ReservationFragment : Fragment() {
             binding.startTimeInput.text = ""
             binding.endTimeInput.text = ""
         }
-
-
 
 
         // Start time dialog / button
@@ -111,6 +101,7 @@ class ReservationFragment : Fragment() {
         })
 
 
+
         // Room number dialog / button
         val roomInput = binding.roomNumberInput
         val roomDialog = RoomDialogFragment()
@@ -123,7 +114,7 @@ class ReservationFragment : Fragment() {
             roomDialog.show(parentFragmentManager, roomInput.toString())
         }
 
-        vms.roomNumber.observe(viewLifecycleOwner, { item ->
+        vms.roomName.observe(viewLifecycleOwner, { item ->
             roomInput.text = item.toString()
         })
 
@@ -136,23 +127,14 @@ class ReservationFragment : Fragment() {
             groupDialog.show(parentFragmentManager, groupInput.toString())
         }
 
-
         vms.groupName.observe(viewLifecycleOwner, { item ->
             groupInput.text = item.toString()
         })
 
 
         binding.reserveButton.setOnClickListener {
-            vms.onReserveRoom(
-                startTime = binding.startTimeInput.text.toString(),
-                endTime = binding.endTimeInput.text.toString(),
-                date = onDateSet(binding.dateInput.text.toString()),
-                roomNumber = binding.roomNumberInput.text.toString(),
-                groupName = binding.groupInput.text.toString()
-            )
-
+            vms.onReserveRoom()
         }
-
 
 
         vms.showSnackBarEvent.observe(viewLifecycleOwner, {
@@ -166,17 +148,13 @@ class ReservationFragment : Fragment() {
             }
         })
 
-//        reservationViewModelShared.navigateToMyReservations.observe(viewLifecycleOwner, { e ->
-//            if (e) {
-//                this.findNavController().navigate(
-//                    ReservationFragmentDirections.actionReservationFragmentToMyReservationFragment())
-//                reservationViewModelShared.onReservationComplete()
-//            }
-//        })
-
-
-
-
+        vms.navigateToMyReservations.observe(viewLifecycleOwner, { e ->
+            if (e) {
+                this.findNavController().navigate(
+                    ReservationFragmentDirections.actionReservationFragmentToMyReservationFragment())
+                vms.onReservationComplete()
+            }
+        })
 
         return binding.root
     }
@@ -190,11 +168,11 @@ class ReservationFragment : Fragment() {
         ).show()
     }
 
-
-
-
-
-
-
+    override fun onDetach() {
+        super.onDetach()
+        vms.startTimeSelected("")
+        vms.endTimeSelected("")
+        vms.groupSelected("")
+    }
 }
 

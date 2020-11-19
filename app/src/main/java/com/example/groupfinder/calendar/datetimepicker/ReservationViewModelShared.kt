@@ -7,6 +7,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.groupfinder.network.GroupFinderApi
 import com.example.groupfinder.network.models.GroupLeaderGroup
+import com.example.groupfinder.network.models.Reservation
+import com.example.groupfinder.network.models.Room
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -21,8 +23,6 @@ import kotlin.collections.ArrayList
 class ReservationViewModelShared : ViewModel() {
 
 
-    // TODO: 22/09/2020 Dummy data
-    private lateinit var timeStringList: ArrayList<String>
     private lateinit var roomStringList: ArrayList<String>
 
 
@@ -58,29 +58,43 @@ class ReservationViewModelShared : ViewModel() {
     val endTimeList: LiveData<List<String>>
         get() = _endTimeList
 
+    private val _vacantRoomList = MutableLiveData<List<Room>>()
+    val vacantRoomList: LiveData<List<Room>>
+        get() = _vacantRoomList
+
+
+
 
     private val _selectedDate = MutableLiveData<String>()
     val selectedDate: LiveData<String>
         get() = _selectedDate
 
 
+
+
     private val _groups = MutableLiveData<List<GroupLeaderGroup>>()
     val groups: LiveData<List<GroupLeaderGroup>>
         get() = _groups
 
-    // Ex: Query fra DB..
-    // val groups = database.getUserGroups()
+
     // Group
     private val _groupName = MutableLiveData<String>()
     val groupName: LiveData<String>
         get() = _groupName
 
-    // Ex: Query fra DB..
-    // val rooms = database.getAllRooms()
-    // Room number
-    private val _roomNumber = MutableLiveData<String>()
-    val roomNumber: LiveData<String>
-        get() = _roomNumber
+    private val _groupId = MutableLiveData<Int>()
+    val groupId: LiveData<Int>
+        get() = _groupId
+
+
+    // Rom
+    private val _roomName = MutableLiveData<String>()
+    val roomName: LiveData<String>
+        get() = _roomName
+
+    private val _roomId = MutableLiveData<Int>()
+    val roomId: LiveData<Int>
+        get() = _roomId
 
 
 
@@ -90,32 +104,71 @@ class ReservationViewModelShared : ViewModel() {
         get() = _navigateToMyReservations
 
 
+    private val _showSnackBarEvent = MutableLiveData<Boolean>()
+    val showSnackBarEvent: LiveData<Boolean>
+        get() = _showSnackBarEvent
+
+
+
+    fun startTimeSelected(item: String) {
+        println("StartTime = $item")
+        _startTime.value = item
+    }
+
     fun endTimeSelected(item: String) {
+        println("EndTime = $item")
         _endTime.value = item
+
+        getVacantRooms(_selectedDate.value.toString(), _startTime.value.toString(), _endTime.value.toString())
+    }
+
+    fun roomNumberSelected(item: Room) {
+        println(item.id)
+        _roomName.value = item.name
+        _roomId.value = item.id
+    }
+
+    fun groupSelected(item: String) {
+        println("Group = $item")
+        _groupName.value = item
+    }
+
+    fun selectedGroupId(group: GroupLeaderGroup) {
+        _groupName.value = group.groupName
+        _groupId.value = group.id
+    }
+
+    fun doneShowingSnackbar() {
+        _showSnackBarEvent.value = false
     }
 
 
 
 
 
-    // TODO: 16/11/2020 Query til db basert på tid
-    fun setRoomNumberList() : ArrayList<String> {
-        roomStringList = ArrayList()
-        for (i in 110..145) {
-            roomStringList.add("4-$i")
+    private fun getVacantRooms(date: String, start: String, end: String) {
+        coroutineScope.launch {
+            // "2020-11-16", "12:00", "16:00"
+            val getVacantRoomsDeferred = GroupFinderApi.retrofitService.getVacantRoomsAsync(date = date, start = start, end = end)
+
+            try {
+                val listResult = getVacantRoomsDeferred.await()
+                println(listResult.vacantRooms)
+
+                _vacantRoomList.value = listResult.vacantRooms
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+                println(e.message)
+            }
         }
-        return roomStringList
-    }
-
-    fun roomNumberSelected(item: String) {
-        _roomNumber.value = item
     }
 
 
     // Query til db, henter innlogged bruker sine grupper (der han/hun er leder)
     fun getGroups(email: String){
         coroutineScope.launch {
-            val getLeaderGroupsDeferred = GroupFinderApi.retrofitService.getGroupLeaderGroups(email)
+            val getLeaderGroupsDeferred = GroupFinderApi.retrofitService.getGroupLeaderGroupsAsync(email)
 
             try {
                 val listResult = getLeaderGroupsDeferred.await()
@@ -129,26 +182,32 @@ class ReservationViewModelShared : ViewModel() {
         }
     }
 
-    fun printGroup(group: GroupLeaderGroup) {
-        println(group)
-        _groupName.value = group.groupName
-    }
 
-    fun groupSelected(item: String) {
-        _groupName.value = item
-    }
-
-    private val _showSnackBarEvent = MutableLiveData<Boolean>()
-    val showSnackBarEvent: LiveData<Boolean>
-        get() = _showSnackBarEvent
-
-    fun doneShowingSnackbar() {
-        _showSnackBarEvent.value = false
-    }
 
     // TODO: 21/09/2020 DB Query..
-    fun onReserveRoom(startTime: String, endTime: String, date: String, roomNumber: String, groupName: String) {
-        println("$startTime $endTime $date $roomNumber $groupName")
+    fun onReserveRoom() {
+
+        val startDate = "${_selectedDate.value} ${_startTime.value}"
+        val endDate = "${_selectedDate.value} ${_endTime.value}"
+        val roomId = _roomId.value
+        val groupId = _groupId.value
+
+        coroutineScope.launch {
+            val reservation = Reservation(startDate, endDate, roomId, groupId)
+
+            val postReservation = GroupFinderApi.retrofitService.postReserveRoomAsync(reservation)
+
+
+            _navigateToMyReservations.value = true
+
+            try {
+                postReservation.await()
+
+
+            }catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
 
         _showSnackBarEvent.value = true
 //        _navigateToMyReservations.value = true
@@ -170,18 +229,12 @@ class ReservationViewModelShared : ViewModel() {
                     (_endTimeList.value as ArrayList<String>).add("0$i:00")
                 else
                     (_endTimeList.value as ArrayList<String>).add("$i:00")
-
             }
-
         }
-
         return _endTimeList.value as ArrayList<String>
     }
 
-    fun startTimeSelected(item: String) {
-        println(item)
-        _startTime.value = item
-    }
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun setDateStartTime(date: Long){
@@ -218,9 +271,7 @@ class ReservationViewModelShared : ViewModel() {
             }
         }
 
-
     }
-
 
 
     @RequiresApi(Build.VERSION_CODES.O)

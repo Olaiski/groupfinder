@@ -72,8 +72,16 @@ interface GroupFinderApiService {
      * @param email Gets all groups that the user created, query by email
      */
     @GET("api/user/groupLeaderGroups")
-    fun getGroupLeaderGroups(@Query("email") email: String) : Deferred<GroupLeaderGroups>
+    fun getGroupLeaderGroupsAsync(@Query("email") email: String) : Deferred<GroupLeaderGroups>
 
+    /**
+     * Gets vacant rooms based on:
+     * @param date Date for reservation
+     * @param start Start time for reservation
+     * @param end End time for reservation
+     */
+    @GET("api/user/vacantRooms")
+    fun getVacantRoomsAsync(@Query("date") date: String, @Query("start") start: String, @Query("end") end: String) : Deferred<VacantRooms>
 
     // POST-endpoints
 
@@ -94,6 +102,9 @@ interface GroupFinderApiService {
                                  @Field("email") email: String,
                                  @Field("phonenumber") phonenumber: Int,
                                  @Field("password") password: String) : Deferred<PostMessage>
+
+    @POST("api/user/reserveRoom")
+    fun postReserveRoomAsync(@Body reservation: Reservation) : Deferred<PostMessage>
 
 
     /**

@@ -152,7 +152,6 @@ class UserProfileViewModel : ViewModel(){
     /**
      * @param email gets groups related to student base on this email
      */
-    // TODO: 21/10/2020 getGroups() UserProfileViewModel
     fun getGroups(email: String) {
         coroutineScope.launch {
             val getGroupsDeferred = GroupFinderApi.retrofitService.getUserGroupsAsync(email)

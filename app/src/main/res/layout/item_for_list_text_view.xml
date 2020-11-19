@@ -16,9 +16,6 @@
     android:layout_gravity="center_vertical"
 
     android:textSize="@dimen/font_xl"
-
-
-
     android:paddingTop="@dimen/spacing_medium"
     android:paddingBottom="@dimen/spacing_medium"
 
