@@ -42,8 +42,6 @@ class ReservationFragment : Fragment() {
         binding.lifecycleOwner = this
 
 
-
-
         // Calendar, DatePickerDialog / Button
         val dateInput = binding.dateInput
         val builder: MaterialDatePicker.Builder<Long> = MaterialDatePicker.Builder.datePicker()
@@ -74,8 +72,6 @@ class ReservationFragment : Fragment() {
                 return@setOnClickListener
             }
             startTimeDialog.show(parentFragmentManager, startTimeInput.toString())
-
-
         }
 
         vms.startTime.observe(viewLifecycleOwner, { item ->
@@ -134,6 +130,7 @@ class ReservationFragment : Fragment() {
 
         binding.reserveButton.setOnClickListener {
             vms.onReserveRoom()
+            dateInput.text = ""
         }
 
 
@@ -170,9 +167,9 @@ class ReservationFragment : Fragment() {
 
     override fun onDetach() {
         super.onDetach()
-        vms.startTimeSelected("")
-        vms.endTimeSelected("")
-        vms.groupSelected("")
+        vms.clearData()
     }
+
+
 }
 

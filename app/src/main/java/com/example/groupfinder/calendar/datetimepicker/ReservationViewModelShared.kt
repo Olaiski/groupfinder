@@ -123,7 +123,6 @@ class ReservationViewModelShared : ViewModel() {
     }
 
     fun roomNumberSelected(item: Room) {
-        println(item.id)
         _roomName.value = item.name
         _roomId.value = item.id
     }
@@ -142,6 +141,18 @@ class ReservationViewModelShared : ViewModel() {
         _showSnackBarEvent.value = false
     }
 
+    fun clearData() {
+        _startTime.value = ""
+        _endTime.value = ""
+        _selectedDate.value = ""
+        _roomName.value = ""
+        _roomId.value = 0
+        _groupId.value = 0
+        _groupName.value = ""
+        _vacantRoomList.value = ArrayList()
+        _startTimeList.value = ArrayList()
+        _endTimeList.value = ArrayList()
+    }
 
 
 
@@ -153,7 +164,10 @@ class ReservationViewModelShared : ViewModel() {
 
             try {
                 val listResult = getVacantRoomsDeferred.await()
-                println(listResult.vacantRooms)
+
+                val msg = listResult.message
+                println(msg)
+
 
                 _vacantRoomList.value = listResult.vacantRooms
 
@@ -172,7 +186,9 @@ class ReservationViewModelShared : ViewModel() {
 
             try {
                 val listResult = getLeaderGroupsDeferred.await()
-                println("Listresult group leader $listResult")
+                val msg = listResult.message
+
+                println(msg)
 
                 _groups.value = listResult.groupLeaderGroups
             } catch (e: Exception) {
@@ -184,7 +200,6 @@ class ReservationViewModelShared : ViewModel() {
 
 
 
-    // TODO: 21/09/2020 DB Query..
     fun onReserveRoom() {
 
         val startDate = "${_selectedDate.value} ${_startTime.value}"
@@ -192,25 +207,30 @@ class ReservationViewModelShared : ViewModel() {
         val roomId = _roomId.value
         val groupId = _groupId.value
 
+
         coroutineScope.launch {
             val reservation = Reservation(startDate, endDate, roomId, groupId)
 
             val postReservation = GroupFinderApi.retrofitService.postReserveRoomAsync(reservation)
 
 
+
             _navigateToMyReservations.value = true
 
             try {
-                postReservation.await()
+                val res = postReservation.await()
+                val resMessage = res.message
+
+                println(resMessage)
 
 
             }catch (e: Exception) {
+                print("ERROR: ${e.message}")
                 e.printStackTrace()
             }
-        }
 
+        }
         _showSnackBarEvent.value = true
-//        _navigateToMyReservations.value = true
     }
 
 

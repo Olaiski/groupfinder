@@ -44,7 +44,6 @@ class GroupViewModel(group: Group, app: Application) : AndroidViewModel(app) {
         coroutineScope.launch {
             val getGroupMembersDeferred = GroupFinderApi.retrofitService.getGroupMembersAsync(groupId)
 
-            println(groupId)
 
             try {
                 val listResult = getGroupMembersDeferred.await()

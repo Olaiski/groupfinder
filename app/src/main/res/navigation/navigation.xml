@@ -61,6 +61,8 @@
         <action
             android:id="@+id/action_reservationFragment_to_myReservationFragment"
             app:destination="@id/myReservationFragment"
+            app:popUpTo="@id/myReservationFragment"
+            app:popUpToInclusive="true"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_right"
