@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">groupfinder</string>
     <string name="password_hint">Password</string>
-    <string name="groupfinderLogo">GroupFinder</string>
+    <string name="groupfinderLogo" translatable="false">GroupFinder</string>
     <string name="loginHeadline">Login</string>
     <string name="no_account_text">Don\'t have an account?</string>
     <string name="sign_up_btn_text">SIGN UP</string>
@@ -23,9 +23,6 @@
     <string name="location">Location:</string>
     <string name="details">Details:</string>
     <string name="group_members">Group members:</string>
-    <!-- TODO: Remove or change this placeholder text -->
-
-    <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
@@ -63,6 +60,11 @@
     <string name="end">End:</string>
     <string name="room">Room:</string>
     <string name="select_date_start_end_time_room_number_and_group">Select date, start/end time, room number and group</string>
+    <string name="round_button_with_arrow_to_the_right">Round button with arrow to the right</string>
+    <string name="my_reservations">My Reservations</string>
+    <string name="connection_error_image">Connection error image</string>
+    <string name="reservations_info">Reservations info</string>
+    <string name="reservation_info_text">Displays all your upcoming reservations.\n If you\'re a groupleader, you can create new reservations by clicking the \'new reservation\' button.</string>
 
 
     <string-array name="start_time_array">

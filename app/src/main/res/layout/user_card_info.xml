@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    Layout for RecyclerView(et) i group_fragment.
+
+    Binder data med StudentCompact modellen.
+ -->
+<!-- Anders Olai Pedersen - 225280 -->
 <layout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"

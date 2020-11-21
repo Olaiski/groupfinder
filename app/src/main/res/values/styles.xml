@@ -1,4 +1,12 @@
 <resources>
+
+<!--
+    Setter stilen til applikasjonene. + Egendefinerte styles til f.eks. tekst som blir bruk i applikasjonen (overstyrer standard)
+ -->
+<!-- Anders Olai Pedersen - 225280 -->
+
+
+
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Customize your theme here. -->
@@ -91,7 +99,6 @@
     <style name="DialogStyle" parent="Base.Theme.AppCompat.Dialog">
         <item name="android:windowMinWidthMajor">97%</item>
         <item name="android:windowMinWidthMinor">97%</item>
-<!--        <item name="android:layout_gravity">center</item>-->
     </style>
 
 

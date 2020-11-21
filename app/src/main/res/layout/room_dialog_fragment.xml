@@ -3,6 +3,8 @@
     Layout for dialogen som lar brukeren velge rom når han/hun reserverer rom.
 
     Binder data med ReservationViewModelShared (roomList)
+    RecyclerView bruker adapteret "roomData" (Ligger under util.BindingAdapters.kt), dette
+    adapteret tar inn en liste av rom basert på viewModel data (vms.vacantRoomList).
  -->
 <!-- Anders Olai Pedersen - 225280 -->
 <layout xmlns:android="http://schemas.android.com/apk/res/android"

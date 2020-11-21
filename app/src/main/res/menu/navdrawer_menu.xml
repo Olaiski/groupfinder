@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    Navigasjons menyen til venstre i applikasjonen (hamburger button)
+
+    Navigerer til valgt fragment basert på input.
+ -->
+<!-- Anders Olai Pedersen - 225280 -->
 <menu
     xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -34,7 +40,7 @@
         />
 
 
-    <!-- FIXME: Register / login / DB er her for testing.. -->
+    <!-- FIXME: Register / login / er her for testing.. -->
     <item
         android:id="@+id/signUpFragment"
         android:title="Register"

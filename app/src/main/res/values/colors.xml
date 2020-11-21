@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    Fargene for applikasjonen, basert på fargene fra APP2000.
+
+    Secondary er ut i fra colorpicker:
+    https://material.io/resources/color/#!/?view.left=0&view.right=0
+ -->
+<!-- Anders Olai Pedersen - 225280 -->
 <resources>
     <color name="primaryColor">#00479b</color>
     <color name="primaryLightColor">#4f72cd</color>

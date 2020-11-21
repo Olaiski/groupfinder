@@ -5,6 +5,9 @@
    Bruker i brukerprofilen og når man søker etter grupper.
 
    Binder data med GroupViewModel
+
+    RecyclerView bruker adapteret "studentData" (Ligger under util.BindingAdapters.kt), dette
+    adapteret tar inn en liste av studenter basert på viewModel data (groupViewModel.groupMembers).
  -->
 <!-- Anders Olai Pedersen - 225280 -->
 <layout

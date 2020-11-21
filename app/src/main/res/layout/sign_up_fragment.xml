@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    Layout for registrering.
+    Input for Fornavn, Etternavn, Epost, Telefonnr og passord.
+    Knapper for å navigere til login.
 
+    Binder data med SignUpViewModel.
+ -->
+<!-- Anders Olai Pedersen - 225280 -->
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -62,7 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:textSize="@dimen/font_small"
+            android:textSize="@dimen/font_xs"
             android:hint="@string/forename_hint"
 
             />
@@ -90,7 +97,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:textSize="@dimen/font_small"
+            android:textSize="@dimen/font_xs"
             android:hint="@string/lastname_hint"
 
             />
@@ -124,7 +131,7 @@
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
             android:hint="@string/email_hint"
-            android:textSize="@dimen/font_small"
+            android:textSize="@dimen/font_xs"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -151,7 +158,7 @@
             android:layout_height="wrap_content"
             android:inputType="phone"
             android:hint="@string/phonenumber_hint"
-            android:textSize="@dimen/font_small"
+            android:textSize="@dimen/font_xs"
             />
 
 
@@ -187,7 +194,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/password_hint"
             android:inputType="textPassword"
-            android:textSize="@dimen/font_small"
+            android:textSize="@dimen/font_xs"
             />
 
 
@@ -208,7 +215,7 @@
         app:srcCompat="@drawable/ic_arrow_forward"
 
 
-        />
+        android:contentDescription="@string/round_button_with_arrow_to_the_right" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/login_to_register_text_view"

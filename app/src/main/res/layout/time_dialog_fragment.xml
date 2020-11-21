@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    Layout for dialogen som lar deg bestemme start-/slutt-tidspunkt når man
+    reserverer rom.
+
+    ArrayList adapteret i fragmentet håndterer dataene.
+ -->
+<!-- Anders Olai Pedersen - 225280 -->
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
 
     >
-
 
     <data>
         <variable

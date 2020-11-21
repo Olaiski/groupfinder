@@ -52,4 +52,13 @@
     <string name="date">Dato:</string>
     <string name="new_reservation">Ny reservasjon</string>
     <string name="choose_group">Velg gruppe</string>
+    <string name="start">Start:</string>
+    <string name="end">Slutt:</string>
+    <string name="room">Rom:</string>
+    <string name="select_date_start_end_time_room_number_and_group">Velg dato, start- / sluttid, romnummer og gruppe</string>
+    <string name="round_button_with_arrow_to_the_right">Rund knapp med pil til høyre</string>
+    <string name="my_reservations">Mine Reservasjoner</string>
+    <string name="connection_error_image">Koblingsfeil-bilde</string>
+    <string name="reservations_info">Reservasjons info</string>
+    <string name="reservation_info_text">Viser alle kommende reservasjoner. \n Hvis du er gruppeleder, kan du opprette nye reservasjoner ved å klikke på \'ny reservasjon \'-knappen.</string>
 </resources>

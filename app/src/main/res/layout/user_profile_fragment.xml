@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    Layout for brukerprofilen.
+    Inneholder knapp for å opprette ny gruppe (åpner dialog) og RecyclerView av gruppene.
 
+    RecyclerView bruker adapteret "listData" (Ligger under util.BindingAdapters.kt), dette
+    adapteret tar inn en liste av grupper basert på viewModel data (viewModel.groups).
+
+    Har også et adapter til app:apiStatus basert på viewModel.status. (Viser loading animasjon / con. error bilde)
+
+ -->
+<!-- Anders Olai Pedersen - 225280 -->
 
 <layout xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
