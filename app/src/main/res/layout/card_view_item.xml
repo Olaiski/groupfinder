@@ -38,7 +38,7 @@
             android:orientation="vertical"
             >
 
-            <!-- TODO // Coursecode, Title og Description hentes fra DB -->
+
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/group_title_text"
                 android:text="@{group.courseCode}"

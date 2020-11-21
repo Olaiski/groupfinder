@@ -1,23 +1,26 @@
-package com.example.groupfinder.calendar.datetimepicker
+package com.example.groupfinder.calendar
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import com.example.groupfinder.R
+import com.example.groupfinder.calendar.adapters.GroupLeaderListAdapter
 import com.example.groupfinder.databinding.ListDialogFragmentBinding
-import com.example.groupfinder.userprofile.GroupListAdapter
-import com.example.groupfinder.util.Constants
-import com.example.groupfinder.util.PreferenceProvider
 
+
+/**
+ * [GroupSelectDialogFragment] inneholder en liste der man velger gruppen til en reservasjon.
+ * Bygget opp med [DialogFragment] og data-binding. Benytter seg av en delt viewmodel.
+ *
+ * @author Anders Olai Peders - 225280
+ */
 class GroupSelectDialogFragment : DialogFragment() {
 
     private val reservationViewModelShared: ReservationViewModelShared by activityViewModels()
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -29,6 +32,8 @@ class GroupSelectDialogFragment : DialogFragment() {
 
         binding.lifecycleOwner = this
 
+        // Binding med xml -> Adapter til listen, sender info til viewModel.
+        // Adapteret ligger i util.BindingAdapters.kt
         binding.groupLeaderList.adapter = GroupLeaderListAdapter(GroupLeaderListAdapter.OnClickListener {
             reservationViewModelShared.selectedGroupId(it)
             this.dismiss()

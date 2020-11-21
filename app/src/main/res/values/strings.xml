@@ -58,6 +58,10 @@
     <string name="new_reservation">New reservation</string>
     <string name="about_this_group">About this group</string>
     <string name="choose_group">Choose group</string>
+    <string name="at" translatable="false">\"@\"</string>
+    <string name="start">Start:</string>
+    <string name="end">End:</string>
+    <string name="room">Room:</string>
 
 
     <string-array name="start_time_array">

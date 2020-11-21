@@ -83,8 +83,16 @@ interface GroupFinderApiService {
     @GET("api/user/vacantRooms")
     fun getVacantRoomsAsync(@Query("date") date: String, @Query("start") start: String, @Query("end") end: String) : Deferred<VacantRooms>
 
-    // POST-endpoints
 
+    /**
+     *
+     */
+    @GET("api/user/userReservations")
+    fun getUserReservationsAsync(@Query("email") email: String) : Deferred<UserReservations>
+
+
+
+    // POST-endpoints
     /**
      * @param group as body, inserts a new group, returns a message
      */

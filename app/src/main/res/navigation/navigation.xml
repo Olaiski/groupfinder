@@ -39,9 +39,9 @@
         tools:layout="@layout/about_fragment" />
     <fragment
         android:id="@+id/myReservationFragment"
-        android:name="com.example.groupfinder.calendar.MyReservationFragment"
+        android:name="com.example.groupfinder.calendar.UserReservationFragment"
         android:label="Reservation"
-        tools:layout="@layout/my_reservations_fragment" >
+        tools:layout="@layout/user_reservations_fragment" >
         <action
             android:id="@+id/action_myReservationFragment_to_reservationFragment"
             app:destination="@id/reservationFragment"

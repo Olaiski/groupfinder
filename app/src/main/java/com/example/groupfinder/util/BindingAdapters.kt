@@ -5,8 +5,9 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.groupfinder.R
-import com.example.groupfinder.calendar.datetimepicker.GroupLeaderListAdapter
-import com.example.groupfinder.calendar.datetimepicker.RoomListAdapter
+import com.example.groupfinder.calendar.adapters.UserReservationListAdapter
+import com.example.groupfinder.calendar.adapters.GroupLeaderListAdapter
+import com.example.groupfinder.calendar.adapters.RoomListAdapter
 import com.example.groupfinder.group.StudentMembersListAdapter
 import com.example.groupfinder.userprofile.ApiStatus
 import com.example.groupfinder.userprofile.GroupListAdapter
@@ -39,6 +40,12 @@ fun bindRecyclerViewGroupLeaderGroups(recyclerView: RecyclerView, data: List<Gro
 @BindingAdapter("roomData")
 fun bindRecyclerViewRoomData(recyclerView: RecyclerView, data: List<Room>?) {
     val adapter = recyclerView.adapter as RoomListAdapter
+    adapter.submitList(data)
+}
+
+@BindingAdapter("bind:userReservationData")
+fun bindRecyclerViewUserReservation(recyclerView: RecyclerView, data: List<UserReservation>?) {
+    val adapter = recyclerView.adapter as UserReservationListAdapter
     adapter.submitList(data)
 }
 

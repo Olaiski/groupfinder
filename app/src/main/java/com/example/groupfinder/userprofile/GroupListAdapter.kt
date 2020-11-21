@@ -10,9 +10,11 @@ import com.example.groupfinder.network.models.Group
 
 
 /**
- * This class implements a [RecyclerView] [ListAdapter] which uses Data Binding to present [List]
- * data, including computing diffs between lists.
- * @param onClick a lambda that takes the group
+ * Denne klassen implementerer en [RecyclerView] [ListAdapter] som bruker Data Binding til å presentere [List]
+ * data, inkludert beregning av varaisjoner mellom lister.
+ * @param onClickListener en lambda som tar gruppen som parameter
+ *
+ * @author Anders Olai Peders - 225280
  */
 class GroupListAdapter (val onClickListener: OnClickListener) :
     ListAdapter<Group, GroupListAdapter.GroupViewHolder>(DiffCallBack){

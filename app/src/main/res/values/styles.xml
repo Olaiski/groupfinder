@@ -39,6 +39,11 @@
         <item name="android:textColor">@color/secondaryTextColor</item>
     </style>
 
+    <style name="CustomHeadlineSmall2" parent="">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/secondaryTextColor</item>
+    </style>
+
     <style name="CustomOverlineLarge" parent="TextAppearance.MaterialComponents.Overline">
         <item name="android:textSize">20sp</item>
     </style>

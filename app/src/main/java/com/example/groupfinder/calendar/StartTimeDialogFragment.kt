@@ -1,4 +1,4 @@
-package com.example.groupfinder.calendar.datetimepicker
+package com.example.groupfinder.calendar
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,12 +11,16 @@ import androidx.fragment.app.activityViewModels
 import com.example.groupfinder.R
 import com.example.groupfinder.databinding.TimeDialogFragmentBinding
 
+/**
+ * [StartTimeDialogFragment] inneholder en liste der man velger start-tiden til en reservasjon.
+ * Bygget opp med [DialogFragment] og data-binding. Benytter seg av en delt viewmodel.
+ *
+ * @author Anders Olai Peders - 225280
+ */
 
 class StartTimeDialogFragment : DialogFragment() {
 
-
     private val reservationViewModelShared: ReservationViewModelShared by activityViewModels()
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle? ): View? {
@@ -48,8 +52,6 @@ class StartTimeDialogFragment : DialogFragment() {
 
             this.dismiss()
         }
-
-
 
 
         return binding.root

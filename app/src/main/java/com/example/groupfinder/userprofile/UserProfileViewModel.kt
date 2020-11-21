@@ -175,7 +175,7 @@ class UserProfileViewModel : ViewModel(){
      */
     fun getStudent(email: String) {
         coroutineScope.launch {
-            var getStudentDeferred = GroupFinderApi.retrofitService.getStudentAsync(email)
+            val getStudentDeferred = GroupFinderApi.retrofitService.getStudentAsync(email)
 
 
             try {
@@ -223,10 +223,7 @@ class UserProfileViewModel : ViewModel(){
         }
     }
 
-    /** TODO: Fikse dette? Lagre bruker på telefon, ROOM DB?
-     * If the query fails, set fields to "..."
-     *  In reality i would save these variables locally on the phone..
-     */
+
     private fun loadStudentString() {
         _fullname.value = "..."
         _phonenumber.value = "..."

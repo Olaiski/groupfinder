@@ -9,7 +9,7 @@
     <data>
         <variable
             name="timeViewModelShared"
-            type="com.example.groupfinder.calendar.datetimepicker.ReservationViewModelShared" />
+            type="com.example.groupfinder.calendar.ReservationViewModelShared" />
     </data>
 
 

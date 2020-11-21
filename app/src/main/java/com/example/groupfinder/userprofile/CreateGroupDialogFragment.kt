@@ -1,27 +1,14 @@
 package com.example.groupfinder.userprofile
 
-import android.app.Dialog
-import android.content.DialogInterface
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import com.example.groupfinder.R
-import com.example.groupfinder.calendar.datetimepicker.ReservationViewModelShared
-import com.example.groupfinder.database.GroupFinderDatabase
 import com.example.groupfinder.databinding.CreateGroupDialogFragmentBinding
-import com.example.groupfinder.network.models.Group
 import com.example.groupfinder.network.models.PostGroup
-import com.google.android.material.snackbar.Snackbar
 
 class CreateGroupDialogFragment : DialogFragment() {
 
@@ -79,8 +66,6 @@ class CreateGroupDialogFragment : DialogFragment() {
                 this.dismiss()
             }
         }
-
-
 
 
         binding.createGroupCancelButton.setOnClickListener {

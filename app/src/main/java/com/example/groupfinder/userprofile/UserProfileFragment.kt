@@ -36,6 +36,9 @@ class UserProfileFragment : Fragment() {
 
         val binding = UserProfileFragmentBinding.inflate(inflater)
 
+        val pref = this.context?.let { PreferenceProvider(it) }
+        val userEmail: String? = pref?.getEmailPreference(Constants.KEY_EMAIL)
+
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
@@ -50,7 +53,6 @@ class UserProfileFragment : Fragment() {
 
         binding.userGroupList.adapter = GroupListAdapter(GroupListAdapter.OnClickListener {
             viewModel.displayGroupDetails(it)
-
         })
 
         viewModel.navigateToSelectedGroup.observe(viewLifecycleOwner, Observer {
@@ -69,7 +71,7 @@ class UserProfileFragment : Fragment() {
         })
 
 
-        viewModel.getGroups(viewModel.email.value.toString())
+        viewModel.getGroups(userEmail.toString())
 
 
 

@@ -3,13 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
     >
 
 
     <data>
         <variable
-            name="myReservationViewModel"
-            type="com.example.groupfinder.calendar.MyReservationViewModel" />
+            name="viewModel"
+            type="com.example.groupfinder.calendar.ReservationViewModelShared" />
     </data>
 
 
@@ -65,20 +66,17 @@
                     />
 
 
-
-
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/my_reservation_info"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/spacing_small"
                     android:layout_marginStart="@dimen/spacing_small"
+                    android:layout_marginTop="@dimen/spacing_small"
                     android:layout_marginEnd="@dimen/spacing_small"
-                    android:textAppearance="@style/CustomTextGroupInfo"
-
+                    android:gravity="center_horizontal"
                     android:text="Display all reservations, and the option to create reservations.. Info?"
-                    />
+
+                    android:textAppearance="@style/CustomTextGroupInfo" />
 
             </LinearLayout>
 
@@ -110,47 +108,43 @@
 
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/spacing_xxl"
+            android:paddingBottom="@dimen/spacing_large"
 
-            android:text="Reservations"
+            android:text="@string/room_reservation"
             android:textAppearance="@style/CustomOverlineLarge"
             app:layout_constraintEnd_toEndOf="@+id/card_group_info"
             app:layout_constraintStart_toStartOf="@+id/card_group_info"
             app:layout_constraintTop_toBottomOf="@+id/nav_to_reservation_button" />
 
 
-        <ScrollView
-            android:id="@+id/my_reservations_list"
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/user_reservation_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/reservation_text_view"
+            bind:userReservationData="@{viewModel.userReservations}"
+            tools:itemCount="4"
+            tools:listitem="@layout/reservation_info_item" />
+
+
+
+        <ImageView
+            android:id="@+id/status_image"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:fillViewport="true"
-
-
-
-            android:layout_marginStart="@dimen/spacing_xxl"
-            android:layout_marginEnd="@dimen/spacing_xxl"
-            android:layout_marginTop="@dimen/spacing_medium"
-
-            android:scrollbars="vertical"
-
-            app:layout_constraintEnd_toEndOf="@+id/card_group_info"
-            app:layout_constraintStart_toStartOf="@+id/card_group_info"
-            app:layout_constraintTop_toBottomOf="@+id/reservation_text_view">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:text="@{ myReservationViewModel.resString }" />
-
-
-        </ScrollView>
-
-
-
-
-
+            android:contentDescription="TODO"
+            app:apiStatus="@{viewModel.status}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/reservation_text_view" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
