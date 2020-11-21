@@ -46,10 +46,17 @@ class ReservationViewModelShared : ViewModel() {
 
 
 
-    // En bakgrunnsjobb. Konseptuelt er en job en kansellerbar ting med en livssyklus.
+    /**
+     * A [CoroutineScope] holder oversikt over alle coroutines startet av denne ViewModel.
+     *
+     * Fordi vi passerer en [viewModelJob], kan enhver coroutine som startes i dette uiScope(et) bli kansellert
+     * ved å kalle `viewModelJob.cancel ()`
+     *
+     * Som standard vil alle coroutines startet i uiScope starte i [Dispatchers.Main] som er
+     * hovedtråden på Android. Dette er en fornuftig standard fordi de fleste coroutines startet av
+     * a [ViewModel] oppdaterer brukergrensesnittet etter endt behandling.
+     */
     private var viewModelJob = Job()
-    // Denne utsenderen er optimalisert for å utføre CPU-intensivt arbeid utenfor hovedtråden.
-    // Eksempler på brukstilfeller inkluderer sortering av en liste og parsing av JSON.
     private val coroutineScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
 

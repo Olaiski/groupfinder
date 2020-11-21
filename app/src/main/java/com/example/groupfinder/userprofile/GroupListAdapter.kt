@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.groupfinder.databinding.CardViewItemBinding
 import com.example.groupfinder.network.models.Group
+import com.example.groupfinder.network.models.GroupLeaderGroup
 
 
 /**
@@ -20,44 +21,30 @@ class GroupListAdapter (val onClickListener: OnClickListener) :
     ListAdapter<Group, GroupListAdapter.GroupViewHolder>(DiffCallBack){
 
 
-    /**
-     * The [GroupViewHolder] constructor takes the binding variable from the associated
-     * CardViewItem, which gives access to the [Group] information.
+     /**
+     * [GroupViewHolder] -konstruktøren tar bindingsvariabelen fra den tilknyttede
+     * GroupLeaderTextView, som gir tilgang til [Group] -informasjonen.
      */
     class GroupViewHolder(private var binding: CardViewItemBinding):
         RecyclerView.ViewHolder(binding.root) {
         fun bind(group: Group) {
             binding.group = group
 
-            // Important, forces the data binding to execute immediately,
-            // which allows the RecyclerView to make the correct view size measurements
+            // Viktig, tvinger databindingen til å kjøre umiddelbart,
+            // som lar RecyclerView kalkulerer de rette størrelsene
             binding.executePendingBindings()
         }
     }
 
     /**
-     * Allows the RecycleView to determine which items have changed when the [List] of [Group]
-     * has been updated.
-     */
-    companion object DiffCallBack : DiffUtil.ItemCallback<Group>() {
-        override fun areItemsTheSame(oldItem: Group, newItem: Group): Boolean {
-            return oldItem === newItem
-        }
-
-        override fun areContentsTheSame(oldItem: Group, newItem: Group): Boolean {
-            return oldItem.gId == newItem.gId
-        }
-    }
-
-    /**
-     * Create new [RecyclerView] item views (invoked by the layout manager)
+     * Oppretter nye [RecyclerView] elemeter. (Invoked av layout manager)
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroupViewHolder {
         return GroupViewHolder(CardViewItemBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
     /**
-     * Replaces the contents of a view (invoked by the layout manager)
+     * Erstatter innholdet i en visning (Invoked av layout manager)
      */
     override fun onBindViewHolder(holder: GroupViewHolder, position: Int) {
         val group = getItem(position)
@@ -67,14 +54,27 @@ class GroupListAdapter (val onClickListener: OnClickListener) :
         holder.bind(group)
     }
 
-
     /**
-     * Custom listener that handles clicks on [RecyclerView] items. Passes the [Group]
-     * associated with the current item to the [onClick] function.
-     * @param clickListener lambda that will be called with the current [Group]
+     * Tilpasset lytter som håndterer klikk på [RecyclerView] -elementer. Består [Group]
+     * tilknyttet gjeldende element til [onClick] -funksjonen.
+     * @param clickListener lambda som vil kalle med gjeldende [Group]
      */
     class OnClickListener(val clickListener: (group: Group) -> Unit) {
         fun onClick(group: Group) = clickListener(group)
+    }
+
+    /**
+     * Lar RecycleView bestemme hvilke elementer som har endret seg når [List] av [GroupLeaderGroup]
+     * har blitt oppdatert.
+     */
+    companion object DiffCallBack : DiffUtil.ItemCallback<Group>() {
+        override fun areItemsTheSame(oldItem: Group, newItem: Group): Boolean {
+            return oldItem === newItem
+        }
+
+        override fun areContentsTheSame(oldItem: Group, newItem: Group): Boolean {
+            return oldItem.gId == newItem.gId
+        }
     }
 
 }

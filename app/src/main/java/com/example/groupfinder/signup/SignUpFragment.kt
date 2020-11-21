@@ -12,15 +12,20 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.groupfinder.R
 import com.example.groupfinder.databinding.SignUpFragmentBinding
-import com.example.groupfinder.login.ui.login.LoginFragment
-import com.example.groupfinder.network.models.PostStudent
-import com.example.groupfinder.userprofile.UserProfileFragmentDirections
+import com.example.groupfinder.userprofile.UserProfileViewModel
 import kotlinx.android.synthetic.main.sign_up_fragment.*
-import kotlin.math.log
+
+/**
+ * [SignUpFragment] inneholder TextField input for å registrere brukere.
+ * Bygget opp med [Fragment] og data-binding.
+ *
+ * @author Anders Olai Pedersen - 225280
+ */
 
 class SignUpFragment : Fragment() {
 
 
+    // Threadsafe
     private val viewModel: SignUpViewModel by lazy {
         ViewModelProvider(this).get(SignUpViewModel::class.java)
     }
@@ -28,7 +33,7 @@ class SignUpFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle? ): View? {
 
-        // Get a reference to the binding object and inflate the fragment views.
+
         val binding: SignUpFragmentBinding = DataBindingUtil.inflate(
             inflater, R.layout.sign_up_fragment, container, false)
 
@@ -36,6 +41,7 @@ class SignUpFragment : Fragment() {
         binding.viewModel = viewModel
 
 
+        // Register knapp, en del input sjekker
         binding.registerButton.setOnClickListener {
 
             val forename: String
@@ -44,7 +50,6 @@ class SignUpFragment : Fragment() {
             val phone: Int
             val password: String
 
-            // TODO: 15/10/2020 Trenger vi en if's? Bedre løsning?
             if(binding.forenameInputText.text?.isEmpty()!!) {
                 Toast.makeText(context, "Missing forename!", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -75,6 +80,7 @@ class SignUpFragment : Fragment() {
 
         }
 
+        // Navigerer til login
         viewModel.navigateToLogin.observe(viewLifecycleOwner, Observer {
             if ( null != it ){
                 this.findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToLoginFragment())
@@ -84,14 +90,16 @@ class SignUpFragment : Fragment() {
         })
 
 
+        // Toast med tilbakemelding
         viewModel.message.observe(viewLifecycleOwner, Observer {
             if (it != null) {
                 Toast.makeText(context, viewModel.message.value, Toast.LENGTH_LONG).show()
             }
         })
 
-        val loginFragment = LoginFragment()
 
+        // Navigere til login via knapp (Hvis man har bruker kan man velge denne), uten backstack.
+        val loginFragment = LoginFragment()
         binding.registerToLoginButton.setOnClickListener{
 //            this.findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToLoginFragment())
             this.parentFragmentManager.beginTransaction().replace(this.id, loginFragment).addToBackStack(null).commit()

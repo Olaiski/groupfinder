@@ -1,6 +1,5 @@
 package com.example.groupfinder.network.models
 
-import android.os.Parcel
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
@@ -9,7 +8,6 @@ import kotlinx.android.parcel.Parcelize
 data class ResponseStudent (
     val message: String,
     val student: Student
-
 ) : Parcelable
 
 @Parcelize

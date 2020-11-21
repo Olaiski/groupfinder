@@ -23,16 +23,6 @@ data class UserReservation(
     val location: String
 ): Parcelable
 
-//@Parcelize
-//data class UserReservation(
-//    val groupName: String,
-//    val start: String,
-//    val end: String,
-//    val roomName: String,
-//    val location: String,
-//    val rId: Int
-//): Parcelable
-
 @Parcelize
 data class UserReservations(
     val message: String,

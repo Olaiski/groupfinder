@@ -9,23 +9,33 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import com.example.groupfinder.databinding.CreateGroupDialogFragmentBinding
 import com.example.groupfinder.network.models.PostGroup
+import com.example.groupfinder.util.Constants
+import com.example.groupfinder.util.PreferenceProvider
 
+
+/**
+ * [CreateGroupDialogFragment] er bygget på et [DialogFragment].
+ * Deler viewmodel [UserProfileFragment]
+ * Input for opprettelse av grupper. post request til API'et.
+ *
+ * @author Anders Olai Pedersen - 225280
+ */
 class CreateGroupDialogFragment : DialogFragment() {
 
     private val viewModel: UserProfileViewModel by activityViewModels()
 
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle? ): View? {
+                              savedInstanceState: Bundle? ): View? {
+
+        val pref = this.context?.let { PreferenceProvider(it) }
+        val studentId = pref?.getIdPreference(Constants.KEY_ID)
 
         val binding = CreateGroupDialogFragmentBinding.inflate(inflater)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
 
-
-
-
+        // Bygger opp gruppen, knapp sender info videre til viewmodel
         binding.groupCreateButton.setOnClickListener {
 
             val groupName = binding.courseGroupNameInputText.text.toString()
@@ -50,38 +60,18 @@ class CreateGroupDialogFragment : DialogFragment() {
                 return@setOnClickListener
             }
 
-            val group = viewModel.sId.value?.let { it1 ->
-                PostGroup(
-                    studentId = it1,
-                    groupName = groupName,
-                    description = description,
-                    courseCode = courseCode,
-                    location = location
-                )
-            }
 
+            val group = PostGroup(studentId!!, groupName, description, courseCode, location)
 
-            if (group != null) {
-                viewModel.onCreateGroup(group)
-                this.dismiss()
-            }
-        }
-
-
-        binding.createGroupCancelButton.setOnClickListener {
+            viewModel.onCreateGroup(group)
             this.dismiss()
         }
 
-//        viewModel.showSnackBarEvent.observe(viewLifecycleOwner, Observer {
-//            if (it == true) {
-//                Snackbar.make(
-//                    requireActivity().findViewById(android.R.id.content),
-//                    snackText,
-//                    Snackbar.LENGTH_LONG
-//                ).show()
-//                viewModel.doneShowingSnackbar()
-//            }
-//        })
+
+        // Knapp for å lukke dialog
+        binding.createGroupCancelButton.setOnClickListener {
+            this.dismiss()
+        }
 
 
         return binding.root

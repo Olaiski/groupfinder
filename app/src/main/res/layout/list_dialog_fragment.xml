@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Layout for dialogen som lar deg velge gruppe når man reserverer rom.
+
+    Binder data med ReservationViewModelShared, og inneholder en RecyclerView.
+    RecyclerView bruker adapteret "groupData" (Ligger under util.BindingAdapters.kt), dette
+    adapteret tar inn en liste av grupper basert på viewModel data.
+ -->
+<!-- Anders Olai Pedersen - 225280 -->
 <layout
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"

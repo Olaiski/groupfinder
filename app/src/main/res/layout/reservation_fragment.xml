@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+<!--
+    Layout for reservasjons fragment.
+    Inneholder Datepicker og knapper for å åpne dialogene der man velger
+    start-/slutt-tid, rom og gruppe.
+    Binder data med ReservationViewModelShared
+ -->
+<!-- Anders Olai Pedersen - 225280 -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
     <data>
@@ -28,7 +32,7 @@
             android:layout_alignParentBottom="true"
             android:background="@color/primaryColor"
             android:paddingTop="@dimen/spacing_medium"
-            android:text="Room Reservation"
+            android:text="@string/room_reservation"
             android:textAlignment="center"
             android:textColor="@color/secondaryLightColor"
             android:textSize="@dimen/font_xl"
@@ -80,7 +84,7 @@
                     android:layout_marginEnd="@dimen/spacing_small"
                     android:textAppearance="@style/CustomTextGroupInfo"
 
-                    android:text="Select date, start/end time, room number and group"
+                    android:text="@string/select_date_start_end_time_room_number_and_group"
                     />
 
             </LinearLayout>
@@ -88,7 +92,6 @@
         </com.google.android.material.card.MaterialCardView>
 
 
-        <!-- TODO// Se litt nærmere på scrollView, paddigTop ok? -->
         <ScrollView
             android:id="@+id/scroll_view"
             android:paddingTop="240dp"

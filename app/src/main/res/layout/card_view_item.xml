@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+     Gruppe item, binder data med Group objekt.
+     Viser informasjon om gruppen:
+        - Kurskode, Gruppenavn, og infotekst.
 
+     Blir brukt i RecyclerView(et) i user_profile_fragment.
+ -->
+<!-- Anders Olai Pedersen - 225280 -->
 <layout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"

@@ -1,8 +1,8 @@
-package com.example.groupfinder.userprofile
+package com.example.groupfinder.util
 
 
 /**
- *  Concatenates the users name, if the name is too long; only display forename
+ * Sammenkobler navnet, hvis navnet er for langt returner bare fornavn.
  * @param s1 Forename
  * @param s2 Surname
  * @param maxLength Max length of the concatenated name

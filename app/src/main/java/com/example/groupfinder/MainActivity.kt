@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        // FIXME: 16/11/2020 Logout funker ikke helt, men skal cleare PreferenceProvider email
+        // FIXME: 16/11/2020 Logout funker ikke helt, men skal cleare PreferenceProvider email og id
         binding.navView.menu.findItem(R.id.logoutFragment).setOnMenuItemClickListener {
             logout()
         }

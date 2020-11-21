@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.groupfinder.login.ui.login.LoginFragment"
+        android:name="com.example.groupfinder.signup.LoginFragment"
         android:label="Login"
         tools:layout="@layout/login_fragment" >
         <action
@@ -93,22 +93,6 @@
             android:name="selectedGroup"
             app:argType="com.example.groupfinder.network.models.Group" />
     </fragment>
-
-    <fragment
-        android:id="@+id/databaseFragment"
-        tools:layout="@layout/fragment_database"
-        android:name="com.example.groupfinder.database.DatabaseFragment"
-        />
-    <fragment
-        android:id="@+id/groupsFragment"
-        tools:layout="@layout/groups_fragment"
-        android:name="com.example.groupfinder.groupfinder.GroupsFragment"
-        android:label="GroupsFragment" >
-        <action
-            android:id="@+id/action_groupsFragment_to_groupFragment"
-            app:destination="@id/groupFragment" />
-    </fragment>
-
 
 
 </navigation>

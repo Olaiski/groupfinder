@@ -1,4 +1,4 @@
-package com.example.groupfinder.login.ui.login
+package com.example.groupfinder.signup
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,38 +12,41 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.groupfinder.R
 import com.example.groupfinder.databinding.LoginFragmentBinding
-import com.example.groupfinder.signup.SignUpFragment
+
 import com.example.groupfinder.userprofile.UserProfileViewModel
 import com.example.groupfinder.util.Constants
 import com.example.groupfinder.util.PreferenceProvider
+import kotlin.math.absoluteValue
 
+/**
+ * [LoginFragment] inneholder TextField input for login.
+ * Bygget opp med [Fragment] og data-binding. Benytter seg av en delt viewModel [UserProfileViewModel]
+ *
+ * @author Anders Olai Pedersen - 225280
+ */
 class LoginFragment : Fragment() {
 
-//    private val viewModel: LoginViewModel by lazy {
-//        ViewModelProvider(this).get(LoginViewModel::class.java)
-//    }
 
     private val viewModel: UserProfileViewModel by activityViewModels()
 
-    /**
-     * Called when the Fragment is ready to display content to the screen.
-     *
-     * This function uses DataBindingUtil to inflate R.layout.login_fragment.
-     */
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle? ): View? {
 
-        // Get a reference to the binding object and inflate the fragment views.
+        // Få en referanse til det bindende objektet og inflate'er fragmentvisningene.
         val binding: LoginFragmentBinding = DataBindingUtil.inflate(
             inflater, R.layout.login_fragment, container, false)
 
+        // Shared preference
         val pref = this.context?.let { PreferenceProvider(it) }
+
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
 
 
+        // Login knapp, henter epost og passord fra tekstfelt
         binding.loginButtonLogin.setOnClickListener {
             val email = binding.loginInputEmail.text.toString()
             val password = binding.loginInputPassword.text.toString()
@@ -58,29 +61,36 @@ class LoginFragment : Fragment() {
                 return@setOnClickListener
             }
 
+            // Setter SharedPreference eposten, brukes gjennom hele applikasjonene for queries
             pref?.putEmailPreference(Constants.KEY_EMAIL, email)
+            // Henter data om studenten basert på epost (og passord)
             viewModel.onLogin(email, password)
             viewModel.getStudent(email)
             viewModel.getGroups(email)
-
         }
 
+//        pref?.putIdPreference(Constants.KEY_ID, )
 
+        // Navigerer til profilen om brukeren logger inn
         viewModel.loginSuccess.observe(viewLifecycleOwner, Observer {
-            if (it)
+            if (it) {
                 this.findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToUserProfileFragment())
+            }
+        })
+
+        viewModel.sId.observe(viewLifecycleOwner, {
+            if (it > 0)
+                // Setter bruker ID
+                pref?.putIdPreference(Constants.KEY_ID, it)
         })
 
 
-
+        // Knapp som sender deg til registrering
         val signUpFragment = SignUpFragment()
-
         binding.loginToRegisterButton.setOnClickListener{
 //            this.findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToSignUpFragment())
             this.parentFragmentManager.beginTransaction().replace(this.id, signUpFragment).addToBackStack(null).commit()
         }
-
-
 
 
 

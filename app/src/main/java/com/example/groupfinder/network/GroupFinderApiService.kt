@@ -13,8 +13,12 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.*
 
 /**
- *  http://LOCALIP:PORT/
+ *  [GroupFinderApiService] Inneholder grensesnitt for API kall
+ *
+ * @author Anders Olai Pedersen - 225280
  */
+
+// http://LOCALIP:PORT/
 //private const val BASE_URL = "http://192.168.11.130:3000/"
 private const val BASE_URL = "http://10.0.2.2:3000/"
 
@@ -42,7 +46,7 @@ private val retrofit = Retrofit.Builder()
     .build()
 
 /**
- * A public interface that exposes the POST/GET request methods
+ * Et public grensesnitt som eksponerer POST / GET-forespørselsmetodene
  */
 interface GroupFinderApiService {
 
@@ -50,42 +54,48 @@ interface GroupFinderApiService {
     // GET-endpoints
 
     /**
-     *  @param email Gets all groups related to the student, query by email.
+     *  @param email Får alle grupper relatert til studenten, spørring via e-post.
+     *  @return [UserGroups] objekt
      */
     @GET("api/user/userGroups")
     fun getUserGroupsAsync(@Query("email") email: String) : Deferred<UserGroups>
 
     /**
-     * @param email Gets information about the logged in student, query by email.
-     *
+     * @param email Får informasjon om den påloggede studenten, søk via e-post.
+     * @return [ResponseStudent] objekt
      */
     @GET("api/user/home")
     fun getStudentAsync(@Query("email") email: String) : Deferred<ResponseStudent>
 
     /**
-     * @param groupId  Gets all group members related to a group, query by groupId.
+     * @param groupId  Får alle gruppemedlemmer relatert til en gruppe, søk etter groupId.
+     * @return [GroupMembers] objekt
      */
     @GET("api/user/groupMembers")
     fun getGroupMembersAsync(@Query("gid") groupId: Int) : Deferred<GroupMembers>
 
     /**
-     * @param email Gets all groups that the user created, query by email
+     * @param email Får alle gruppene som brukeren opprettet, søk på e-post
+     * @return [GroupLeaderGroups] objekt
      */
     @GET("api/user/groupLeaderGroups")
     fun getGroupLeaderGroupsAsync(@Query("email") email: String) : Deferred<GroupLeaderGroups>
 
     /**
-     * Gets vacant rooms based on:
-     * @param date Date for reservation
-     * @param start Start time for reservation
-     * @param end End time for reservation
+     * Henter ledige rom
+     * @param date Dato for reservasjon
+     * @param start Start-tid for reservasjon
+     * @param end slutt-time for reservasjon
+     * @return [VacantRooms] objekt
      */
     @GET("api/user/vacantRooms")
     fun getVacantRoomsAsync(@Query("date") date: String, @Query("start") start: String, @Query("end") end: String) : Deferred<VacantRooms>
 
 
     /**
-     *
+     * Henter alle reservasjoner basert på email
+     * @param email
+     * @return [UserReservations] objekt
      */
     @GET("api/user/userReservations")
     fun getUserReservationsAsync(@Query("email") email: String) : Deferred<UserReservations>
@@ -94,14 +104,15 @@ interface GroupFinderApiService {
 
     // POST-endpoints
     /**
-     * @param group as body, inserts a new group, returns a message
+     * @param group som "body", sett inn ny gruppe
+     * @return [PostMessage] objekt, melding
      */
     @POST("api/user/registerGroup")
     fun postRegisterGroupAsync(@Body group: PostGroup) : Deferred<PostMessage>
 
     /**
-     * Inserts a new student based on @Field(), returns a message
-     *
+     * Setter inn ny student basert på @Field()
+     * @return [PostMessage] objekt, melding
      */
     @POST("api/auth/registerStudent")
     @FormUrlEncoded
@@ -111,13 +122,20 @@ interface GroupFinderApiService {
                                  @Field("phonenumber") phonenumber: Int,
                                  @Field("password") password: String) : Deferred<PostMessage>
 
+
+    /**
+     * @param reservation som "body", sett inn ny reservasjon
+     * @return [PostMessage] objekt, melding
+     */
     @POST("api/user/reserveRoom")
     fun postReserveRoomAsync(@Body reservation: Reservation) : Deferred<PostMessage>
 
 
     /**
+     * Login, henter student info basert på:
      * @param email
      * @param password
+     * @return [ResponseStudent] objekt
      */
     @POST("api/auth/loginStudent")
     @FormUrlEncoded

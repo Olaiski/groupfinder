@@ -1,55 +1,65 @@
 package com.example.groupfinder.userprofile
 
 
-import android.content.SharedPreferences
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.preference.PreferenceManager
 import com.example.groupfinder.network.GroupFinderApi
 import com.example.groupfinder.network.models.Group
 import com.example.groupfinder.network.models.PostGroup
 import com.example.groupfinder.network.models.Student
-import kotlinx.coroutines.*
+import com.example.groupfinder.util.PreferenceProvider
+import com.example.groupfinder.util.concatName
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
-
-//private const val EMAIL = "dde@msn.no"
-private lateinit var EMAIL: String
 
 enum class ApiStatus { LOADING, ERROR, DONE }
 private const val NAME_MAX_LENGTH = 17
-
+/**
+ *  [UserProfileViewModel] Inneholder informasjon om brukeren og gruppene han/hun er meldem av.
+ *  Blir delt mellom [UserProfileFragment] og [CreateGroupDialogFragment] siden dialogen er en del av fragmentet.
+ *
+ *  @author Anders Olai Pedersen - 225280
+ */
 class UserProfileViewModel : ViewModel(){
 
     /**
-     * A [CoroutineScope] keeps track of all coroutines started by this ViewModel.
+     * A [CoroutineScope] holder oversikt over alle coroutines startet av denne ViewModel.
      *
-     * Because we pass it [viewModelJob], any coroutine started in this uiScope can be cancelled
-     * by calling `viewModelJob.cancel()`
+     * Fordi vi passerer en [viewModelJob], kan enhver coroutine som startes i dette uiScope(et) bli kansellert
+     * ved å kalle `viewModelJob.cancel ()`
      *
-     * By default, all coroutines started in uiScope will launch in [Dispatchers.Main] which is
-     * the main thread on Android. This is a sensible default because most coroutines started by
-     * a [ViewModel] update the UI after performing some processing.
+     * Som standard vil alle coroutines startet i uiScope starte i [Dispatchers.Main] som er
+     * hovedtråden på Android. Dette er en fornuftig standard fordi de fleste coroutines startet av
+     * a [ViewModel] oppdaterer brukergrensesnittet etter endt behandling.
      */
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
 
+    /**
+     * API status, setter bilde basert på [ApiStatus]
+     */
     private val _status = MutableLiveData<ApiStatus>()
     val status: LiveData<ApiStatus>
         get() = _status
 
 
+    // Gruppene til brukeren
     private val _groups = MutableLiveData<List<Group>>()
     val groups: LiveData<List<Group>>
         get() = _groups
 
-    // Internally, we use a MutableLiveData to handle navigation to the selected property
+    // Navigering
     private val _navigateToSelectedGroup = MutableLiveData<Group>()
     val navigateToSelectedGroup: LiveData<Group>
         get() = _navigateToSelectedGroup
 
+    // Login og opprettelse av gruppe boolean
     private val _loginSuccess = MutableLiveData<Boolean>()
     val loginSuccess: LiveData<Boolean>
         get() = _loginSuccess
@@ -58,38 +68,30 @@ class UserProfileViewModel : ViewModel(){
     val createGroupSuccess: LiveData<Boolean>
         get() = _createGroupSuccess
 
-
+    // Student id
     private val _sId = MutableLiveData<Int>()
     val sId: LiveData<Int>
         get() = _sId
 
+    // Epost
     private val _email = MutableLiveData<String>()
     val email: LiveData<String>
         get() = _email
 
+    // Navn
     private val _fullname = MutableLiveData<String>()
     val fullname: LiveData<String>
         get() = _fullname
 
+    // Telefon
     private val _phonenumber = MutableLiveData<String>()
     val phonenumber: LiveData<String>
         get() = _phonenumber
 
+    // Student objekt
     private val _student = MutableLiveData<Student>()
     val student: LiveData<Student>
         get() = _student
-
-    private var _groupName = MutableLiveData<String>()
-    val groupName: LiveData<String>
-        get() = _groupName
-
-    private var _courseCode = MutableLiveData<String>()
-    val courseCode: LiveData<String>
-        get() = _courseCode
-
-    private var _description = MutableLiveData<String>()
-    val description: LiveData<String>
-        get() = _description
 
 
     private var _showSnackBarEvent = MutableLiveData<Boolean>()
@@ -102,20 +104,12 @@ class UserProfileViewModel : ViewModel(){
 
 
 
-    init {
-//        val email = _student.value?.email
-        EMAIL = _email.value.toString()
-
-    }
-
-
     fun doneShowingSnackbar() {
         _showSnackBarEvent.value = false
     }
 
-
     /**
-     *  Navigates to group via click listener in [UserProfileFragment]
+     *  Navigerer til [Group] via clicklistener i [UserProfileFragment]
      */
     fun displayGroupDetails(group: Group) {
         _navigateToSelectedGroup.value = group
@@ -127,7 +121,9 @@ class UserProfileViewModel : ViewModel(){
 
 
     /**
-     * @param group POST request to backend with group information and studentId
+     * Oppretter gruppe
+     * @param group
+     * Request til backend med [PostGroup] informasjon
      */
     fun onCreateGroup(group: PostGroup) {
         coroutineScope.launch {
@@ -138,10 +134,8 @@ class UserProfileViewModel : ViewModel(){
                 val res = postGroup.await()
                 val resMessage = res.message
 
-//                getGroups(EMAIL)
 
                 _createGroupSuccess.value = true
-
             }catch (e : Exception) {
                 Log.i("PostGroup", e.toString())
             }
@@ -150,7 +144,8 @@ class UserProfileViewModel : ViewModel(){
 
 
     /**
-     * @param email gets groups related to student base on this email
+     *
+     * @param email Henter alle gruppene relatert til studenten basert på epost
      */
     fun getGroups(email: String) {
         coroutineScope.launch {
@@ -171,12 +166,12 @@ class UserProfileViewModel : ViewModel(){
     }
 
     /**
-     * @param email gets student information based on this email
+     *
+     * @param email Henter student informasjon basert på epost
      */
     fun getStudent(email: String) {
         coroutineScope.launch {
             val getStudentDeferred = GroupFinderApi.retrofitService.getStudentAsync(email)
-
 
             try {
                 loadStudentString()
@@ -202,6 +197,10 @@ class UserProfileViewModel : ViewModel(){
     }
 
 
+    /**
+     * Login funksjon
+     * @params Epost og passord sendes til backend
+     */
     fun onLogin(email: String, password: String){
         coroutineScope.launch {
             val postStudent = GroupFinderApi.retrofitService.postLoginStudentAsync(email, password)
@@ -212,6 +211,7 @@ class UserProfileViewModel : ViewModel(){
                 _student.value = res.student
 
                 _email.value = res.student.email
+                _sId.value = res.student.id
 
                 println(res)
                 _loginSuccess.value = true

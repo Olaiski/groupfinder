@@ -4,45 +4,38 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.groupfinder.database.models.User
 import com.example.groupfinder.network.GroupFinderApi
-import com.example.groupfinder.network.models.PostStudent
-import kotlinx.coroutines.*
-import java.lang.Exception
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
+/**
+ * [SignUpViewModel] viewModel for registrering.
+ *
+ * @author Anders Olai Pedersen - 225280
+ */
 class SignUpViewModel : ViewModel() {
 
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
 
-    private val _student = MutableLiveData<PostStudent>()
-    val student: LiveData<PostStudent>
-        get() = _student
-
-
     private val _navigateToLogin = MutableLiveData<Boolean>()
     val navigateToLogin: LiveData<Boolean>
         get() = _navigateToLogin
+
 
     private val _message = MutableLiveData<String?>()
     val message: LiveData<String?>
         get() = _message
 
-    private val _email = MutableLiveData<String>()
-    val email: LiveData<String>
-        get() = _email
-
-    private val _password = MutableLiveData<String>()
-    val password: LiveData<String>
-        get() = _password
 
 
-    init {
-
-    }
-
-
+    /**
+     * Oppretter ny student via [GroupFinderApi] kall.
+     * @params Student info
+     */
     fun onCreateStudent(fname: String, lname: String, email: String, phone: Int, password: String) {
         coroutineScope.launch {
             val postStudent = GroupFinderApi.retrofitService.postRegisterStudentAsync(fname,lname,email,phone,password)
@@ -63,9 +56,6 @@ class SignUpViewModel : ViewModel() {
     fun navigateToLoginComplete() {
         _navigateToLogin.value = false
     }
-
-
-
 
     override fun onCleared() {
         super.onCleared()

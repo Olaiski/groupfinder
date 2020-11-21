@@ -17,19 +17,18 @@ import kotlinx.android.synthetic.main.user_profile_fragment.*
 
 
 /**
- *  [UserProfileFragment] :
- *   - Displays the user profile information
- *   - Let's user create a new group
- *   - Displays information about all the groups related to the user
+ *  [UserProfileFragment], bruker en delt viewmodel.
+ *   - Viser informasjon om brukerprofilen
+ *   - Lar bruker opprette en ny gruppe
+ *   - Viser informasjon om alle gruppene som er relatert til brukeren
+ *
+ *   @author Anders Olai Pedersen
  */
 class UserProfileFragment : Fragment() {
 
 
     private val viewModel: UserProfileViewModel by activityViewModels()
 
-//    private val viewModel: UserProfileViewModel by lazy {
-//        ViewModelProvider(this).get(UserProfileViewModel::class.java)
-//    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -43,6 +42,7 @@ class UserProfileFragment : Fragment() {
         binding.viewModel = viewModel
 
 
+        // Knapp og dialog for å opprette gruppe
         val createGroupDialog = CreateGroupDialogFragment()
         val createGroupButton = binding.createGroupButton
 
@@ -51,29 +51,28 @@ class UserProfileFragment : Fragment() {
         }
 
 
+        // Adapter for gruppene
         binding.userGroupList.adapter = GroupListAdapter(GroupListAdapter.OnClickListener {
             viewModel.displayGroupDetails(it)
         })
 
+        // Navigerer til gruppen med gruppe som param.
         viewModel.navigateToSelectedGroup.observe(viewLifecycleOwner, Observer {
             if ( null != it ){
                 this.findNavController().navigate(UserProfileFragmentDirections.showGroupFragment(it))
-
                 viewModel.displayGroupDetailsComplete()
             }
         })
 
+        // Nytt kall på API for å oppdatere listen etter vellykket opprettelse av gruppe
         viewModel.createGroupSuccess.observe(viewLifecycleOwner, Observer {
             if (it) {
-                println("UPF ${viewModel.email.value.toString()}")
-                viewModel.getGroups(viewModel.email.value.toString())
+                viewModel.getGroups(userEmail.toString())
             }
         })
 
 
         viewModel.getGroups(userEmail.toString())
-
-
 
         return binding.root
     }

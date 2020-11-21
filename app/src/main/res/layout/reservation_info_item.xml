@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Layout for reservasjon.
+    Viser Gruppenavn, sted, dato og tidspunkt for reservasjonen.
+
+    Binder data med UserReservation.
+
+    RecyclerView(et) i user_reservations_fragment inneholder disse.
+ -->
+<!-- Anders Olai Pedersen - 225280 -->
+<layout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="reservation"
+            type="com.example.groupfinder.network.models.UserReservation" />
+
+    </data>
+
+    <LinearLayout
+        android:id="@+id/root_res_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context=".group.GroupFragment"
+        android:paddingStart="@dimen/spacing_large"
+        android:paddingEnd="@dimen/spacing_large"
+        >
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/user_reservation_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@android:color/white"
+            android:layout_marginBottom="@dimen/spacing_medium"
+            app:strokeColor="@color/primaryDarkColor"
+            app:strokeWidth="2dp"
+            app:cardCornerRadius="0dp"
+            >
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:orientation="vertical"
+                >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/spacing_xs"
+                    >
+
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/user_reservation_group_name"
+                        android:text="@{reservation.groupName}"
+                        android:textAppearance="@style/CustomOverlineSmall"
+                        android:paddingStart="@dimen/spacing_xs"
+                        android:paddingEnd="0dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text="Guttakrutt"
+                        />
+
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/at"
+                        android:text="@string/at"
+                        android:textAppearance="@style/CustomOverlineSmall"
+                        android:paddingStart="@dimen/spacing_xs"
+                        android:paddingEnd="0dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text="\ @"
+                        />
+
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/user_reservation_location"
+                        android:text="@{reservation.location}"
+                        android:paddingTop="@dimen/spacing_small"
+                        android:paddingStart="@dimen/spacing_small"
+                        android:paddingEnd="0dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/CustomOverlineSmall"
+                        tools:text="Bø"
+                        />
+
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/date"
+                        android:paddingStart="@dimen/spacing_small"
+                        android:paddingEnd="0dp"
+                        />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/user_reservation_date"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        style="@style/CustomHeadlineSmall2"
+                        android:layout_marginStart="@dimen/spacing_small"
+                        android:text="@{reservation.date}"
+                        android:maxLines="2"
+                        android:scrollHorizontally="false"
+                        android:layout_weight="1"
+                        android:ellipsize="none"
+                        tools:text="20-11-2020"
+
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/room"
+                        android:paddingStart="@dimen/spacing_small"
+                        android:paddingEnd="0dp"
+                        />
+
+
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/user_reservation_room"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/CustomHeadlineSmall2"
+                        android:layout_marginStart="@dimen/spacing_small"
+                        android:text="@{reservation.roomName}"
+                        tools:text="Kroa 2-15"
+
+                        />
+
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/start"
+                        android:paddingStart="@dimen/spacing_small"
+                        android:paddingEnd="0dp"
+                        />
+
+
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/user_reservation_start"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/CustomHeadlineSmall2"
+                        android:layout_marginStart="@dimen/spacing_small"
+                        android:text="@{reservation.start}"
+                        tools:text="12:00"
+
+                        />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/end"
+                        android:paddingStart="@dimen/spacing_small"
+                        android:paddingEnd="0dp"
+                        />
+
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/user_reservation_end"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/CustomHeadlineSmall2"
+                        android:layout_marginStart="@dimen/spacing_small"
+                        android:text="@{reservation.end}"
+                        tools:text="14:00"
+
+                        />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+
+
+
+</layout>

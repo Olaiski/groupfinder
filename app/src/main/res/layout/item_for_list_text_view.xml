@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    Layout for tekst til dialogen som lar brukeren velge tidspunkt når
+    han/hun reserverer rom.
+ -->
+<!-- Anders Olai Pedersen - 225280 -->
 
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -11,7 +17,7 @@
     android:id="@+id/text_view_item"
     android:layout_height="wrap_content"
     android:layout_width="fill_parent"
-
+    tools:text="12:00"
     android:gravity="center"
     android:layout_gravity="center_vertical"
 

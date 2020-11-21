@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--
+   Layout for gruppen (når man klikker inn på en)
+   Bruker i brukerprofilen og når man søker etter grupper.
+
+   Binder data med GroupViewModel
+ -->
+<!-- Anders Olai Pedersen - 225280 -->
 <layout
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
