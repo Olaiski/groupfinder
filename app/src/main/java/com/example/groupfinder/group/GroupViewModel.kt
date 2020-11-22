@@ -50,7 +50,7 @@ class GroupViewModel(group: Group, app: Application) : AndroidViewModel(app) {
 
     init {
         _selectedGroup.value = group
-        _displayButtons.value = false
+        setButtonVisible(false)
         getGroupMembers(_selectedGroup.value!!.gId)
     }
 
@@ -82,5 +82,9 @@ class GroupViewModel(group: Group, app: Application) : AndroidViewModel(app) {
     // Ubrukt metode
     fun displayGroupMembers(student: StudentCompact) {
         println(student)
+    }
+
+    fun setButtonVisible(show: Boolean) {
+        _displayButtons.value = show
     }
 }

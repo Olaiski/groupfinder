@@ -21,6 +21,7 @@ class GroupListAdapter (val onClickListener: OnClickListener) :
     ListAdapter<Group, GroupListAdapter.GroupViewHolder>(DiffCallBack){
 
 
+
      /**
      * [GroupViewHolder] -konstruktøren tar bindingsvariabelen fra den tilknyttede
      * GroupLeaderTextView, som gir tilgang til [Group] -informasjonen.
@@ -76,5 +77,7 @@ class GroupListAdapter (val onClickListener: OnClickListener) :
             return oldItem.gId == newItem.gId
         }
     }
+
+
 
 }

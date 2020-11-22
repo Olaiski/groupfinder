@@ -24,6 +24,11 @@ fun bindRecyclerView(recyclerView: RecyclerView, data: List<Group>?) {
     (recyclerView.adapter as? GroupListAdapter)?.submitList(data)
 }
 
+//@BindingAdapter("groupFinderData")
+//fun bindGroupAdapter(recyclerView: RecyclerView, data: List<Group>?) {
+//    (recyclerView.adapter as? GroupListAdapter)?.submitList(data)
+//}
+
 
 @BindingAdapter("studentData")
 fun bindRecyclerViewGroupMembers(recyclerView: RecyclerView, data: List<StudentCompact>?) {

@@ -19,7 +19,7 @@
         android:title="@string/room_reservation" />
 
     <item
-        android:id="@+id/groupsFragment"
+        android:id="@+id/groupFinderFragment"
         android:icon="@drawable/ic_group"
         android:title="@string/group_finder"/>
 

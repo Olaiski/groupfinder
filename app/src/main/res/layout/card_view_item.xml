@@ -55,7 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/CustomOverlineSmall"
-                tools:text="MOB3000"
+                tools:text="CourseCode"
                 />
 
             <com.google.android.material.textview.MaterialTextView
@@ -66,7 +66,7 @@
                 android:paddingEnd="0dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="Cool Guyz92"
+                tools:text="Group_Name"
                 />
 
             <com.google.android.material.textview.MaterialTextView
@@ -80,7 +80,7 @@
                 android:scrollHorizontally="false"
                 android:layout_weight="1"
                 android:ellipsize="none"
-                tools:text="Jobba med javaa,letar eter gode vener. la oss jobe samen"
+                tools:text="Description... Placeholdertext..."
 
                 />
 

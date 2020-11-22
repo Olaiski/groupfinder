@@ -98,6 +98,18 @@
             android:name="selectedGroup"
             app:argType="com.example.groupfinder.network.models.Group" />
     </fragment>
+    <fragment
+        android:id="@+id/groupFinderFragment"
+        tools:layout="@layout/group_finder_fragment"
+        android:name="com.example.groupfinder.group.GroupFinderFragment"
+        android:label="GroupFinder" >
+        <action
+            android:id="@+id/show_group_fragment"
+            app:destination="@id/groupFragment" />
+        <action
+            android:id="@+id/action_groupFinderFragment_to_groupFragment"
+            app:destination="@id/groupFragment" />
+    </fragment>
 
 
 </navigation>

@@ -91,7 +91,6 @@ interface GroupFinderApiService {
     @GET("api/user/vacantRooms")
     fun getVacantRoomsAsync(@Query("date") date: String, @Query("start") start: String, @Query("end") end: String) : Deferred<VacantRooms>
 
-
     /**
      * Henter alle reservasjoner basert på email
      * @param email
@@ -99,6 +98,10 @@ interface GroupFinderApiService {
      */
     @GET("api/user/userReservations")
     fun getUserReservationsAsync(@Query("email") email: String) : Deferred<UserReservations>
+
+
+    @GET("api/user/allGroups")
+    fun getAllGroupsAsync() : Deferred<UserGroups>
 
 
 

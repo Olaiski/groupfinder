@@ -11,12 +11,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
 
+    <data>
+        <variable
+            name="vm"
+            type="com.example.groupfinder.group.GroupFinderViewModel" />
+
+        <variable
+            name="vm2"
+            type="com.example.groupfinder.group.GroupViewModel" />
+    </data>
 
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
 
         <TextView
             android:id="@+id/group_header"
@@ -78,7 +90,7 @@
                     android:layout_marginEnd="@dimen/spacing_small"
                     android:textAppearance="@style/CustomTextGroupInfo"
 
-                    android:text="This page let's you search for a group. \nMore info, info info?\nPlaceholder Placeholder"
+                    android:text="This page let's you search for a group. \nUse the search field and select a group."
                     />
 
             </LinearLayout>
@@ -86,57 +98,46 @@
         </com.google.android.material.card.MaterialCardView>
 
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/group_search_input_layout"
-            android:layout_marginTop="@dimen/spacing_medium"
+        <LinearLayout
+            android:id="@+id/linear_rec"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
 
-            android:layout_marginStart="@dimen/spacing_xxl"
-            android:layout_marginEnd="@dimen/spacing_xxl"
-
-            app:startIconDrawable="@drawable/ic_search"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:layout_constraintTop_toBottomOf="@id/card_group_info"
-
+            android:paddingStart="@dimen/spacing_large"
+            android:paddingEnd="@dimen/spacing_large"
             >
 
-            <!-- TODO// Søk etter gruppe.. Kurskode, navn? -->
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/group_search_input"
+
+            <SearchView
+                android:id="@+id/searchView"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:textSize="@dimen/font_small"
-                android:hint="@string/search_for_groups_hint"
-                />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:layout_marginBottom="@dimen/spacing_medium" />
 
 
-        </com.google.android.material.textfield.TextInputLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/group_finder_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                tools:itemCount="4"
+                tools:listitem="@layout/card_view_item" />
 
+            <ImageView
+                android:id="@+id/status_image"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:contentDescription="TODO"
+                app:apiStatus="@{vm.status}" />
 
-        <!-- TODO// Hent alle gruppene fra DB -->
-        <!-- FIXME: Bakgrunn blir hvit når man søker.
-             Urelatert: Søkefelt nedenfor? Bedre å se når man søker?-->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/group_search_list"
-            android:layout_marginTop="@dimen/spacing_xxl"
-            android:layout_marginStart="@dimen/spacing_xxl"
-            android:layout_marginEnd="@dimen/spacing_xxl"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            tools:listitem="@layout/card_view_item"
-
-            app:layout_constraintEnd_toEndOf="@+id/group_search_input_layout"
-
-
-            app:layout_constraintStart_toStartOf="@+id/group_search_input_layout"
-            app:layout_constraintTop_toBottomOf="@+id/group_search_input_layout" />
+        </LinearLayout>
 
 
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 
 </layout>
