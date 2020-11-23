@@ -15,7 +15,7 @@ import com.example.groupfinder.network.models.GroupLeaderGroup
  * data, inkludert beregning av varaisjoner mellom lister.
  * @param onClickListener en lambda som tar gruppen som parameter
  *
- * @author Anders Olai Peders - 225280
+ * @author Anders Olai Pedersen - 225280
  */
 class GroupListAdapter (val onClickListener: OnClickListener) :
     ListAdapter<Group, GroupListAdapter.GroupViewHolder>(DiffCallBack){

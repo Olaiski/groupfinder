@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import com.example.groupfinder.network.GroupFinderApi
 import com.example.groupfinder.network.models.Group
 import com.example.groupfinder.network.models.StudentCompact
+import com.example.groupfinder.util.Constants
 import kotlinx.coroutines.*
 import java.lang.Exception
 
@@ -35,6 +36,10 @@ class GroupViewModel(group: Group, app: Application) : AndroidViewModel(app) {
     val displayButtons: LiveData<Boolean>
         get() = _displayButtons
 
+    private val _statusMessage = MutableLiveData<String>()
+    val statusMessage: LiveData<String>
+        get() = _statusMessage
+
     /**
      * A [CoroutineScope] holder oversikt over alle coroutines startet av denne ViewModel.
      *
@@ -50,7 +55,6 @@ class GroupViewModel(group: Group, app: Application) : AndroidViewModel(app) {
 
     init {
         _selectedGroup.value = group
-        setButtonVisible(false)
         getGroupMembers(_selectedGroup.value!!.gId)
     }
 
@@ -73,13 +77,27 @@ class GroupViewModel(group: Group, app: Application) : AndroidViewModel(app) {
         }
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
+    fun onJoinGroup(sId: Int) {
+        val gId = _selectedGroup.value!!.gId
+
+        coroutineScope.launch {
+            val postGroupRequest = GroupFinderApi.retrofitService.postGroupRequestAsync(sId = sId, gId = gId)
+
+            try {
+
+                val result = postGroupRequest.await()
+                println(result.message)
+
+                _statusMessage.value = result.message
+            }catch (e: Exception) {
+                _statusMessage.value = e.message
+            }
+
+        }
     }
 
 
-    // Ubrukt metode
+    // Ubrukt metode (men kan videreutvikles for mer funksjonalitet, f.eks. nav til en bruker profil)
     fun displayGroupMembers(student: StudentCompact) {
         println(student)
     }
@@ -87,4 +105,11 @@ class GroupViewModel(group: Group, app: Application) : AndroidViewModel(app) {
     fun setButtonVisible(show: Boolean) {
         _displayButtons.value = show
     }
+
+
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
+    }
+
 }

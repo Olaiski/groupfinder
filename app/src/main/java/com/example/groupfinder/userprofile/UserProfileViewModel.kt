@@ -154,7 +154,6 @@ class UserProfileViewModel : ViewModel(){
             try {
                 _status.value = ApiStatus.LOADING
                 val listResult = getGroupsDeferred.await()
-                println(listResult)
                 _status.value = ApiStatus.DONE
                 _groups.value = listResult.userGroups
 

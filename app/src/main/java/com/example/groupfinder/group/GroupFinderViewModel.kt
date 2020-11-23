@@ -28,15 +28,10 @@ class GroupFinderViewModel : ViewModel() {
     private val coroutineScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
 
-    private val _displayButtons = MutableLiveData<Boolean>()
-    val displayButtons: LiveData<Boolean>
-        get() = _displayButtons
-
 
     private val _groups = MutableLiveData<List<Group>>()
     val groups: LiveData<List<Group>>
         get() = _groups
-
 
     private val _status = MutableLiveData<ApiStatus>()
     val status: LiveData<ApiStatus>
@@ -47,9 +42,7 @@ class GroupFinderViewModel : ViewModel() {
     val navigateToSelectedGroup: LiveData<Group>
         get() = _navigateToSelectedGroup
 
-    init {
-        _displayButtons.value = true
-    }
+
 
     /**
      *  Navigerer til [Group] via clicklistener i [UserProfileFragment]
@@ -73,7 +66,6 @@ class GroupFinderViewModel : ViewModel() {
             try {
                 _status.value = ApiStatus.LOADING
                 val listResult = getGroupsDeferred.await()
-                println(listResult)
                 _status.value = ApiStatus.DONE
                 _groups.value = listResult.userGroups
 
@@ -85,7 +77,4 @@ class GroupFinderViewModel : ViewModel() {
         }
     }
 
-    fun getGroupsArr():ArrayList<Group> {
-        return _groups.value as ArrayList<Group>
-    }
 }

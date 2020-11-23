@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    Layout for å søke etter grupper..
-
-
+    Layout for å søke etter grupper.
+    Inneholder SearchView og RecyclerView.
+     Adapteret for RecyclerView inneholder setData metode og filter for søk (ikke to-veis-binding for data)
  -->
 <!-- Anders Olai Pedersen - 225280 -->
 <layout
@@ -16,9 +16,6 @@
             name="vm"
             type="com.example.groupfinder.group.GroupFinderViewModel" />
 
-        <variable
-            name="vm2"
-            type="com.example.groupfinder.group.GroupViewModel" />
     </data>
 
 

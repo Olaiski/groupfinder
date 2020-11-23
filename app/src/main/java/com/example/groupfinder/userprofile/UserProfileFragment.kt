@@ -37,6 +37,8 @@ class UserProfileFragment : Fragment() {
 
         val pref = this.context?.let { PreferenceProvider(it) }
         val userEmail: String? = pref?.getEmailPreference(Constants.KEY_EMAIL)
+        // Setter synlighet for "bli med" knapp (er man allerede i gruppen skal den ikke vises)
+        pref?.putShowButton(Constants.BTN_SHOW, false)
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel

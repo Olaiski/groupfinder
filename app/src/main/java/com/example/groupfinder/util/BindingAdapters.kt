@@ -17,17 +17,12 @@ import com.example.groupfinder.network.models.*
 
 
 /**
- * When there is no Group/Student data (data is null), hide the [RecyclerView], otherwise show it.
+ * Når det ikke er gruppe- / studentdata (data er null), skjul [RecyclerView], ellers viser det.
  */
 @BindingAdapter("listData")
 fun bindRecyclerView(recyclerView: RecyclerView, data: List<Group>?) {
     (recyclerView.adapter as? GroupListAdapter)?.submitList(data)
 }
-
-//@BindingAdapter("groupFinderData")
-//fun bindGroupAdapter(recyclerView: RecyclerView, data: List<Group>?) {
-//    (recyclerView.adapter as? GroupListAdapter)?.submitList(data)
-//}
 
 
 @BindingAdapter("studentData")
@@ -55,7 +50,7 @@ fun bindRecyclerViewUserReservation(recyclerView: RecyclerView, data: List<UserR
 }
 
 /**
- * Binding adapter to set visibility of buttons in [GroupFragment] / [GroupViewModel]
+ * Bindende adapter for å sette synlighet av knapper i [GroupFragment] / [GroupViewModel]
  */
 @BindingAdapter("joinButtonVisible")
 fun setJoinButtonVisible(view: View, visible: Boolean) {
@@ -68,10 +63,10 @@ fun setCancelButtonVisible(view: View, visible: Boolean) {
 }
 
 /**
- *  This binding adapter displays the [ApiStatus] of the network request in an image view.
- *  When the request is loading, displays a loading_animation. If the request has an error it
- *  displays a broken image to reflect the connection error. When the request is finished, it hides the
- *  image view.
+ *  Denne bindingsadapteren viser [ApiStatus] til nettverksforespørselen i en bildevisning.
+ *  Når forespørselen lastes, viser en loading_animation. Hvis forespørselen har en feil det
+ *  viser et ødelagt bilde for å gjenspeile tilkoblingsfeilen. Når forespørselen er ferdig, skjuler den
+ *  bildevisning.
  */
 @BindingAdapter("apiStatus")
 fun bindStatus(statusImageView: ImageView, status: ApiStatus?) {

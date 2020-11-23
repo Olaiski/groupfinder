@@ -6,6 +6,7 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.Deferred
 import okhttp3.OkHttpClient
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -144,6 +145,17 @@ interface GroupFinderApiService {
     @FormUrlEncoded
     fun postLoginStudentAsync(@Field("email") email: String,
                               @Field("password") password: String) : Deferred<ResponseStudent>
+
+
+    /**
+     * Blir med i gruppe basert på: (Koblingstabell)
+     * @param sId StudentId
+     * @param gId GruppeId
+     * @return [PostMessage] meldings objekt
+     */
+    @POST("api/user/joinGroup")
+    @FormUrlEncoded
+    fun postGroupRequestAsync(@Field("StudentId") sId: Int, @Field("GroupId") gId: Int) : Deferred<PostMessage>
 
 }
 

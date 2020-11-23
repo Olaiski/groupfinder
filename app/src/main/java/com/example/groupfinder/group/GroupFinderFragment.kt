@@ -1,21 +1,29 @@
 package com.example.groupfinder.group
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import android.widget.ShareActionProvider
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.groupfinder.R
 import com.example.groupfinder.databinding.GroupFinderFragmentBinding
-import com.example.groupfinder.databinding.GroupFragmentBinding
 import com.example.groupfinder.network.models.Group
+import com.example.groupfinder.util.Constants
+import com.example.groupfinder.util.PreferenceProvider
 
+/**
+ * Dette [Fragment] henter og viser alle gruppene, og lar brukeren søke gjennom gruppene (via filter metode i adapteret for RecyclerView'et)
+ * Søk baserer seg på kurskode, lokasjon, gruppenavn og beskrivelsen.
+ *
+ *
+ * @author Anders Olai Pedersen - 225280
+ */
 class GroupFinderFragment : Fragment() {
 
     private val viewModel : GroupFinderViewModel by lazy {
@@ -23,13 +31,12 @@ class GroupFinderFragment : Fragment() {
     }
 
 
-
-
-    var groups = ArrayList<Group>()
     var groupAdapter: GroupFinderListAdapter? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
+        val pref = this.context?.let { PreferenceProvider(it) }
+        pref?.putShowButton(Constants.BTN_SHOW, true)
 
         val binding: GroupFinderFragmentBinding = DataBindingUtil.inflate(
             inflater, R.layout.group_finder_fragment, container, false
@@ -39,21 +46,27 @@ class GroupFinderFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.vm = viewModel
 
-
+        // Henter alle gruppene
         viewModel.getGroups()
 
+
+        // Setter opp adapter
+        groupAdapter = GroupFinderListAdapter(GroupFinderListAdapter.OnClickListener {})
+        binding.groupFinderList.adapter = groupAdapter
+
+
+        // Observerer gruppene, setter data og nytt adapter
         viewModel.groups.observe(viewLifecycleOwner, { it1 ->
             groupAdapter = GroupFinderListAdapter(GroupFinderListAdapter.OnClickListener {
                 viewModel.displayGroupDetails(it)
             })
-            groupAdapter!!.setData(it1 as ArrayList<Group>)
             binding.groupFinderList.adapter = groupAdapter
-
+            groupAdapter!!.setData(it1 as ArrayList<Group>)
         })
 
 
-
-        viewModel.navigateToSelectedGroup.observe(viewLifecycleOwner, Observer {
+        // Navigerer til valgt gruppe
+        viewModel.navigateToSelectedGroup.observe(viewLifecycleOwner, {
             if (null != it) {
                 this.findNavController().navigate(GroupFinderFragmentDirections.actionGroupFinderFragmentToGroupFragment(it))
                 viewModel.displayGroupDetailsComplete()
@@ -61,19 +74,18 @@ class GroupFinderFragment : Fragment() {
         })
 
 
+        // Setter opp søk / filter
+        binding.searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                groupAdapter!!.filter.filter(query)
+                return true
+            }
 
-//        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-//            override fun onQueryTextSubmit(query: String?): Boolean {
-//                groupAdapterTest!!.filter.filter(query)
-//                return true
-//            }
-//
-//            override fun onQueryTextChange(newText: String?): Boolean {
-//                groupAdapterTest!!.filter.filter(newText)
-//                return true
-//            }
-//        })
-
+            override fun onQueryTextChange(newText: String?): Boolean {
+                groupAdapter!!.filter.filter(newText)
+                return true
+            }
+        })
 
 
 
