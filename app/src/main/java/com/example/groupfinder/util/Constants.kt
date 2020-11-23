@@ -1,5 +1,8 @@
 package com.example.groupfinder.util
 
+/**
+ * Konstanter som er brukt som key for [PreferenceProvider]
+ */
 object Constants {
 
     const val KEY_EMAIL = "email"

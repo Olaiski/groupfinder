@@ -17,7 +17,7 @@ import com.example.groupfinder.network.models.Room
  * clickListener får ut informasjoenen om en valgt rom når man reserverer et rom,
  * data blir sendt videre til viewModel.
  *
- * @author Anders Olai Peders - 225280
+ * @author Anders Olai Pedersen - 225280
  */
 
 class RoomListAdapter(val onClickListener: OnClickListener)

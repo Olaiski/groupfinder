@@ -8,6 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.groupfinder.databinding.UserCardInfoBinding
 import com.example.groupfinder.network.models.StudentCompact
 
+/**
+ * [StudentMembersListAdapter] adapter, blir ikke brukt til noe nyttig per nå. Men er laget med tanke på videreutvikling,
+ * planen var å hente ut informasjon om student som er i gruppen / bli sendt til brukerprofilen.
+ */
 class StudentMembersListAdapter (val onClickListener : OnClickListener) :
         ListAdapter<StudentCompact, StudentMembersListAdapter.StudentViewHolder>(DiffCallBack){
 

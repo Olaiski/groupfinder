@@ -17,7 +17,7 @@ import com.example.groupfinder.network.models.GroupLeaderGroup
  * clickListener får ut informasjoenen om en valgt gruppe når man reserverer rom,
  * data blir sendt videre til viewModel.
  *
- * @author Anders Olai Peders - 225280
+ * @author Anders Olai Pedersen - 225280
  */
 class GroupLeaderListAdapter(val onClickListener: OnClickListener) :
     ListAdapter<GroupLeaderGroup, GroupLeaderListAdapter.GroupViewHolder>(DiffCallBack) {

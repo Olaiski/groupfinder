@@ -18,7 +18,7 @@ import com.example.groupfinder.util.PreferenceProvider
  * Og lar deg navigere til [ReservationFragment]
  * Bygget opp med [Fragment] og data-binding. Benytter seg av en delt viewmodel.
  *
- * @author Anders Olai Peders - 225280
+ * @author Anders Olai Pedersen - 225280
  */
 class UserReservationFragment : Fragment() {
 

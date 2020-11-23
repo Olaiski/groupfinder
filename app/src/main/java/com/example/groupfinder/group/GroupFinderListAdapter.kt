@@ -21,7 +21,7 @@ import kotlin.collections.ArrayList
  * søkene baserer seg på info teksten til gruppen (kurskode, lokasjon, gruppenavn og beskrivelse).
  *
  * Data for listen blir ikke satt via binding men via en setter metode. Dette er pga. vi må søke
- * gjennom listene med filter metodene (kunne sikkert tatt det inn som en param.).
+ * gjennom listene med filter metodene (kunne sikkert tatt listen inn som en param.).
  *
  * @param onClickListener en lambda som tar gruppen som parameter
  *

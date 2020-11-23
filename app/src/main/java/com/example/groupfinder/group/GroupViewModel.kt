@@ -14,7 +14,7 @@ import java.lang.Exception
 
 /**
  * [AndroidViewModel] tilknyttet [GroupFragment], som inneholder informasjon om den valgte [Group].
- * Her hentes studentene som er medlem av gruppen (API kall/query)
+ * Her hentes studentene som er medlem av gruppen (API kall/query) og man kan bli med i gruppen (hvis man "åpner" gruppen via [GroupFinderFragment] )
  *
  * @author Anders Olai Pedersen - 225280
  */

@@ -18,7 +18,7 @@ import com.example.groupfinder.util.Constants
 import com.example.groupfinder.util.PreferenceProvider
 
 /**
- * Dette [Fragment] henter og viser alle gruppene, og lar brukeren søke gjennom gruppene (via filter metode i adapteret for RecyclerView'et)
+ * [GroupFinderFragment] henter og viser alle gruppene, og lar brukeren søke gjennom gruppene (via filter metode i adapteret for RecyclerView'et)
  * Søk baserer seg på kurskode, lokasjon, gruppenavn og beskrivelsen.
  *
  *
@@ -86,8 +86,6 @@ class GroupFinderFragment : Fragment() {
                 return true
             }
         })
-
-
 
         return binding.root
     }

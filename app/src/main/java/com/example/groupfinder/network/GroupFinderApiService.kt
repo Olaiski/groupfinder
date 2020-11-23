@@ -14,8 +14,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.*
 
 /**
- *  [GroupFinderApiService] Inneholder grensesnitt for API kall
- *
+ *  [GroupFinderApiService] grensesnitt for API kall.
  * @author Anders Olai Pedersen - 225280
  */
 

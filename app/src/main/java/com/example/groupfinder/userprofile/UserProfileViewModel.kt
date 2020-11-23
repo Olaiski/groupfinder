@@ -21,7 +21,7 @@ enum class ApiStatus { LOADING, ERROR, DONE }
 private const val NAME_MAX_LENGTH = 17
 /**
  *  [UserProfileViewModel] Inneholder informasjon om brukeren og gruppene han/hun er meldem av.
- *  Blir delt mellom [UserProfileFragment] og [CreateGroupDialogFragment] siden dialogen er en del av fragmentet.
+ *  Blir delt mellom [UserProfileFragment] og [CreateGroupDialogFragment] siden dialogen er en "del" av fragmentet.
  *
  *  @author Anders Olai Pedersen - 225280
  */

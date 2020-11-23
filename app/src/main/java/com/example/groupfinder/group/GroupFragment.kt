@@ -13,7 +13,7 @@ import com.example.groupfinder.util.Constants
 import com.example.groupfinder.util.PreferenceProvider
 
 /**
- * Dette [Fragment] viser detaljert informasjon om en valgt gruppe.
+ * [GroupFragment] viser detaljert informasjon om en valgt gruppe.
  * Den angir denne informasjonen i [GroupViewModel], som den får som en "Parcelable property"
  * gjennom Jetpack Navigations safeArgs.
  *

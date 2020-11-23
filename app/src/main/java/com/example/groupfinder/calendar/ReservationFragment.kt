@@ -23,6 +23,8 @@ import java.util.*
  * [ReservationFragment] er bygget opp med en [MaterialDatePicker] som lar deg velge en dato.
  *  Og oppretter [StartTimeDialogFragment], [EndTimeDialogFragment] og [GroupSelectDialogFragment] når man skal velge tidspunkt og hvilken
  *  gruppe det gjelder.
+ *
+ *  @author Anders Olai Pedersen - 225280
  */
 class ReservationFragment : Fragment() {
 

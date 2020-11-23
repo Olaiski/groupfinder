@@ -3,7 +3,9 @@ package com.example.groupfinder.network.models
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
-
+/**
+ *  Modeller for API / JSON
+ */
 @Parcelize
 data class ResponseStudent (
     val message: String,

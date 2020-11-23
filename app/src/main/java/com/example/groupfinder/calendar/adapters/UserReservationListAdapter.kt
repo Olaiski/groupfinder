@@ -18,7 +18,7 @@ import com.example.groupfinder.network.models.UserReservation
  * Denne klassen blir egentlig ikke brukt til noe nytting per nå. Men tanker er at når man trykker på
  * en reservasjon, blir man sendt til et nytt view der man kan endre på reservasjonen.
  *
- * @author Anders Olai Peders - 225280
+ * @author Anders Olai Pedersen - 225280
  */
 class UserReservationListAdapter (private val onClickListener: OnClickListener) :
     ListAdapter<UserReservation, UserReservationListAdapter.ReservationViewHolder>(DiffCallBack) {

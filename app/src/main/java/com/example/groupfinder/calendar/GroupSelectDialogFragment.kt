@@ -16,7 +16,7 @@ import com.example.groupfinder.databinding.ListDialogFragmentBinding
  * [GroupSelectDialogFragment] inneholder en liste der man velger gruppen til en reservasjon.
  * Bygget opp med [DialogFragment] og data-binding. Benytter seg av en delt viewmodel.
  *
- * @author Anders Olai Peders - 225280
+ * @author Anders Olai Pedersen - 225280
  */
 class GroupSelectDialogFragment : DialogFragment() {
 

@@ -5,7 +5,9 @@ import com.google.gson.annotations.SerializedName
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
 
-
+/**
+ *  Modeller for API / JSON
+ */
 @Parcelize
 data class UserGroups(
     val message: String,

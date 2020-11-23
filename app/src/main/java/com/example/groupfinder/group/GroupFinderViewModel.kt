@@ -12,6 +12,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
+/**
+ * [GroupFinderViewModel] er der man søker etter gruppe, her kommer en liste med grupper fra API kall.
+ *
+ * @author Anders Olai Pedersen - 225280
+ */
 class GroupFinderViewModel : ViewModel() {
 
     /**
@@ -56,8 +61,7 @@ class GroupFinderViewModel : ViewModel() {
     }
 
     /**
-     *
-     * @param email Henter alle gruppene relatert til studenten basert på epost
+     *  Henter alle gruppene, setter status / bilde.
      */
     fun getGroups() {
         coroutineScope.launch {

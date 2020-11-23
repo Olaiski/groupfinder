@@ -15,7 +15,7 @@ import com.example.groupfinder.databinding.TimeDialogFragmentBinding
  * [EndTimeDialogFragment] inneholder en liste der man velger slutt-tiden til en reservasjon.
  * Bygget opp med [DialogFragment] og data-binding. Benytter seg av en delt viewmodel.
  *
- * @author Anders Olai Peders - 225280
+ * @author Anders Olai Pedersen - 225280
  */
 
 class EndTimeDialogFragment : DialogFragment() {
