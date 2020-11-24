@@ -31,7 +31,7 @@
         app:roomData="@{vms.vacantRoomList}"
         android:orientation="vertical"
 
-        tools:itemCount="10"
+        tools:itemCount="15"
         />
 
     </LinearLayout>

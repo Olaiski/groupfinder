@@ -38,11 +38,6 @@
             app:destination="@id/signUpFragment" />
     </fragment>
     <fragment
-        android:id="@+id/aboutFragment"
-        android:name="com.example.groupfinder.about.AboutFragment"
-        android:label="About"
-        tools:layout="@layout/about_fragment" />
-    <fragment
         android:id="@+id/myReservationFragment"
         android:name="com.example.groupfinder.calendar.UserReservationFragment"
         android:label="Reservation"
@@ -75,11 +70,6 @@
     </fragment>
 
 
-    <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.example.groupfinder.settings.SettingsFragment"
-        android:label="Settings"
-        tools:layout="@layout/settings_fragment" />
     <fragment
         android:id="@+id/signUpFragment"
         tools:layout="@layout/sign_up_fragment"

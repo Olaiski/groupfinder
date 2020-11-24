@@ -38,7 +38,7 @@ class UserProfileViewModel : ViewModel(){
      * a [ViewModel] oppdaterer brukergrensesnittet etter endt behandling.
      */
     private var viewModelJob = Job()
-    private val coroutineScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+    private val coroutineScope = CoroutineScope(Dispatchers.IO + viewModelJob)
 
 
     /**
@@ -135,7 +135,7 @@ class UserProfileViewModel : ViewModel(){
                 val resMessage = res.message
 
 
-                _createGroupSuccess.value = true
+                _createGroupSuccess.postValue(true)
             }catch (e : Exception) {
                 Log.i("PostGroup", e.toString())
             }
@@ -152,15 +152,17 @@ class UserProfileViewModel : ViewModel(){
             val getGroupsDeferred = GroupFinderApi.retrofitService.getUserGroupsAsync(email)
 
             try {
-                _status.value = ApiStatus.LOADING
+                _status.postValue(ApiStatus.LOADING)
+
                 val listResult = getGroupsDeferred.await()
-                _status.value = ApiStatus.DONE
-                _groups.value = listResult.userGroups
+
+                _status.postValue(ApiStatus.DONE)
+                _groups.postValue(listResult.userGroups)
 
             } catch (e: Exception) {
-                _status.value = ApiStatus.ERROR
+                _status.postValue(ApiStatus.ERROR)
                 println("ERROR: $e")
-                _groups.value = ArrayList()
+                _groups.postValue(ArrayList())
             }
         }
     }
@@ -176,19 +178,22 @@ class UserProfileViewModel : ViewModel(){
             try {
                 loadStudentString()
 
-                _status.value = ApiStatus.LOADING
+
+                _status.postValue(ApiStatus.LOADING)
                 val result = getStudentDeferred.await()
-                _status.value = ApiStatus.DONE
+
+                _status.postValue(ApiStatus.DONE)
 
 
-                _student.value = result.student
-                _fullname.value = concatName(result.student.firstname, result.student.lastname, NAME_MAX_LENGTH)
-                _phonenumber.value = result.student.phonenumber.toString()
-                _email.value = result.student.email
-                _sId.value = result.student.id
+                _student.postValue(result.student)
+                _fullname.postValue(concatName(result.student.firstname, result.student.lastname, NAME_MAX_LENGTH))
+                _phonenumber.postValue(result.student.phonenumber.toString())
+                _email.postValue(result.student.email)
+                _sId.postValue(result.student.id)
 
             }catch (e : Exception) {
-                _status.value = ApiStatus.ERROR
+//                _status.value = ApiStatus.ERROR
+                _status.postValue(ApiStatus.ERROR)
                 println("ERROR: $e")
                 loadStudentString()
             }
@@ -207,17 +212,19 @@ class UserProfileViewModel : ViewModel(){
 
             try {
                 val res = postStudent.await()
-                _message.value = res.message
-                _student.value = res.student
 
-                _email.value = res.student.email
-                _sId.value = res.student.id
 
-                println(res)
-                _loginSuccess.value = true
+                _message.postValue(res.message)
+                _student.postValue(res.student)
+                _email.postValue(res.student.email)
+                _sId.postValue(res.student.id)
+
+
+                _loginSuccess.postValue(true)
+
             }catch (e: java.lang.Exception) {
                 Log.i("PostStudentLogin", e.toString())
-                _message.value = "Incorrect login info"
+                _message.postValue("Incorrect login info")
             }
 
         }
@@ -225,9 +232,9 @@ class UserProfileViewModel : ViewModel(){
 
 
     private fun loadStudentString() {
-        _fullname.value = "..."
-        _phonenumber.value = "..."
-        _email.value = "..."
+        _fullname.postValue("...")
+        _phonenumber.postValue("...")
+        _email.postValue("...")
     }
 
     override fun onCleared() {

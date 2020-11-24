@@ -29,7 +29,7 @@
         android:textSize="@dimen/font_xl"
         android:paddingTop="@dimen/spacing_medium"
         android:paddingBottom="@dimen/spacing_medium"
-        tools:text="5-212"
+        tools:text="4-123"
 
         />
 </RelativeLayout>

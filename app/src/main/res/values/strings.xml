@@ -65,30 +65,6 @@
     <string name="connection_error_image">Connection error image</string>
     <string name="reservations_info">Reservations info</string>
     <string name="reservation_info_text">Displays all your upcoming reservations.\n If you\'re a groupleader, you can create new reservations by clicking the \'new reservation\' button.</string>
-
-
-    <string-array name="start_time_array">
-        <item>8:00</item>
-        <item>9:00</item>
-        <item>10:00</item>
-        <item>11:00</item>
-        <item>12:00</item>
-        <item>13:00</item>
-        <item>14:00</item>
-        <item>15:00</item>
-        <item>16:00</item>
-        <item>17:00</item>
-        <item>18:00</item>
-        <item>19:00</item>
-        <item>20:00</item>
-        <item>21:00</item>
-        <item>22:00</item>
-        <item>23:00</item>
-
-    </string-array>
-
-
-
-
+    
 
 </resources>

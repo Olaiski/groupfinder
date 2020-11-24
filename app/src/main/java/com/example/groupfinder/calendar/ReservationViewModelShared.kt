@@ -29,7 +29,6 @@ import kotlin.collections.ArrayList
 
 class ReservationViewModelShared : ViewModel() {
 
-
     /**
      * Konstanter for reservasjon, her kan man enkelt endre tidspunktene.
      * [START_TIME] = Tidligste tidspunktet for reservasjon

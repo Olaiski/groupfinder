@@ -7,7 +7,7 @@ import com.example.groupfinder.group.GroupFinderFragment
 
 /**
  * [PreferenceProvider] er en klasse som lagrer data om brukeren som er innlogget, og "Clear" data funksjonen fjerner det.
- * Blir brukt for queries igjennom applikasjonen, og når man klikker logg ut.
+ *  Blir brukt for queries igjennom applikasjonen, og når man klikker logg ut.
  *
  * @author Anders Olai Pedersen - 225280
  */

@@ -9,7 +9,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
     <data>
         <variable
             name="vms"
@@ -246,8 +245,6 @@
 
                     android:backgroundTint="@android:color/holo_green_dark"
                     android:text="@string/reserve"
-
-
                     app:layout_constraintEnd_toEndOf="@+id/date_input"
                     app:layout_constraintStart_toStartOf="@+id/date_input"
                     app:layout_constraintTop_toBottomOf="@+id/group_text_view"

@@ -23,15 +23,6 @@
         android:icon="@drawable/ic_group"
         android:title="@string/group_finder"/>
 
-    <item
-        android:id="@+id/settingsFragment"
-        android:icon="@drawable/settings"
-        android:title="@string/settings"/>
-
-    <item
-        android:id="@+id/aboutFragment"
-        android:icon="@drawable/ic_about"
-        android:title="@string/about" />
 
     <item
         android:id="@+id/logoutFragment"
