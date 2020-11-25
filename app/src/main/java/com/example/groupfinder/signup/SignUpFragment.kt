@@ -39,6 +39,7 @@ class SignUpFragment : Fragment() {
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+        
 
 
         // Register knapp, en del input sjekker
@@ -51,27 +52,27 @@ class SignUpFragment : Fragment() {
             val password: String
 
             if(binding.forenameInputText.text?.isEmpty()!!) {
-                Toast.makeText(context, "Missing forename!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.missing_info_fn), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             } else forename = binding.forenameInputText.text.toString()
 
             if (binding.lastnameInputText.text?.isEmpty()!!) {
-                Toast.makeText(context, "Missing surname!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.missing_info_sn), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             } else lastname = lastnameInputText.text.toString()
 
             if (binding.emailInputText.text?.isEmpty()!!) {
-                Toast.makeText(context, "Missing Email!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.missing_info_email), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             } else email = emailInputText.text.toString()
 
             if (binding.phoneInputText.text?.isEmpty()!!) {
-                Toast.makeText(context, "Missing phone!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.missing_info_phone), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             } else phone = phoneInputText.text.toString().toInt()
 
             if (binding.passwordInputText.text?.isEmpty()!!) {
-                Toast.makeText(context, "Missing password!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.missing_info_pw), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }else password = passwordInputText.text.toString()
             

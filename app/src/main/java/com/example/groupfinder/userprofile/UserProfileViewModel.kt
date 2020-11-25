@@ -178,7 +178,6 @@ class UserProfileViewModel : ViewModel(){
             try {
                 loadStudentString()
 
-
                 _status.postValue(ApiStatus.LOADING)
                 val result = getStudentDeferred.await()
 
@@ -192,7 +191,6 @@ class UserProfileViewModel : ViewModel(){
                 _sId.postValue(result.student.id)
 
             }catch (e : Exception) {
-//                _status.value = ApiStatus.ERROR
                 _status.postValue(ApiStatus.ERROR)
                 println("ERROR: $e")
                 loadStudentString()
@@ -213,12 +211,13 @@ class UserProfileViewModel : ViewModel(){
             try {
                 val res = postStudent.await()
 
-
                 _message.postValue(res.message)
                 _student.postValue(res.student)
                 _email.postValue(res.student.email)
                 _sId.postValue(res.student.id)
 
+                _fullname.postValue(concatName(res.student.firstname, res.student.lastname, NAME_MAX_LENGTH))
+                _phonenumber.postValue(res.student.phonenumber.toString())
 
                 _loginSuccess.postValue(true)
 

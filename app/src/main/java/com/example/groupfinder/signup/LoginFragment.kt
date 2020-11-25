@@ -52,12 +52,12 @@ class LoginFragment : Fragment() {
             val password = binding.loginInputPassword.text.toString()
 
             if(email.isEmpty()) {
-                Toast.makeText(context, "Missing email!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.missing_info_email), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             if (password.isEmpty()) {
-                Toast.makeText(context, "Missing password!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.missing_info_pw), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -65,11 +65,11 @@ class LoginFragment : Fragment() {
             pref?.putEmailPreference(Constants.KEY_EMAIL, email)
             // Henter data om studenten basert på epost (og passord)
             viewModel.onLogin(email, password)
-            viewModel.getStudent(email)
+//            viewModel.getStudent(email)
             viewModel.getGroups(email)
         }
 
-//        pref?.putIdPreference(Constants.KEY_ID, )
+
 
         // Navigerer til profilen om brukeren logger inn
         viewModel.loginSuccess.observe(viewLifecycleOwner, Observer {

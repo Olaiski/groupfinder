@@ -75,7 +75,7 @@ class ReservationFragment : Fragment() {
 
         startTimeInput.setOnClickListener {
             if (vms.startTimeList.value == null) {
-                showSnackbar("Choose a date")
+                showSnackbar(getString(R.string.snackbar_select_date))
                 return@setOnClickListener
             }
             startTimeDialog.show(parentFragmentManager, startTimeInput.toString())
@@ -93,7 +93,7 @@ class ReservationFragment : Fragment() {
 
         endTimeInput.setOnClickListener {
             if (vms.startTimeList.value == null) {
-                showSnackbar("Set start time")
+                showSnackbar(getString(R.string.snackbar_start_time))
                 return@setOnClickListener
             }
             endTimeDialog.show(parentFragmentManager, endTimeInput.toString())
@@ -111,7 +111,7 @@ class ReservationFragment : Fragment() {
 
         roomInput.setOnClickListener {
             if (vms.startTimeList.value == null) {
-                showSnackbar("Choose Date/Start-/End-time")
+                showSnackbar(getString(R.string.missing_info_start_end_date))
                 return@setOnClickListener
             }
             roomDialog.show(parentFragmentManager, roomInput.toString())
@@ -144,27 +144,27 @@ class ReservationFragment : Fragment() {
             val groupNameTxt = groupInput.text.toString()
 
             if (dateTxt.isEmpty()) {
-                showSnackbar("Missing date")
+                showSnackbar(getString(R.string.missing_info_date))
                 return@setOnClickListener
             }
 
             if (startTxt.isEmpty()) {
-                showSnackbar("Missing start time")
+                showSnackbar(getString(R.string.missing_info_time))
                 return@setOnClickListener
             }
 
             if (endTxt.isEmpty()) {
-                showSnackbar("Missing end time")
+                showSnackbar(getString(R.string.missing_info_endtime))
                 return@setOnClickListener
             }
 
             if (roomNameTxt.isEmpty()) {
-                showSnackbar("Missing room")
+                showSnackbar(getString(R.string.missing_info_room))
                 return@setOnClickListener
             }
 
             if (groupNameTxt.isEmpty()) {
-                showSnackbar("Missing group")
+                showSnackbar(getString(R.string.missing_info_group))
                 return@setOnClickListener
             }
 

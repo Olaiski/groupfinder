@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="password_hint" translatable="false">Passord</string>
-    <string name="no_account_text" translatable="false">Har du ikke bruker?</string>
-    <string name="sign_up_btn_text" translatable="false">REGISTRER</string>
-    <string name="sign_up_text" translatable="false">Registrer</string>
-    <string name="forename_hint" translatable="false">Fornavn</string>
-    <string name="lastname_hint" translatable="false">Etternavn</string>
-    <string name="email_hint" translatable="false">E-post</string>
-    <string name="phonenumber_hint" translatable="false">Telefonnummer</string>
+    <string name="password_hint" translatable="true">Passord</string>
+    <string name="no_account_text" translatable="true">Har du ikke bruker?</string>
+    <string name="sign_up_btn_text" translatable="true">REGISTRER</string>
+    <string name="sign_up_text" translatable="true">Registrer</string>
+    <string name="forename_hint" translatable="true">Fornavn</string>
+    <string name="lastname_hint" translatable="true">Etternavn</string>
+    <string name="email_hint" translatable="true">E-post</string>
+    <string name="phonenumber_hint" translatable="true">Telefonnummer</string>
     <string name="already_have_an_account">Er du allerede registrert?</string>
     <string name="back_to_login">Tilbake til login</string>
     <string name="home">Hjem</string>
@@ -61,4 +61,23 @@
     <string name="connection_error_image">Koblingsfeil-bilde</string>
     <string name="reservations_info">Reservasjons info</string>
     <string name="reservation_info_text">Viser alle kommende reservasjoner. \n Hvis du er gruppeleder, kan du opprette nye reservasjoner ved å klikke på \'ny reservasjon \'-knappen.</string>
+    <string name="find_your_group">Finn din gruppe!</string>
+    <string name="this_page_let_s_you_search_for_a_group_nuse_the_search_field_and_select_a_group">Denne siden lar deg søke etter en gruppe. Bruk søkefeltet og velg en gruppe.</string>
+    <string name="missing_info_fn">Mangler fornavn!</string>
+    <string name="missing_info_sn">Mangler etternavn!</string>
+    <string name="missing_info_email">Mangler epost!</string>
+    <string name="missing_info_phone">Mangler tlf. nummber!</string>
+    <string name="missing_info_pw">Mangler passord!</string>
+    <string name="missing_info_groupname">Mangler gruppe navn!</string>
+    <string name="missing_info_coursecode">Mangler emnekode!</string>
+    <string name="missing_info_location">Mangler sted!</string>
+    <string name="missing_info_description">Mangler beskrivelse!</string>
+    <string name="missing_info_date">Mangler dato</string>
+    <string name="missing_info_time">Mangler start tid</string>
+    <string name="missing_info_endtime">Mangler slutt tid</string>
+    <string name="missing_info_room">Mangler rom</string>
+    <string name="missing_info_group">Mangler gruppe</string>
+    <string name="missing_info_start_end_date">Velg Dato/Start-/slutt-tid</string>
+    <string name="snackbar_start_time">Velg start tid</string>
+    <string name="snackbar_select_date">Velg en dato</string>
 </resources>

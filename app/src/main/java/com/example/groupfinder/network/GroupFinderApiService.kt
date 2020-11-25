@@ -20,7 +20,8 @@ import retrofit2.http.*
 
 // http://LOCALIP:PORT/
 //private const val BASE_URL = "http://192.168.11.130:3000/"
-private const val BASE_URL = "http://10.0.2.2:3000/"
+//private const val BASE_URL = "http://10.0.2.2:3000/"
+private const val BASE_URL2 = "https://cryptic-castle-54022.herokuapp.com/"
 
 
 /**
@@ -42,7 +43,7 @@ private val moshi = Moshi.Builder()
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(MoshiConverterFactory.create(moshi))
     .addCallAdapterFactory(CoroutineCallAdapterFactory())
-    .baseUrl(BASE_URL)
+    .baseUrl(BASE_URL2)
     .build()
 
 /**

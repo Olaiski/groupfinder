@@ -71,7 +71,7 @@
                     android:layout_marginTop="20dp"
                     android:textAppearance="@style/CustomOverlineLarge"
 
-                    android:text="Find your group!"
+                    android:text="@string/find_your_group"
                     />
 
 
@@ -87,7 +87,7 @@
                     android:layout_marginEnd="@dimen/spacing_small"
                     android:textAppearance="@style/CustomTextGroupInfo"
 
-                    android:text="This page let's you search for a group. \nUse the search field and select a group."
+                    android:text="@string/this_page_let_s_you_search_for_a_group_nuse_the_search_field_and_select_a_group"
                     />
 
             </LinearLayout>

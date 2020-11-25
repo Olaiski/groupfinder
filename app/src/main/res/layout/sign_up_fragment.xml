@@ -71,7 +71,6 @@
             android:inputType="text"
             android:textSize="@dimen/font_xs"
             android:hint="@string/forename_hint"
-
             />
     </com.google.android.material.textfield.TextInputLayout>
 

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
+import com.example.groupfinder.R
 import com.example.groupfinder.databinding.CreateGroupDialogFragmentBinding
 import com.example.groupfinder.network.models.PostGroup
 import com.example.groupfinder.util.Constants
@@ -44,19 +45,19 @@ class CreateGroupDialogFragment : DialogFragment() {
             val location = binding.locationInputText.text.toString()
 
             if (groupName.isEmpty()){
-                Toast.makeText(context, "Missing group name!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.missing_info_groupname), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             if (courseCode.isEmpty()) {
-                Toast.makeText(context, "Missing course code!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.missing_info_coursecode), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             if (location.isEmpty()) {
-                Toast.makeText(context, "Missing location!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.missing_info_location), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             if (description.isEmpty()) {
-                Toast.makeText(context, "Missing description!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.missing_info_description), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 

@@ -65,6 +65,25 @@
     <string name="connection_error_image">Connection error image</string>
     <string name="reservations_info">Reservations info</string>
     <string name="reservation_info_text">Displays all your upcoming reservations.\n If you\'re a groupleader, you can create new reservations by clicking the \'new reservation\' button.</string>
-    
+    <string name="find_your_group">Find your group!</string>
+    <string name="this_page_let_s_you_search_for_a_group_nuse_the_search_field_and_select_a_group">This page let\'s you search for a group.  Use the search field and select a group.</string>
+    <string name="missing_info_fn">Missing forename!</string>
+    <string name="missing_info_sn">Missing surname!</string>
+    <string name="missing_info_email">Missing Email!</string>
+    <string name="missing_info_phone">Missing phone!</string>
+    <string name="missing_info_pw">Missing password!</string>
+    <string name="missing_info_groupname">Missing group name!</string>
+    <string name="missing_info_coursecode">Missing course code!</string>
+    <string name="missing_info_location">Missing location!</string>
+    <string name="missing_info_description">Missing description!</string>
+    <string name="missing_info_date">Missing date</string>
+    <string name="missing_info_time">Missing start time</string>
+    <string name="missing_info_endtime">Missing end time</string>
+    <string name="missing_info_room">Missing room</string>
+    <string name="missing_info_group">Missing group</string>
+    <string name="missing_info_start_end_date">Choose Date/Start-/End-time</string>
+    <string name="snackbar_start_time">Set start time</string>
+    <string name="snackbar_select_date">Choose a date</string>
+
 
 </resources>
