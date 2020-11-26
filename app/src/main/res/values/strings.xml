@@ -84,6 +84,7 @@
     <string name="missing_info_start_end_date">Choose Date/Start-/End-time</string>
     <string name="snackbar_start_time">Set start time</string>
     <string name="snackbar_select_date">Choose a date</string>
+    <string name="room_reservations">Room reservations</string>
 
 
 </resources>

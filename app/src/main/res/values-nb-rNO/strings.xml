@@ -41,7 +41,7 @@
     <string name="select">Velg</string>
     <string name="end_time">Slutt tid:</string>
     <string name="room_number">Romnummer:</string>
-    <string name="room_reservation">Rom reservasjon</string>
+    <string name="room_reservation">Romreservasjon</string>
     <string name="select_date">velg dato</string>
     <string name="groupwsemi">Gruppe:</string>
     <string name="reserve">Reservere</string>
@@ -80,4 +80,5 @@
     <string name="missing_info_start_end_date">Velg Dato/Start-/slutt-tid</string>
     <string name="snackbar_start_time">Velg start tid</string>
     <string name="snackbar_select_date">Velg en dato</string>
+    <string name="room_reservations">Romreservasjoner</string>
 </resources>

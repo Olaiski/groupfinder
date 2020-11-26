@@ -14,8 +14,10 @@ import com.example.groupfinder.R
 import com.example.groupfinder.databinding.ReservationFragmentBinding
 import com.example.groupfinder.util.PreferenceProvider
 import com.example.groupfinder.util.Constants
+import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.reservation_fragment.*
 import java.util.*
 
 /**
@@ -54,7 +56,6 @@ class ReservationFragment : Fragment() {
         val currentTimeInMillis = Calendar.getInstance().timeInMillis
         builder.setSelection(currentTimeInMillis)
         builder.setTitleText("Select a Date")
-
         val picker: MaterialDatePicker<*> = builder.build()
         dateInput.setOnClickListener {
             picker.show(parentFragmentManager, picker.toString())

@@ -118,7 +118,7 @@
             android:layout_marginTop="@dimen/spacing_xxl"
             android:paddingBottom="@dimen/spacing_large"
 
-            android:text="@string/room_reservation"
+            android:text="@string/room_reservations"
             android:textAppearance="@style/CustomOverlineLarge"
             app:layout_constraintEnd_toEndOf="@+id/card_group_info"
             app:layout_constraintStart_toStartOf="@+id/card_group_info"
